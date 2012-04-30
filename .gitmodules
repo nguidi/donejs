@@ -7,12 +7,6 @@
 [submodule "steal"]
 	path = steal
 	url = git://github.com/jupiterjs/steal.git
-[submodule "mxui"]
-	path = mxui
-	url = git://github.com/jupiterjs/mxui.git
 [submodule "can"]
 	path = can
 	url = git://github.com/jupiterjs/canjs.git
-[submodule "jquery"]
-	path = jquery
-	url = git@github.com:jupiterjs/jquerymx.git
