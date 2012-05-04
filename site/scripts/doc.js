@@ -4,6 +4,6 @@ load('documentjs/documentjs.js');
 
 
 DocumentJS('site/scripts/doc.html',{
-	markdown : ['steal', 'can', 'site', 'jquery', 'funcunit', 'tutorials' ],
+	markdown : ['steal', 'can', 'site', 'jquery', 'funcunit', 'tutorials', 'canui'],
 	out : 'site/docs'
 });

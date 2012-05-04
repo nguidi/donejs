@@ -65,3 +65,4 @@ steal('steal/generate',
 	'jquery/lang/string/deparam',
 	'jquery/lang/object')
 .then('funcunit')
+.then('canui')
