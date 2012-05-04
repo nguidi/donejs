@@ -286,7 +286,7 @@ In the `<footer>`:
 
 Keep in mind that thanks to EJS live binding everything will be updated as soon as the Model the attributes are bound to changes.  There is no need to render the view again. The [can.EJS.Helpers.prototype.list list helper] will also make sure that the list will stay up to date whenever our `Todo.List` changes (e.g. when removing or adding a Todo).
 
-__Creating Todos:__
+__Creating Todos__
 
 Lets got back to the control: The first thing we want to do is to create new Todos. For that we will listen to the keyup event on the input field when the enter key (key code 13) was pressed and create a new `Todo` model with the input field value and marked as incomplete. When saving was successfull, empty the input field:
 
@@ -311,7 +311,7 @@ The next step is to update the `Todo.List` that was passed in the controller opt
 
 These three lines of code are everything that needs to be done for a new Todo to show up in the list.
 
-__Deleting Todos:__
+__Deleting Todos__
 
 Deleting a Todo is even easier. We'll just listen to a click on the element with the *destroy* class and then fetch the Model from the data of the list element (remember, it has been added in the `todos.ejs` view using `<%= (el)-> el.data('todo', todo) %>>`):
 
@@ -322,7 +322,7 @@ Deleting a Todo is even easier. We'll just listen to a click on the element with
 
 The magic is that [can.Model.List] will automatically remove the deleted model which in turn will update your view right away. So nothing else to do here, too.
 
-This also makes it easy to add the functionality to clear delete all completed Todos. Just get the array of complete Todos from our Todo.List and destroy each one:
+This also makes it easy to add the functionality to delete all completed Todos. Just get the array of complete Todos from our Todo.List and destroy each one:
 
 		// Listen for removing all completed Todos
 		'#clear-completed click' : function() {
@@ -331,7 +331,9 @@ This also makes it easy to add the functionality to clear delete all completed T
 			});
 		},
 
-__Editing Todos:__
+__Editing Todos__
+
+For editing a Todo we want to be able to double click on the text and have it show an inline input field. The field will show up by adding the *editing* class to the Todo list element. Since we bound to the *editing* attribute in the view with `<%= todo.attr("editing") ? "editing" : "" %>"` the class will be added when it changes to true. So on a doubleclick on the Todo the control sets the editing attribute, saves the Todo to the localStorage and focuses the editing input field:
 
 	// Listen for editing a Todo
 	'.todo dblclick' : function(el, ev) {
@@ -339,6 +341,8 @@ __Editing Todos:__
 			el.children('.edit').focus().select();
 		});
 	},
+
+The Todo should be updated when pressing the enter key and when leaving the input field. We create a helper `updateTodo` which will be called in both cases:
 
 	// Update a todo
     updateTodo: function(el) {
@@ -359,6 +363,12 @@ __Editing Todos:__
         this.updateTodo(el);
     },
 
+Again, the view will be updated as soon as any attribute changes.
+
+__Completing Todos__
+
+Similar to editing Todos we will just listen to a click on the toggle button, mark the Todo from that list element as completed and save it. For marking all Todos
+
     // Listen for the toggled completion of a Todo
     '.todo .toggle click' : function(el, ev) {
         el.closest('.todo').data('todo')
@@ -373,3 +383,7 @@ __Editing Todos:__
             todo.attr('complete', toggle).save();
         });
     },
+
+## That's It!
+
+DoneJS enables you to write even the simplest application **the right way** from the start. With a Model that's completely independent from any knowledge of user interface behavior, and a Controller that's all ready to scale up to the complexities of modern Web experiences, you won't find yourself rewriting your app over and over again to deliver the goods.
