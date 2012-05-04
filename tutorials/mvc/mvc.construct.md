@@ -1,4 +1,4 @@
-@page mvc.class Class
+@page mvc.construct Construct
 @parent mvc 0
 
 Can's Control and Model inherit from its Class helper - [Can.Construct]. To create a class, call <code>$.Class(NAME, [classProperties, ] instanceProperties])</code>. 
