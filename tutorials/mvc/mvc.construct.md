@@ -1,20 +1,20 @@
 @page mvc.construct Construct
 @parent mvc 0
 
-Can's Control and Model inherit from its Class helper - [Can.Construct]. To create a class, call <code>$.Class(NAME, [classProperties, ] instanceProperties])</code>. 
+Can's Control and Model inherit from its Class helper - [Can.Construct]. To create a class, call `can.Construct([NAME, classProperties, ] instanceProperties])`.
 
-    $.Class("Animal",{
+    can.Construct("Animal",{
       breathe : function(){
          console.log('breathe'); 
       }
     });
 
-In the example above, instances of Animal have a <code>breathe()</code> method. We can create a new <code>Animal</code> instance and call <code>breathe()</code> on it like:
+In the example above, instances of Animal have a `breathe()` method. We can create a new `Animal` instance and call `breathe()` on it like:
 
     var man = new Animal();
     man.breathe();
 
-If you want to create a sub-class, simply call the the base class with the sub-class's name and properties:
+If you want to extend the construct, simply call the the base construct with the sub-class's name and properties:
 
     Animal("Dog",{
       wag : function(){
@@ -28,9 +28,9 @@ If you want to create a sub-class, simply call the the base class with the sub-c
 
 ### Instantiation
 
-When a new class instance is created, it calls the class's <code>init</code> method with the arguments passed to the constructor function:
+When a new construct instance is created, it calls the class's `init` method with the arguments passed to the constructor function:
 
-    $.Class('Person',{
+    can.Construct('Person',{
       init : function(name){
         this.name = name;
       },
