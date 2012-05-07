@@ -51,7 +51,7 @@ Once you get the application from GitHub you should have structure similar to be
     		...
 		contacts.html
 
-To run the application, open _contacts.html_ with your browser.  We will be using [jQuery.fixture fixtures]
+To run the application, open _contacts.html_ with your browser.  We will be using [can.fixture fixtures]
 to simulate the AJAX requests so running it from a server isn’t necessary.
 
 Once the application is displayed in your browser, continue to [contacts.dc Divide and Conquer]
