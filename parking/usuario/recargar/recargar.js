@@ -14,7 +14,7 @@ steal(
             defaults: {}
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'usuario/recargar/recargar.ejs'))
+                this.element.html(can.view('usuario/recargar/recargar.ejs'))
             },
             
             '#aceptar click': function() {
