@@ -1,0 +1,45 @@
+/* 
+    Document   : colorBoton
+    Created on : 17/05/2012, 21:48:12
+    Author     : gisela
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+/*
+   AGREGADO PARA PONER BOTON DE OTRO COLOR. 17/05 CAMBIO DE TEMA
+*/
+/*.ui-btn-up-f { background: -moz-linear-gradient(top, rgba(57,107,158,1) 0%, rgba(78,137,197,0.65) 100%);
+               FF3.6+ 
+              background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(57,107,158,1)), color-stop(100%,rgba(78,137,197,0.65)));
+               Chrome,Safari4+ 
+              background: -webkit-linear-gradient(top, rgba(57,107,158,1) 0%, rgba(78,137,197,0.65) 100%);
+               Chrome10+,Safari5.1+ 
+              background: -o-linear-gradient(top, rgba(57,107,158,1) 0%, rgba(78,137,197,0.65) 100%);
+               Opera11.10+
+              background: -ms-linear-gradient(top, rgba(57,107,158,1) 0%, rgba(78,137,197,0.65) 100%);
+               IE10+
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#396b9e', endColorstr='#a64e89c5',GradientType=0 );
+               IE6-9
+              background: linear-gradient(top, rgba(57,107,158,1) 0%, rgba(78,137,197,0.65) 100%);
+               W3C
+              border: 1px solid #225377; text-shadow: #225377 0px -1px 1px; color: #fff; } .ui-btn-down-f, .ui-btn-hover-f { background: -moz-linear-gradient(top, rgba(114,176,212,1) 0%, rgba(75,136,182,0.65) 100%);
+               FF3.6+
+              background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(114,176,212,1)), color-stop(100%,rgba(75,136,182,0.65)));
+               Chrome,Safari4+
+              background: -webkit-linear-gradient(top, rgba(114,176,212,1) 0%, rgba(75,136,182,0.65) 100%);
+               Chrome10+,Safari5.1+
+              background: -o-linear-gradient(top, rgba(114,176,212,1) 0%,rgba(75,136,182,0.65) 100%);
+               Opera11.10+
+              background: -ms-linear-gradient(top, rgba(114,176,212,1) 0%, rgba(75,136,182,0.65) 100%);
+               IE10+
+              filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#72b0d4', endColorstr='#a64b88b6',GradientType=0 );
+               IE6-9
+              background: linear-gradient(top, rgba(114,176,212,1) 0%,rgba(75,136,182,0.65) 100%);
+               W3C  border: 1px solid #00516E; text-shadow: #014D68 0px -1px 1px; color: #fff; }*/

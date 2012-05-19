@@ -43,24 +43,3 @@ and open the template in the editor.
 
 </body>
 
-
-
-<script type='text/javascript' src='../../../steal/steal.js'></script>
-<script type='text/javascript'>
-    steal(
-        'can/control/control.js',
-        'jquery/jquery.js')
-    .then(
-        'jquery-mobile/jquery.mobile.structure-1.1.0.css',
-        'jquery-mobile/jquery.mobile.theme-1.1.0.css',
-        'jquery-mobile/jquery.mobile-1.1.0.css',
-        'jquery-mobile/jquery.mobile-1.1.0.js')
-    .then('parking/gadget/patente/patente.js',
-          'parking/usuario/options/options.js')
-    .then(
-              function($){ 
-
-            new Patente_pantalla( '#mainResults', {} )
-            })
-    
-</script>

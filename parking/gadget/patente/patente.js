@@ -11,7 +11,8 @@ steal(
     'parking/models/hist_patente.js',
     'parking/fixtures/inspectores.js',
     'parking/config.js',
-     'parking/gadget/estadoUsuario/estadoUsuario.js').
+     'parking/gadget/estadoUsuario/estadoUsuario.js',
+     'parking/fixtures/inspectores.js').
 then(
     function(){
         can.Control( "Patente_pantalla",{  
@@ -22,15 +23,18 @@ then(
 
             'a#aceptar click':function(){
                var nroPatente = this.element.find('input#patente').val()
-
-               if (nroPatente=='kmm875'){
-
-                $.mobile.changePage(url +'gadget/estadoUsuario/estadoUsuario.html')
-                $('#pageEstado').live( 'pagecreate',function(event){
-                     new Luz_verde( '#mainEstado', true )
+               //var obj = can.Model.findOne({id: nroPatente})
+               var obj = {}
+               if(obj.length>0){
+                    $.mobile.changePage(url +'gadget/estadoUsuario/estadoUsuario.html')
+                    $('#pageEstado').live( 'pagecreate',function(event){
+                         new Luz_verde( '#mainEstado', {status:true} )
                     })
-                }else
-                     $.mobile.changePage(url+'login/error.html')
+                }else{
+                     $.mobile.changePage(url +'gadget/estadoUsuario/estadoUsuario.html')
+                     $('#pageEstado').live( 'pagecreate',function(event){
+                         new Luz_verde( '#mainEstado', {} )
+                        })}
                }
             }  
     )}
