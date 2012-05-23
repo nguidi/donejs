@@ -12,16 +12,18 @@ and open the template in the editor.
         <div id="indexPage" data-role="page">
 
                 <div data-role="header">
-                        <h1>Cell Parking International</h1>
+                        <h1>CPI<div id="register"></div></h1>
+                        
                 </div><!-- /header -->
 
-                <div id="main" data-role="content">
-                    
+                <div id="mainP" data-role="content">
+                    <div id="main" ></div>
                 </div><!-- /content -->
 
                 <div data-role="footer">
                     <h4>Ver Version PC</h4>
                 </div>
+                
         </div><!-- /page -->
 
         </body>
@@ -35,12 +37,21 @@ and open the template in the editor.
         'jquery-mobile/jquery.mobile.structure-1.1.0.css',
         'jquery-mobile/jquery.mobile.theme-1.1.0.css',
         'jquery-mobile/jquery.mobile-1.1.0.css',
-        'jquery-mobile/jquery.mobile-1.1.0.js')
-    .then('parking/login/login.js')
+        'jquery-mobile/jquery.mobile-1.1.0.js',
+        'parking/models/usuario.js','parking/models/provincia.js')
+    .then('parking/login/login.js',
+          'parking/fixtures/usuarios.js',
+          'parking/fixtures/provincias.js',
+          'parking/register/register.js')
     .then(
-        function($){ 
+        function($){
+            $('#indexPage').live( 'pagecreate',function(event){
+                new Registrarse( '#register', {} );
+            })
+            
             $('#indexPage').live( 'pagecreate',function(event){
                 new Login( '#main', {} );
+                $('input').attr('value','')
             })
         }
     );

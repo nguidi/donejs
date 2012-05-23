@@ -9,13 +9,13 @@ steal('can/model')
 
     can.Model("User",{
         findAll : 'GET /users',
-        findOne : 'GET /users/{id}',
+        findOne : 'GET /users/{username}',
         create  : 'POST /users',
         update  : 'PUT /users/{id}',
         destroy : 'DELETE /users/{id}',
         models  : function(data){
-            return can.Model.models.call(this,data.items);
-        }
+            return data.items;
+        } 
     }, {})
 
 })

@@ -9,11 +9,17 @@ steal(
     'can/view/ejs',
     'parking/usuario/menu/menu.js',
     'parking/usuario/options/options.js',
-    'parking/config.js')
+    'parking/config.js',
+    'parking/fixtures/usuarios.js',
+    'parking/models/usuario.js')
 .then(
     function(){
         
         can.Control("Login",{
+            defaults: {
+                
+            }
+        },{
             
             'init': function( element , options ) {
                 this.element.html(can.view(url+'login/init.ejs'))
@@ -23,13 +29,14 @@ steal(
             '#login click': function() {
                 var user = this.element.find('input#usuario').val()
                 var pass = this.element.find('input[name=password]:visible').val()
+                User.findAll().then(function(){})
                 if (user== 'gadget' && pass == 'password') {
                     alert('gadget')
                 } else {
                     if (user== 'usuario' && pass == 'usuario') {
                         $.mobile.changePage(url+'usuario/usuario.html')
                         $('#usuarioPage').live( 'pagecreate',function(event){
-                            new User_options( '#userOptionsMenu', {} )
+                            new User_options( '#userOptionsMenu', {username: "Gise Martinez"} )
                             new User_menu( '#mainMenu', {} )
                         });
                     } else 

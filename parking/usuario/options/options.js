@@ -12,7 +12,9 @@ steal(
     function(){
         
         can.Control("User_options",{
-            defaults: {}
+            defaults: {
+                username: "Un Usuario"
+            }
         },{
             'init': function( element , options ) {
                 this.element.html(can.view(url+'usuario/options/init.ejs'))
@@ -20,7 +22,10 @@ steal(
             
             'a#options click': function() {
                 $.mobile.changePage(url+'usuario/options/menu/menu.html')
+                var self = this
+                console.log(self.options.username)
                 $(document).bind('pagechange',function() {
+                    $('a.username').html(self.options.username)
                     $('#edit').bind('click',function(){
                         alert('editar')
                     })
