@@ -16,3 +16,6 @@
 [submodule "jquery"]
 	path = jquery
 	url = git://github.com/jupiterjs/jquerymx.git
+[submodule "bootstrap"]
+	path = bootstrap
+	url = git://github.com/twitter/bootstrap.git

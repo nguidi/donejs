@@ -9,3 +9,4 @@ app.js
 node_modules
 *.orig
 /sigma/nbproject/private/
+nbproject/
