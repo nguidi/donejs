@@ -1,0 +1,28 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    	<head> 
+	<title>Cell Parking International</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+        </head> 
+        <body> 
+        <div id="mainPage" align="center">
+        </div><!-- /page -->
+
+        </body>
+</html>
+<script type='text/javascript' src='../steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'can/control/control.js',
+        'jquery/jquery.js')
+    .then('parking_web/login/login.js')
+    .then(
+        function(){ 
+            new LoginWeb( '#mainPage', {} );
+        }
+    );
+</script>

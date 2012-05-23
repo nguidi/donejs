@@ -1,0 +1,93 @@
+body{
+    font-size: 10px;
+    margin:0px;
+    padding:0px;
+    font-family: arial;
+    color: #000033;
+    background-color: #FFF;
+    height: 100%;
+    width: 100%
+}
+
+#mainframe{
+    padding: 0;
+    height: auto;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center
+}
+
+#login{
+    width: 400px;
+    font-weight: bold;
+    background-color: #F7F2E0;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#CEE3F6), to(#EFF5FB));
+    background-image: -moz-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: -ms-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #CEE3F6), color-stop(100%, #EFF5FB));
+    background-image: -webkit-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: -o-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: linear-gradient(top, #CEE3F6, #EFF5FB);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+}
+
+#login p{
+    padding-bottom: 5px;
+    padding-top:5px;
+}
+
+#login label[for = username], #login label[for = password]{
+    width: 400px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#login input[type = text], #login input[type = password] {
+    width: 300px;
+    height: 30px;
+    font-size: 16px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border: 0;
+}
+
+input[type=text], input[type=password], textarea, select {
+    display: inline-block;
+    padding: 4px;
+    color: gray;
+    border: 1px solid #CCC;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    resize: none;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 0;
+  border-color: #000;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px #0037B9;
+  -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px #0037B9;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px #0037B9;
+}
+
+#login input[type = submit] {
+    width: 200px;
+    height: 35px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+}
+
+a.passloss {
+    color: #0088CC;
+    text-decoration: none;
+}
