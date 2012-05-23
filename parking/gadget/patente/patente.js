@@ -23,9 +23,9 @@ then(
 
             'a#aceptar click':function(){
                var nroPatente = this.element.find('input#patente').val()
-               //var obj = can.Model.findOne({id: nroPatente})
-               var obj = {}
-               if(obj.length>0){
+               Hist_patente.findOne(nroPatente).then(function(objeto){
+            
+               if(!($.isEmptyObject(objeto._data))&& (objeto.estado=="OK!")){
                     $.mobile.changePage(url +'gadget/estadoUsuario/estadoUsuario.html')
                     $('#pageEstado').live( 'pagecreate',function(event){
                          new Luz_verde( '#mainEstado', {status:true} )
@@ -35,6 +35,7 @@ then(
                      $('#pageEstado').live( 'pagecreate',function(event){
                          new Luz_verde( '#mainEstado', {} )
                         })}
+               })
                }
             }  
     )}

@@ -44,21 +44,21 @@ steal('can/util/fixture')
     }
 
 
-    can.fixture('GET /hist_patentes',function(asd){
-        return {items: aux}
+    can.fixture('GET /hist_patentes',function(){
+        return [aux]
 
     })
 
     can.fixture ('GET /hist_patentes/{id}',function(obj){
-        console.log(obj)
+       
         var flag = false
         for( var i=0; aux.length>i;i++){
-            if(aux[i].historia_id== obj.data.id)
+            if(aux[i].patente== obj.data)
                 flag = true;
-            if(flag)
+            if(flag==true)
                 break;
         }
-        return (flag) ? aux[i]:{}
+        return (flag==true) ? aux[i]:{};
 
     }
 
