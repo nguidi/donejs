@@ -9,6 +9,7 @@ steal(
     'can/view/ejs',
     'parking/usuario/options/options.js',
     'parking/usuario/estacionar/estacionar.js',
+    'parking/usuario/historial/historial.js',
     'parking/usuario/recargar/recargar.js')
 .then(
     function(){
@@ -34,6 +35,10 @@ steal(
             'a#historial click': function() {
                 var user = this.options.user
                 $.mobile.changePage(url+'usuario/historial/historial.html')
+                $('#userHistorialPage').live( 'pagecreate',function(event){
+                    new User_options( '#userHistorialOptionsMenu', {user: user} )
+                    new User_historial( '#mainHistorial', {user: user} );
+                });
             },
             
             'a#cuentaCorriente click': function() {

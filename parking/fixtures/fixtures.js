@@ -205,9 +205,23 @@ steal('can/util/fixture')
         })
     }
     
-    can.fixture('GET /control', 
+    can.fixture('GET /controls', 
         function(params) {
-            return control
+            if (params.data) {
+                    var bool = false
+                    return { items: $.grep(control,function(elem,index) {
+                            for (var attr in params.data) {
+                                if (elem[attr] == params.data[attr])
+                                    bool = true
+                                else {
+                                    bool = false
+                                    break
+                                }
+                            }
+                            return bool
+                    })}
+                } else 
+                    return {items: control}
         }
     )
         
