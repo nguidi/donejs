@@ -10,7 +10,6 @@ steal('can/model')
 can.Model('Municipio',
 /* @Static */
 {
-<<<<<<< HEAD
 	findAll: "GET /municipios",
   	findOne : "GET /municipios/{id}", 
   	create : "GET /municipios",
@@ -41,13 +40,6 @@ can.Model('Municipio_select',
             })
             return newData
         } 
-=======
-	findAll: "/municipios",
-  	findOne : "/municipios/{id}", 
-  	create : "/municipios",
- 	update : "/municipios/{id}",
-  	destroy : "/municipios/{id}"
->>>>>>> 6de5342ea2f3634197d5a1cb9ad08d522c0d2f47
 },
 /* @Prototype */
 {});

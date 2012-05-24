@@ -20,7 +20,6 @@ steal('can/util/fixture')
                 {id: 10, ciudad: 'Pilar', codigo_postal: '1000', image: 'pilar.jpg'}
                 ];
     
-<<<<<<< HEAD
          var users_sql =[[220, '22333444', '333', 1, 'cabildo', 8, 'neri@gmail.com', 'Neri', 'Guidi'],
                         [225, '11959489', '2109', 3, 'maria', 8, 'rios@gmail.com', 'Matias', 'Rios'],
                         [230, 'admin', 'toto', 1, 'apodo', 1, 'soto@gmail.com', 'Franco', 'Soto'],
@@ -31,18 +30,6 @@ steal('can/util/fixture')
                         [234, 'tucuman', 'tucuman', 9, 'tucuman', 4, 'tucuman@gmail.com', 'Juan', 'Prongue'],
                         [237, 'hd001', 'hd001',4, 'hd1', 1, 'asdasd@gmail.com', 'Federico', 'Calle'],
                         [238, 'hdsuper', 'hdsuper', 7, 'super', 1, 'super@gmail.com', 'Mariano', 'Campello']]
-=======
-         var users_sql =[[220, '22333444', '333', 1, 'cabildo', 8, 'neri@gmail.com'],
-                        [225, '11959489', '2109', 3, 'maria', 8, 'rios@gmail.com'],
-                        [230, 'admin', 'toto', 0, 'apodo', 1, 'soto@gmail.com'],
-                        [229, 's22333444', '000', 7, 'super', 4, 'martinez@gmail.com'],
-                        [231, 'sanmartin', 'sanmartin', 9, 'martin', 2, 'msanmartin@gmail.com'],
-                        [232, 'avellaneda', 'avellaneda', 8, 'avellaneda', 3, 'avellaneda@gmail.com'],
-                        [233, 'pilar', 'pilar', 9, 'pilar', 3, 'pilar@gmail.com'],
-                        [234, 'tucuman', 'tucuman', 9, 'tucuman', 4, 'tucuman@gmail.com'],
-                        [237, 'hd001', 'hd001',4, 'hd1', 1, 'asdasd@gmail.com'],
-                        [238, 'hdsuper', 'hdsuper', 7, 'super', 1, 'super@gmail.com']]
->>>>>>> 6de5342ea2f3634197d5a1cb9ad08d522c0d2f47
         
         var users = new Array()
         
