@@ -4,7 +4,8 @@ steal(
     'parking/models/usuario.js',
     'parking/fixtures/usuarios.js',
     'parking_web/login/login.css',
-    'parking/config.js').then('./views/init.ejs', function($){    // A este steal le agrego una pantalla ejs o algo asi
+    'parking/config.js',
+    'parking_web/principal/principal.js').then('./views/init.ejs', function($){    // A este steal le agrego una pantalla ejs o algo asi
          can.Control('LoginWeb',
          {
              listensTo:["loginOn","loginError","logOut","loginSessionOff"], // A la espera de estos eventos...
@@ -24,7 +25,6 @@ steal(
                  var user = User.findAll({username: el.find('input#username').val(), password: el.find('input#password').val()}); // Consulto al modelo, para validar los parametros de usuario
                  user.then(function(obj)
                  {
-                     console.log(obj)
                      if(obj.length > 0)
                      {
                          /*$(document).sigma_session({
@@ -34,8 +34,9 @@ steal(
                              user: obj.data, // solo hace falta pasarlo en caso de pooling o de timeout
                              element: "#mainframe"
                          });*/
-                         can.data(can.$("#mainPage"),'element','principal_web').remove()
-                         new PrincipalWeb("#mainPage",{user_data: obj.data})
+                         //can.data(can.$("#mainPage"),'controls')
+                         //console.log($("#mainPage"))
+                         new PrincipalWeb("#mainPage",{user: obj[0]})
                          //el.trigger("loginOn",[obj.data]); // disparo un evento con dos handlers... uno en principal y el otro local...
                      }
                      else

@@ -1,13 +1,12 @@
-steal('jquery/model',
-        function(){
-
+steal('jquery/model')
+.then(function(){
 /**
  * @class Oficios.Models.Usuario
  * @parent index
  * @inherits jQuery.Model
  * Wraps backend usuario services.  
  */
-$.Model('SystemConfig',
+can.Model('SystemConfig',
 /* @Static */
 {
         

@@ -520,4 +520,39 @@ steal('can/util/fixture')
             return rpt_recaudacion
         }
     )
+    
+    //#############################################
+    //                  MENU
+    //#############################################
+    //#############################################
+     
+     
+     var menu_completo = [
+         {id: 1, evento: 'menu-consultas', img: 'help.png', nombre: 'Consultas', control: 'parking_web_consultas'},
+         {id: 2, evento: 'menu-zonas', img: 'setting.png', nombre: 'Zonas', control: 'parking_web_zonas'},
+         {id: 3, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda'},
+         {id: 4, evento: 'menu-news', img: 'notifications.png', nombre: 'lallaa', controller: 'oficios_news_general'}
+     ];
+     
+     var menu_perfils = 
+         [{id: 1, menu: 1, perfil: 3},
+         {id: 2, menu: 2, perfil: 3},
+         {id: 3, menu: 3, perfil: 3},
+         {id: 4, menu: 4, perfil: 1}];
+     
+     can.fixture("GET /menus", function(settings){
+         console.log(settings)
+         if(typeof(settings.data) == 'undefined')
+         {
+             return {items: menu_completo};
+         }
+         else
+         {
+            return {items: $.map($.grep(menu_perfils, function(item){
+                 return settings.data.perfil == item.perfil;
+            }),function(item){
+                return menu_completo[item.menu-1]
+            })};   
+         }
+     });
 })

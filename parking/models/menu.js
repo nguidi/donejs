@@ -1,5 +1,5 @@
-steal('jquery/model',
-        function(){
+steal('can/model')
+.then(function(){
 
 /**
  * @class Oficios.Models.Usuario
@@ -7,14 +7,17 @@ steal('jquery/model',
  * @inherits jQuery.Model
  * Wraps backend usuario services.  
  */
-$.Model('Menu',
+can.Model('Menu',
 /* @Static */
 {
-	findAll: "/menus.json",
-  	findOne : "/menus/{id}.json",
-  	create : "/menus.json",
- 	update : "/menus/{id}.json",
-  	destroy : "/menus/{id}.json"
+	findAll: "/menus",
+  	findOne : "/menus/{id}",
+  	create : "/menus",
+ 	update : "/menus/{id}",
+  	destroy : "/menus/{id}",
+        models  : function(data){
+            return data.items;
+        } 
 },
 /* @Prototype */
 {
