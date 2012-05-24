@@ -14,31 +14,39 @@ steal(
     function(){
         
         can.Control("User_menu",{
+            defaults: {
+                user: new Object()
+            }
+        },{
             'init': function( element , options ) {
                 this.element.html(can.view(url+'usuario/menu/menu.ejs'))
             },
             
             'a#estacionar click': function() {
+                var user = this.options.user
                 $.mobile.changePage(url+'usuario/estacionar/estacionar.html')
                 $('#userEstacionarPage').live( 'pagecreate',function(event){
-                    new User_options( '#userEstacionarOptionsMenu', {} )
-                    new User_estacionar( '#mainEstacionar', {} );
+                    new User_options( '#userEstacionarOptionsMenu', {user: user} )
+                    new User_estacionar( '#mainEstacionar', {user: user} );
                 });
             },
             
             'a#historial click': function() {
+                var user = this.options.user
                 $.mobile.changePage(url+'usuario/historial/historial.html')
             },
             
             'a#cuentaCorriente click': function() {
+                var user = this.options.user
                 $.mobile.changePage(url+'usuario/cuentaCorriente/cuentaCorriente.html')
             },
             
             'a#recargar click': function() {
+                var user = this.options.user
                 $.mobile.changePage(url+'usuario/recargar/recargar.html')
                 $('#userRecargarPage').live( 'pagecreate',function(event){
-                    new User_options( '#userRecargarOptionsMenu', {} )
-                    new User_recargar( '#mainRecargar', {} );
+                    new User_options( '#userRecargarOptionsMenu', {user: user} )
+                    new User_recargar( '#mainRecargar', {user: user} );
                 });
             },
             

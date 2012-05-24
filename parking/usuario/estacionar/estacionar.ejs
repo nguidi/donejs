@@ -1,17 +1,4 @@
-<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
-        <label for="select-choice-a" class="select ui-select">
-            Municipio:
-        </label>
-        <div class="ui-select">
-            <select name="select-choice-a" id="select-choice-a" data-native-menu="false" tabindex="-1">
-                <option>Seleccione un Municipio</option>
-                <option value="standard">Avellaneda</option>
-                <option value="rush">Pilar</option>
-                <option value="overnight">San Martin</option>
-                <option value="express">Tucuman</option>
-            </select>
-        </div>
-</div>
+<div id="municipiosSelect"> </div>
 
 <div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
     <label for="name" class="ui-input-text">
@@ -20,22 +7,8 @@
     <input type="text" name="patente" id="patente" value="" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset ui-focus">
 </div>
 
-<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
-        <label for="select-choice-a" class="select ui-select">
-            Tiempo:
-        </label>
-        <div class="ui-select">
-            <select name="select-choice-a" id="select-choice-a" data-native-menu="false" tabindex="-1">
-                <option>Seleccione un Tiempo</option>
-                <option value="standard">30 Mininutos</option>
-                <option value="rush">45 Minutos</option>
-                <option value="overnight">1 Hora</option>
-                <option value="express">2 Horas</option>
-            </select>
-        </div>
-</div>
-
-<h4>Su saldo es: $199,00 </h4> 
+<div id="tarifasSelect"> </div>
+<h4 id="userSaldo">Su saldo es: $</h4> 
 
 <p>		
     <a data-rel="back" data-role="button" data-icon="delete" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-btn-inline ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">

@@ -9,7 +9,7 @@ steal('can/model')
 
     can.Model("User",{
         findAll : 'GET /users',
-        findOne : 'GET /users/{username}',
+        findOne : 'GET /users/{id}',
         create  : 'POST /users',
         update  : 'PUT /users/{id}',
         destroy : 'DELETE /users/{id}',
@@ -17,5 +17,6 @@ steal('can/model')
             return data.items;
         } 
     }, {})
+    
 
 })

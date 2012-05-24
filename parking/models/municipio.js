@@ -1,4 +1,5 @@
-steal('jquery/model', function(){
+steal('can/model')
+.then(function(){
 
 /**
  * @class Oficios.Ciudad
@@ -6,14 +7,39 @@ steal('jquery/model', function(){
  * @inherits jQuery.Model
  * Wraps backend candidato services.  
  */
-$.Model('Municipio',
+can.Model('Municipio',
 /* @Static */
 {
-	findAll: "/municipios.json",
-  	findOne : "/municipios/{id}.json", 
-  	create : "/municipios.json",
- 	update : "/municipios/{id}.json",
-  	destroy : "/municipios/{id}.json"
+	findAll: "GET /municipios",
+  	findOne : "GET /municipios/{id}", 
+  	create : "GET /municipios",
+ 	update : "GET /municipios/{id}",
+  	destroy : "GET /municipios/{id}",
+        models  : function(data){
+            return data.items;
+        } 
+},
+/* @Prototype */
+{});
+
+can.Model('Municipio_select',
+/* @Static */
+{
+	findAll: "GET /municipios",
+  	findOne : "GET /municipios/{id}", 
+  	create : "GET /municipios",
+ 	update : "GET /municipios/{id}",
+  	destroy : "GET /municipios/{id}",
+        models  : function(data){
+            var newData = new Array()
+            $.each(data.items,function(index,elem){
+                newData.push({
+                    value: elem.id,
+                    text: elem.ciudad
+                })
+            })
+            return newData
+        } 
 },
 /* @Prototype */
 {});

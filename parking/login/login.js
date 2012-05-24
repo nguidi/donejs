@@ -11,7 +11,9 @@ steal(
     'parking/usuario/options/options.js',
     'parking/config.js',
     'parking/fixtures/usuarios.js',
-    'parking/models/usuario.js')
+    'parking/models/usuario.js'
+    ,'parking/gadget/menu/menuGadget.js'
+    )
 .then(
     function(){
         
@@ -29,19 +31,33 @@ steal(
             '#login click': function() {
                 var user = this.element.find('input#usuario').val()
                 var pass = this.element.find('input[name=password]:visible').val()
-                User.findAll().then(function(){})
-                if (user== 'gadget' && pass == 'password') {
-                    alert('gadget')
-                } else {
-                    if (user== 'usuario' && pass == 'usuario') {
-                        $.mobile.changePage(url+'usuario/usuario.html')
-                        $('#usuarioPage').live( 'pagecreate',function(event){
-                            new User_options( '#userOptionsMenu', {username: "Gise Martinez"} )
-                            new User_menu( '#mainMenu', {} )
-                        });
-                    } else 
-                        $.mobile.changePage(url+'login/error.html')    
-                }                
+                User.findAll(
+                    // FILTRO DEL FINDALL
+                    {username: user, password:pass},
+                    // SUCCESS
+                    function(user){
+                        if (user[0].perfil == 8) {
+                            $.mobile.changePage(url+'usuario/usuario.html')
+                            $('#usuarioPage').live( 'pagecreate',function(event){
+                                new User_options( '#userOptionsMenu', {user: user[0]} )
+                                new User_menu( '#mainMenu', {user: user[0]} )
+                            });
+                        } else {
+                            if (user[0].perfil == 4) {
+                                $.mobile.changePage(url+'gadget/menu/menuGadget.html')
+                                $('#userInspectorGadgetPage').live( 'pagecreate',function(event){
+                                    new Inspector_menu('div#mainInspector',{})
+                                })
+                            } else {
+                                $.mobile.changePage(url+'login/error.html') 
+                            }
+                        }
+                    },
+                    // FAILURE
+                    function() {
+                        $.mobile.changePage(url+'login/error.html') 
+                    }
+                )               
             },
             
             '#ingresar click': function () {

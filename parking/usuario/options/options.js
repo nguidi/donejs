@@ -13,7 +13,7 @@ steal(
         
         can.Control("User_options",{
             defaults: {
-                username: "Un Usuario"
+                user: new Object()
             }
         },{
             'init': function( element , options ) {
@@ -22,10 +22,9 @@ steal(
             
             'a#options click': function() {
                 $.mobile.changePage(url+'usuario/options/menu/menu.html')
-                var self = this
-                console.log(self.options.username)
+                var user = this.options.user
                 $(document).bind('pagechange',function() {
-                    $('a.username').html(self.options.username)
+                    $('a.username').html(user.apellido+', '+user.nombre)
                     $('#edit').bind('click',function(){
                         alert('editar')
                     })

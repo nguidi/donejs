@@ -19,7 +19,7 @@ steal('can/util/fixture')
         
     can.fixture('GET /tarifas', 
         function(params) {
-            return [{
+            return {items: [{
                 id: 1,
                 tiempo:	30,
                 precio: 2.00,
@@ -42,7 +42,7 @@ steal('can/util/fixture')
                 tiempo:	120,
                 precio: 8.00,
                 fecha_ins: '2012-03-14 12:53:38'
-            }]
+            }]}
         }
     )
         
@@ -280,9 +280,23 @@ steal('can/util/fixture')
         })
     }
     
-    can.fixture('GET /ctacte', 
+    can.fixture('GET /cuenta_corrientes', 
         function(params) {
-            return ctacte
+            if (params.data) {
+                    var bool = false
+                    return { items: $.grep(ctacte,function(elem,index) {
+                            for (var attr in params.data) {
+                                if (elem[attr] == params.data[attr])
+                                    bool = true
+                                else {
+                                    bool = false
+                                    break
+                                }
+                            }
+                            return bool
+                    })}
+                } else 
+                    return {items: ctacte}
         }
     )
     
@@ -311,7 +325,7 @@ steal('can/util/fixture')
                         descrip:'Locales'
                     },
                     {
-                        id:9, 
+                        id:8, 
                         descrip:'Usuarios'
                     },
                     {

@@ -6,8 +6,7 @@
 steal(
     'can/control/control.js',
     'can/view/ejs',
-    'parking/config.js',
-    'parking/images/prueba.css'
+    'parking/config.js'
     )
 .then(
   function(){
