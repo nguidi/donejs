@@ -1,5 +1,5 @@
-steal('jquery/model',
-        function(){
+steal('can/model')
+.then(function(){
 
 /**
  * @class Oficios.Models.Usuario
@@ -7,7 +7,7 @@ steal('jquery/model',
  * @inherits jQuery.Model
  * Wraps backend usuario services.  
  */
-$.Model('Zona',
+can.Model('Zona',
 /* @Static */
 {
         

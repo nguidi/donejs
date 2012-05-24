@@ -7,18 +7,21 @@
 steal(
     'can/control/control.js',
     'can/view/ejs',
-    'parking/models/provincia.js',
-    'parking/fixtures/provincias.js')
+    'parking_web/topbar/topbar.js',
+    'parking_web/home/home.js')
 .then(
     function(){
         
         can.Control("PrincipalWeb",{
+            defaults: {
+                user: undefined
+            }
+        },{
             'init': function( element , options ) {
-                var self = this
-                $.when(Provincia.findAll())
-                .then(function(provincias) {
-                    self.element.html(can.view('./principal/main.ejs',provincias))
-                })
+                this.element.html(can.view('./principal/main.ejs'))
+                new TopBar("#header",{user: this.options.user});
+                new Home("#content");
+                
             }
         })
     }
