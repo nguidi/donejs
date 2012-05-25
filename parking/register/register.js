@@ -6,7 +6,8 @@
 
 steal(
     'can/control/control.js',
-    'can/view/ejs')
+    'can/view/ejs',
+    'parking/config.js')
 .then(
     function(){
         
@@ -14,8 +15,12 @@ steal(
             defaults: {}
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'register/init.ejs'))
-            }          
+                this.element.html(can.view(url+'register/button.ejs'))
+            },
+            
+            'span.register click': function() {
+                $.mobile.changePage(url+'register/form.html')
+            }
         })
     }
 );

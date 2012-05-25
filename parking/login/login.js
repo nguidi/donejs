@@ -11,9 +11,8 @@ steal(
     'parking/usuario/options/options.js',
     'parking/config.js',
     'parking/fixtures/usuarios.js',
-    'parking/models/usuario.js'
-    ,'parking/gadget/menu/menuGadget.js'
-    )
+    'parking/models/usuario.js',
+    'parking/gadget/menu/menuGadget.js')
 .then(
     function(){
         
@@ -22,18 +21,31 @@ steal(
                 
             }
         },{
-            
             'init': function( element , options ) {
-                this.element.html(can.view(url+'login/init.ejs'))
-                this.element.find('input#passwordShow').hide()
+                this.element.html(can.view(url+'login/button.ejs'))
             },
             
-            '#login click': function() {
-                var user = this.element.find('input#usuario').val()
-                var pass = this.element.find('input[name=password]:visible').val()
+            'span.login click': function() {
+                $.mobile.changePage(url+'login/form.html')
+                var self = this
+                $('#formPage').live( 'pagecreate',function(event){
+                      $('input#passwordShow').hide()
+                      $('a#login').bind('click',function(ev,el){
+                          self.checkLogin({
+                              username: $('input#usuario').val(),
+                              password: $('input[name=password]:visible').val()
+                          })
+                      })
+                      $('input#seePassword').bind('change',function(ev,el){
+                          self.hideOrShowPassword($(ev.target))
+                      })
+                });
+            },
+            
+            checkLogin: function(userInfo) {
                 User.findAll(
                     // FILTRO DEL FINDALL
-                    {username: user, password:pass},
+                    userInfo,
                     // SUCCESS
                     function(user){
                         if (user[0].perfil == 8) {
@@ -46,7 +58,7 @@ steal(
                             if (user[0].perfil == 4) {
                                 $.mobile.changePage(url+'gadget/menu/menuGadget.html')
                                 $('#userInspectorGadgetPage').live( 'pagecreate',function(event){
-                                    new Inspector_menu('div#mainInspector',{})
+                                    new Inspector_menu('div#mainInspector', {user: user[0]})
                                 })
                             } else {
                                 $.mobile.changePage(url+'login/error.html') 
@@ -60,21 +72,18 @@ steal(
                 )               
             },
             
-            '#ingresar click': function () {
-            },
-            
-            'input#seePassword change': function(es) {
+            hideOrShowPassword: function(es) {
                 var val
                 if (es.attr('checked') != undefined) {
-                    this.element.find('input#passwordHide').hide()
-                    this.element.find('input#passwordShow')
+                    $('input#passwordHide').hide()
+                    $('input#passwordShow')
                         .show()
-                        .attr('value',this.element.find('input#passwordHide').val())
+                        .attr('value',$('input#passwordHide').val())
                 } else {
-                    this.element.find('input#passwordShow').hide()
-                    this.element.find('input#passwordHide')
+                    $('input#passwordShow').hide()
+                    $('input#passwordHide')
                         .show()
-                        .attr('value',this.element.find('input#passwordShow').val())
+                        .attr('value',$('input#passwordShow').val())
                 }
             }
             

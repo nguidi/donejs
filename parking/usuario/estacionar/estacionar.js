@@ -10,7 +10,6 @@ steal(
     'can/view/ejs',
     'parking/usuario/options/options.js',
     'parking/fixtures/fixtures.js',
-    'parking/fixtures/usuarios.js',
     'parking/models/cuenta_corriente.js',
     'parking/models/tarifa.js',
     'parking/models/municipio.js')

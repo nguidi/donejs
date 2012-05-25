@@ -10,6 +10,7 @@ steal(
     'parking/usuario/options/options.js',
     'parking/usuario/estacionar/estacionar.js',
     'parking/usuario/historial/historial.js',
+    'parking/usuario/cuentaCorriente/cuentaCorriente.js',
     'parking/usuario/recargar/recargar.js')
 .then(
     function(){
@@ -44,6 +45,10 @@ steal(
             'a#cuentaCorriente click': function() {
                 var user = this.options.user
                 $.mobile.changePage(url+'usuario/cuentaCorriente/cuentaCorriente.html')
+                $('#userCuentaCorrientePage').live( 'pagecreate',function(event){
+                    new User_options( '#userCuentaCorrienteOptionsMenu', {user: user} )
+                    new User_cuenta_corriente( '#mainCuentaCorriente', {user: user} )
+                });
             },
             
             'a#recargar click': function() {

@@ -12,12 +12,19 @@ and open the template in the editor.
         <div id="indexPage" data-role="page">
 
                 <div data-role="header">
-                        <h1>CPI<div id="register"></div></h1>
+                        <h1>CPI</h1>
                         
                 </div><!-- /header -->
 
                 <div id="mainP" data-role="content">
+                    <h3 style="text-align: center;"> Bienvenidos Cell Parking International </h3>
+
                     <div id="main" ></div>
+                    
+                    <div id="register"></div>
+                    
+                    <div id="login"></div>
+                    
                 </div><!-- /content -->
 
                 <div data-role="footer">
@@ -42,15 +49,14 @@ and open the template in the editor.
     .then('parking/login/login.js',
           'parking/fixtures/usuarios.js',
           'parking/fixtures/provincias.js',
-          'parking/register/register.js')
+          'parking/register/register.js',
+          'parking/web_description/web_description.js')
     .then(
-        function($){
+        function($){            
             $('#indexPage').live( 'pagecreate',function(event){
+                new Web_description('#main', {});
+                new Login( '#login', {} );
                 new Registrarse( '#register', {} );
-            })
-            
-            $('#indexPage').live( 'pagecreate',function(event){
-                new Login( '#main', {} );
                 $('input').attr('value','')
             })
         }
