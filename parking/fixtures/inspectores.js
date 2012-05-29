@@ -7,7 +7,7 @@ steal('can/util/fixture')
 .then(function(){
 
     var fixt= [
-    [35, 225, 1, 'efdeee', 'OK!', '2012-03-17 18:05:16'],
+    [35, 225, 7, 'efdeee', 'OK!', '2012-03-17 18:05:16'],
     [36, 229, 1, 'efdeee', 'VENCIDO!', '2012-03-19 16:29:14'],
     [37, 229, 1, 'efweee', 'OK!', '2012-03-19 18:00:19'],
     [38, 229, 1, 'efweee', 'OK!', '2012-03-19 18:01:12'],
@@ -30,7 +30,7 @@ steal('can/util/fixture')
 
     //('historia_id', 'usuario_id', 'muni', 'patente', 'estado', 'fecha_ins')
 
-    var aux= [];
+    var aux= new Array;
     for(var i=0; fixt.length>i; i++){
             aux.push({
                  historia_id: fixt[i][0],
@@ -42,12 +42,6 @@ steal('can/util/fixture')
              }
          )
     }
-
-
-    can.fixture('GET /hist_patentes',function(){
-        return [aux]
-
-    })
 
     can.fixture ('GET /hist_patentes/{id}',function(obj){
        
@@ -67,3 +61,23 @@ steal('can/util/fixture')
 )
 
 });
+
+     can.fixture('GET /hist_patentes',
+      function(params) {
+            if (params.data) {
+                    console.log("reesttt")
+                    var bool = false
+                    return { items: $.grep(aux,function(elem,index) {
+                            for (var attr in params.data) {
+                                if (elem[attr] == params.data[attr])
+                                    bool = true
+                                else {
+                                    bool = false
+                                    break
+                                }
+                            }
+                            return bool
+                    })}
+            } else
+                    return {items: aux}
+        })

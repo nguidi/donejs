@@ -15,7 +15,7 @@ steal('can/model')
         update  : 'PUT /hist_patentes/{id}',
         destroy : 'DELETE /hist_patentes/{id}',
         models  : function(data){
-            return can.Model.models.call(this,data.items);
+            return data.items;
         }
     }, {})
 

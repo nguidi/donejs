@@ -6,7 +6,8 @@ steal(
     'can/control/control.js',
     'can/view/ejs',
     'parking/config.js',
-    'parking/gadget/patente/patente.js'
+    'parking/gadget/patente/patente.js',
+    'parking/gadget/historial/historial.js'
     )
 .then(
     function(){
@@ -20,7 +21,13 @@ steal(
                 $('#patentePage').live( 'pagecreate',function(event){          
                  new Patente_pantalla( '#mainResults', {} )
                   }
-            )}   
+            )},
+            'a#historial click':function(){
+                $.mobile.changePage(url +'gadget/historial/historial.html')
+                $('#histPage').live( 'pagecreate',function(event){
+                 new Historial( '#mainHist', {} )
+                  }
+            )
+            }
     })
-      
 })

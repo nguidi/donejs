@@ -11,8 +11,8 @@ steal(
     'parking/models/hist_patente.js',
     'parking/fixtures/inspectores.js',
     'parking/config.js',
-     'parking/gadget/estadoUsuario/estadoUsuario.js',
-     'parking/fixtures/inspectores.js').
+     'parking/gadget/estadoUsuario/estadoUsuario.js'
+     ).
 then(
     function(){
         can.Control( "Patente_pantalla",{  
@@ -24,7 +24,7 @@ then(
             'a#aceptar click':function(){
                var nroPatente = this.element.find('input#patente').val()
                Hist_patente.findOne(nroPatente).then(function(objeto){
-            
+            console.log(objeto._data);
                if(!($.isEmptyObject(objeto._data))&& (objeto.estado=="OK!")){
                     $.mobile.changePage(url +'gadget/estadoUsuario/estadoUsuario.html')
                     $('#pageEstado').live( 'pagecreate',function(event){
