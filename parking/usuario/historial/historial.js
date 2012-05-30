@@ -25,9 +25,7 @@ steal(
                 Control.findAll({usuario_id: options.user.id},
                     // successs
                     function(controls) {
-                        console.log(controls)
-                        console.log($('table.historial tbody'))
-                        $('table.historial tbody').append(can.view(url+'usuario/historial/tds.ejs',controls))
+                        $('table.historial tbody').html(can.view(url+'usuario/historial/tds.ejs',controls))
                     }
                 )
             }

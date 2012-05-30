@@ -25,7 +25,7 @@ steal(
                     // successs
                     function(resumen_cuenta) {
                         
-                        $('table.cc tbody').append(can.view(url+'usuario/cuentaCorriente/tds.ejs',resumen_cuenta))
+                        $('table.cc tbody').html(can.view(url+'usuario/cuentaCorriente/tds.ejs',resumen_cuenta))
                     
                         Cuenta_corriente.findAll({usuario_id: options.user.id},
                             // successs
@@ -34,7 +34,7 @@ steal(
                                 $.each(resumen_cuenta,function(index,resumen) {
                                     importeTotal+= parseInt((resumen.debcred != 1) ? resumen.importe : -1*resumen.importe)
                                 })
-                                $('table.cc tbody tr:last td b').append(' '+importeTotal)
+                                $('table.cc tbody tr:last td b').html('TOTAL DEBITADO : '+importeTotal)
                             }
                         )
                     }

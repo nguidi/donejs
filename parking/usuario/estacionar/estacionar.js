@@ -30,7 +30,7 @@ steal(
                         $.each(resumen_cuenta,function(index,resumen) {
                             importeTotal+= parseInt((resumen.debcred != 1) ? resumen.importe : -1*resumen.importe)
                         })
-                        $('h4#userSaldo').append(' '+importeTotal)
+                        $('h4#userSaldo').html('Su saldo es: $ '+importeTotal)
                     }
                 )
                 Tarifa_select.findAll({},function(tarifas){

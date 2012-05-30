@@ -21,10 +21,6 @@ steal('can/model')
     
     can.Model("Cuenta_corriente_deb",{
         findAll : 'GET /cuenta_corrientes',
-        findOne : 'GET /cuenta_corrientes/{id}',
-        create  : 'POST /cuenta_corrientes',
-        update  : 'PUT /cuenta_corrientes/{id}',
-        destroy : 'DELETE /cuenta_corrientes/{id}',
         models  : function(data){
             var newData = new Array()
             $.each(data.items,function(index,elem){
@@ -37,8 +33,7 @@ steal('can/model')
                })
             })
             return newData
-        }
-     
+        }     
     }, {})
 
 })

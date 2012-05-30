@@ -19,7 +19,9 @@ and open the template in the editor.
                 <div id="mainP" data-role="content">
                     <h3 style="text-align: center;"> Bienvenidos Cell Parking International </h3>
 
-                    <div id="main" ></div>
+                    <div id="main" >
+                        <img src="images/main3.jpg" alt="Cell Parking International" hight="100%" width="100%" align="center"/>
+                    </div>
                     
                     <div id="register"></div>
                     
@@ -49,15 +51,12 @@ and open the template in the editor.
     .then('parking/login/login.js',
           'parking/fixtures/usuarios.js',
           'parking/fixtures/provincias.js',
-          'parking/register/register.js',
-          'parking/web_description/web_description.js')
+          'parking/register/register.js')
     .then(
         function($){            
             $('#indexPage').live( 'pagecreate',function(event){
-                new Web_description('#main', {});
                 new Login( '#login', {} );
                 new Registrarse( '#register', {} );
-                $('input').attr('value','')
             })
         }
     );

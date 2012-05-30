@@ -24,33 +24,43 @@
                 <div id="mainForm" data-role="content">
                     <form id='register' action='register.php' method='post' accept-charset='UTF-8'>
                         <fieldset >
-                            <h4 style="text-align: center;">Ingrese los datos de la Cuenta</h4>
+                            <h1 style="text-align: center;">Ingrese los datos de la Cuenta</h1>
+                            <h2 class="subtitle">Datos Personales</h2>
                             <label for='name' >Nombres: </label>
                             <input type='text' name='name' id='name'/>
                             <label for='lastname' >Apellido:</label>
                             <input type='text' name='name' id='lastname'/>
+                            <h2 class="subtitle">Datos de Contacto</h2>
                             <label for='email' >E-Mail:</label>
                             <input type='text' name='email' id='email'/>
+                            <label for='phone' >Celular:</label>
+                            <input type='text' name='phone' id='email'/>
+                            <h2 class="subtitle">Datos de Ingreso</h2>
                             <label for='username' >Usuario:</label>
                             <input type='text' name='username' id='username'/>
                             <label for='password' >Password:</label>
                             <input type='password' name='password' id='password'/>
+                            <label for='confpassword' >Confirmar Password:</label>
+                            <input type='password' name='confpassword' id='confpassword'/>
+                            <h2 class="subtitle">Patentes</h2>
+                            <div id="patentesList"></div>
                             <label for='patente' >Patente:</label>
                             <input type='text' name='patente' id='patente'/>
-                            <a data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
+                            <a id="addPatente" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-c">
                                 <span class="ui-btn-inner ui-btn-corner-all">
                                     <span class="ui-btn-text">
                                         Agregar Patente
                                     </span>
                                 </span>
                             </a>
+                            
                             <p>
-                                <a data-role="button" data-icon="arrow-l" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-btn-inline ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
+                                <a data-rel="back" data-icon="home" data-role="button" data-inline="true" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c" class="ui-btn ui-btn-inline ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-c">
                                     <span class="ui-btn-inner ui-btn-corner-all">
                                         <span class="ui-btn-text">
                                             Volver
                                         </span>
-                                        <span class="ui-icon ui-icon-arrow-l ui-icon-shadow">
+                                        <span class="ui-icon ui-icon-back ui-icon-shadow">
                                             &nbsp;
                                         </span>
                                     </span>
@@ -76,7 +86,7 @@
         </div><!-- /page -->
 
         </body>
-    <script type='text/javascript' src='../../../steal/steal.js'></script>
+    <script type='text/javascript' src='../../steal/steal.js'></script>
     <script type='text/javascript'>
         steal(
             'can/control/control.js',
@@ -85,7 +95,8 @@
             'jquery-mobile/jquery.mobile.structure-1.1.0.css',
             'jquery-mobile/jquery.mobile.theme-1.1.0.css',
             'jquery-mobile/jquery.mobile-1.1.0.css',
-            'jquery-mobile/jquery.mobile-1.1.0.js')
+            'jquery-mobile/jquery.mobile-1.1.0.js',
+            'parking/register/style.css')
         .then(
             function($){
                 
