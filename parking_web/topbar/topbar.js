@@ -29,13 +29,16 @@ steal(
                     self.element.html(can.view('./topbar/topbar.ejs', {base_url: url+'images/',username: self.options.user.username,data: menu}))
                     $('.dropdown-toggle').dropdown()
                 })
-            }/*,
+            },
             'ul.nav li click': function(element, options){
-                if(element.find('a').attr('href'))
+                if(element.find('a').attr('href') == '#menu-zonas')
                 {
                     new ZonasWeb("#content")
                 }
-            }*/
+            },
+            'a.brand click': function(element, options){
+                    new Home("#content")
+            }
         })
     }
 );

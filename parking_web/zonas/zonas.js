@@ -10,10 +10,7 @@ steal(
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view('./main.ejs'))
-                new TopBar("#header",{user: this.options.user});
-                new Home("#content");
-                
+                this.element.html(can.view('zonas/main.ejs'))
             }
         })
     }
