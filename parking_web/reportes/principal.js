@@ -21,6 +21,7 @@ steal(
                 this.element.html(can.view('./principal/main.ejs'))
                 new TopBar("#header",{user: this.options.user});
                 new Home("#content");
+                
             }
         })
     }

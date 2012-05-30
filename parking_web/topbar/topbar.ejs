@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">Sistema de parking</a>
-          <div class="btn-group pull-right open">
+          <div class="btn-group pull-right">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
               <i class="icon-user"></i> <%= username %>
               <span class="caret"></span>
@@ -20,11 +20,22 @@
           </div>
           <div class="nav-collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Principal</a></li>
-              <% for(x = 0; data.length > x; x++) { %>
-                <li><a href="#about"><%= data[x].nombre %></a></li>
+              <% for(x = 0; data.length > x; x++) {
+                 if(data[x].dropdown.length > 0){%>
+                    <li class="dropdown"><a href="#<%= data[x].evento%>" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="<%=base_url + data[x].img%>"> <%= data[x].nombre %><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <% for(y = 0; data[x].dropdown.length > y; y++) { %>
+                              <li><a href="#<%= data[x].dropdown[y].evento%>"><%=data[x].dropdown[y].nombre%></a></li>
+                              <li class="divider"></li>
+                            <% } %>
+                        </ul>
+                    </li>
+                 <% } 
+                    else {%>
+                        <li><a href="#<%= data[x].evento%>"><img src="<%=base_url + data[x].img%>"> <%= data[x].nombre %></a></li>
+                 <% } %>
               <% } %>
-              <li><a href="#contact">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

@@ -4,4 +4,4 @@
  */
 
 
-url = '/donejs/parking/'
+var url = '/donejs/parking_web/'
