@@ -542,20 +542,28 @@ steal('can/util/fixture')
      
      
      var menu_completo = [
-         {id: 1, evento: 'menu-consultas', img: 'help.png', nombre: 'Consultas', control: 'parking_web_consultas'},
-         {id: 2, evento: 'menu-zonas', img: 'setting.png', nombre: 'Zonas', control: 'parking_web_zonas'},
-         {id: 3, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda'},
-         {id: 4, evento: 'menu-news', img: 'notifications.png', nombre: 'lallaa', controller: 'oficios_news_general'}
+         {id: 1, evento: 'menu-reportes', img: 'reportes.png', nombre: 'Reportes', control: 'parking_web_reportes', 
+             dropdown: [{evento: 'submenu_recaudacion', nombre: 'Recaudacion'},
+                 {evento: 'submenu_cuenta_corriente', nombre: 'Cuenta corriente'},
+                 {evento: 'submenu_infracciones', nombre: 'Infracciones'},
+                 {evento: 'submenu_autos_estacionados', nombre: 'Autos estacionados'}]
+         }, //Reportes
+         {id: 2, evento: 'menu-zonas', img: 'zonas.png', nombre: 'Zonas', control: 'parking_web_zonas', dropdown: []},
+         {id: 3, evento: 'menu-inspectores', img: 'users.png', nombre: 'Inspectores', control: 'parking_web_inspectores', dropdown: []},
+         {id: 4, evento: 'menu-multas', img: 'notifications.png', nombre: 'Multas', control: 'parking_web_multas', dropdown: []},
+         {id: 5, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda', dropdown: []},
+         {id: 6, evento: 'menu-news', img: 'notifications.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []}
      ];
      
      var menu_perfils = 
          [{id: 1, menu: 1, perfil: 3},
          {id: 2, menu: 2, perfil: 3},
          {id: 3, menu: 3, perfil: 3},
-         {id: 4, menu: 4, perfil: 1}];
+         {id: 4, menu: 4, perfil: 3},
+         {id: 5, menu: 5, perfil: 3},
+         {id: 6, menu: 5, perfil: 1}];
      
      can.fixture("GET /menus", function(settings){
-         console.log(settings)
          if(typeof(settings.data) == 'undefined')
          {
              return {items: menu_completo};

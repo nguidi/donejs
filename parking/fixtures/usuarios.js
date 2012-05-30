@@ -25,7 +25,7 @@ steal('can/util/fixture')
                         [230, 'admin', 'toto', 1, 'apodo', 1, 'soto@gmail.com', 'Franco', 'Soto'],
                         [229, 's22333444', '000', 7, 'super', 4, 'martinez@gmail.com', 'Gisela', 'Martinez'],
                         [231, 'sanmartin', 'sanmartin', 9, 'martin', 2, 'msanmartin@gmail.com', 'Julian', 'Farina'],
-                        [232, 'avellaneda', 'avellaneda', 8, 'avellaneda', 1, 'avellaneda@gmail.com', 'German', 'Cabral'],
+                        [232, 'avellaneda', 'avellaneda', 8, 'avellaneda', 3, 'avellaneda@gmail.com', 'German', 'Cabral'],
                         [233, 'pilar', 'pilar', 9, 'pilar', 3, 'pilar@gmail.com', 'Carina', 'Luque'],
                         [234, 'tucuman', 'tucuman', 9, 'tucuman', 4, 'tucuman@gmail.com', 'Juan', 'Prongue'],
                         [237, 'hd001', 'hd001',4, 'hd1', 1, 'asdasd@gmail.com', 'Federico', 'Calle'],
