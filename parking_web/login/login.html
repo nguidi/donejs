@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Oficios.Login</title>
+        <style type='text/css'>
+            body {font-family: verdana}
+            .error {border: solid 1px red;}
+            .error_text { color: red; font-size: 10px;}
+            td {padding: 3px;}
+        </style>
+	</head>
+	<body>
+	    <h1>Oficios.Login Demo</h1>
+		<div id='login'></div>
+		<script type='text/javascript' 
+                src='../../steal/steal.js'>
+        </script>
+		<script type='text/javascript'>
+			steal('oficios/login',function(){
+				
+				$('#login').oficios_login();
+			})
+		</script>
+	</body>
+</html>
