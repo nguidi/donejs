@@ -577,4 +577,17 @@ steal('can/util/fixture')
             })};   
          }
      });
+     
+     can.fixture("GET /manzana_slot", function(settings){
+        var array = new Array()
+        for (var i=0; i < 15; i++) {
+            array.push({
+                    id: i+1,
+                    numero_slot: i+1,
+                    img_pos: "("+i+10+","+i+20+")"
+                })
+        }
+        return {items: array}
+     
+     });
 })
