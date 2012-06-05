@@ -8,12 +8,6 @@ $('#transaccionListPage').bind('pageinit', function(event) {
 	getTransaccionList();
 });
 
-$.ajax({
-  url: url,
-  dataType: 'json',
-  data: data,
-  success: callback
-});
 
 function getTransaccionList() {
 	$.ajax({ serviceURL + 'gettransacciones.php',
