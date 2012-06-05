@@ -10,9 +10,9 @@ $('#transaccionListPage').bind('pageinit', function(event) {
 
 
 function getTransaccionList() {
-	$.ajax({ serviceURL + 'gettransacciones.php',
-		 'jsonp',
-		  function(data) {
+	$.ajax({ url : serviceURL + 'gettransacciones.php',
+		 dataType: 'jsonp',
+		 success: function(data) {
 				$('#transaccionList li').remove();
 				transacciones = data.items;
 				$.each(transacciones, function(index, transaccion) {
