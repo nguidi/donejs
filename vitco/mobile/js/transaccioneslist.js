@@ -16,9 +16,9 @@ $.ajax({
 });
 
 function getTransaccionList() {
-	$.ajax({  url: serviceURL + 'gettransacciones.php',
-		  dataType: 'jsonp',
-		  success: function(data) {
+	$.ajax({ serviceURL + 'gettransacciones.php',
+		 'jsonp',
+		  function(data) {
 				$('#transaccionList li').remove();
 				transacciones = data.items;
 				$.each(transacciones, function(index, transaccion) {
