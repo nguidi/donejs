@@ -1,6 +1,6 @@
 //var serviceURL = "../services/";
 
-var serviceURL = "campananoticias.tklapp.com/desa/mobile/vitco/services/";
+var serviceURL = "http://campananoticias.tklapp.com/desa/mobile/vitco/services/";
 
 var transacciones;
 
