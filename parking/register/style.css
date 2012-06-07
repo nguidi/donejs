@@ -22,4 +22,13 @@ h2.subtitle {
     color: #2489CE;
     border-bottom: 2px solid #295b8e;
     width: 100%;
+    font-size: 1.2em;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+ul#listaPatente li {
+    text-transform: uppercase;
 }

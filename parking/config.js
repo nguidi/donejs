@@ -3,5 +3,4 @@
  * and open the template in the editor.
  */
 
-
 url = '/donejs/parking/'

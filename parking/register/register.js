@@ -12,38 +12,38 @@ steal(
 .then(
     function(){
         
-        can.Control("Registrarse",{
-            defaults: {}
+        can.Control("Register",{
+            defaults: {
+                back_page_id: '#registerFormPage'
+            }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'register/button.ejs'))
+                this.element.append(can.view(url+'register/register_page.ejs'))
+                $.mobile.changePage($('#registerFormPage'))
             },
             
-            'span.register click': function() {
-                var self = this
-                $.mobile.changePage(url+'register/form.html')
-                $('#formPage').live( 'pagecreate',function(event){
-                    $('a#addPatente').bind('click',function(){
-                       self.addPatente()
-                    })
-                })
-                
+            'a[data-rel="back"] click': function() {
+                $.mobile.changePage($('#mainPage'))
+            },
+                      
+            'a#addPatente click': function() {
+                if ($('input#patente').val().length > 0){
+                    if ($('div#patentesList ul').length > 0){
+                        $('div#patentesList ul').append(can.view(url+'register/li.ejs',{
+                            patente: $('input#patente').val()
+                        }))
+                    }  
+                    else {                    
+                        $('div#patentesList').html(can.view(url+'register/ul.ejs',$('input#patente').val()))
+                        $('label[for="patente"]').html("Agregar otra patente:")
+                    }
+                    $('input#patente').attr('value','')    
+                } else
+                    alert("Por favor ingrese una patente y vuelvalo a intentar")
             },
             
-            addPatente: function() {
-                var count = 1
-                if ($('div#patentesList ul').length > 0){
-                    count = $('div#patentesList ul#listaPatente li').length+1
-                    $('div#patentesList ul').append(can.view(url+'register/li.ejs',{
-                        numero: count,
-                        patente: $('input#patente').val()
-                    }))
-                }  
-                else {                    
-                    $('div#patentesList').html(can.view(url+'register/ul.ejs',$('input#patente').val()))
-                    $('label[for="patente"]').html("Agregar otra patente:")
-                }
-                $('input#patente').attr('value','')
+            'ul#listaPatente li span.ui-icon-delete click': function(clickedSpan) {
+                clickedSpan.parents('li').remove()
             }
         })
     }
