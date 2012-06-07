@@ -4,12 +4,14 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html>
-    	<head> 
-	<title>Cell Parking International</title> 
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
-        </head> 
-        <body> 
-        </body>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Filtro Demo</h1>
+        <div id="filtro"></div>
+    </body>
 </html>
 <script type='text/javascript' src='/donejs/steal/steal.js'></script>
 <script type='text/javascript'>
@@ -20,14 +22,12 @@ and open the template in the editor.
         'jquery-mobile/jquery.mobile.structure-1.1.0.css',
         'jquery-mobile/jquery.mobile.theme-1.1.0.css',
         'jquery-mobile/jquery.mobile-1.1.0.css',
-        'jquery-mobile/jquery.mobile-1.1.0.js',
-        'sigma/mobile_route/mobile_route.js')
-    .then( 'parking/main/main.js',
+        'jquery-mobile/jquery.mobile-1.1.0.js')
+    .then( 
+        'sigma/filtro/filtro.js',
         function($){   
-                
-               mobile_router = new Mobile_Route('html')
-                
-               new Main( 'body', {} );
+
+               new Filtro( 'div#filtro', {} );
         }
     );
 </script>

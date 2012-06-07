@@ -20,14 +20,11 @@ and open the template in the editor.
         'jquery-mobile/jquery.mobile.structure-1.1.0.css',
         'jquery-mobile/jquery.mobile.theme-1.1.0.css',
         'jquery-mobile/jquery.mobile-1.1.0.css',
-        'jquery-mobile/jquery.mobile-1.1.0.js',
-        'sigma/mobile_route/mobile_route.js')
+        'jquery-mobile/jquery.mobile-1.1.0.js')
     .then( 'parking/main/main.js',
         function($){   
-                
-               mobile_router = new Mobile_Route('html')
-                
-               new Main( 'body', {} );
+            
+                new Main( 'body', {} );
         }
     );
 </script>
