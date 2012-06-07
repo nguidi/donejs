@@ -7,7 +7,7 @@ steal(
     'can/view/ejs',
     'parking/config.js',
     'parking/gadget/patente/patente.js',
-    'parking/gadget/historial/historial.js'
+    'parking/gadget/historial/historialH.js'
     )
 .then(
     function(){
@@ -23,7 +23,7 @@ steal(
                   }
             )},
             'a#historial click':function(){
-                $.mobile.changePage(url +'gadget/historial/historial.html')
+                $.mobile.changePage(url +'gadget/historial/historialH.html')
                 $('#histPage').live( 'pagecreate',function(event){
                  new Historial( '#mainHist', {} )
                   }
