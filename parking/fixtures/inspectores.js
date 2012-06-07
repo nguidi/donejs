@@ -5,7 +5,7 @@
 
 steal('can/util/fixture')
 .then(function(){
-
+//se debe agregar un estado : INFRACTOR
     var fixt= [
     [35, 225, 7, 'efdeee', 'OK!', '2012-03-17 18:05:16'],
     [36, 229, 1, 'efdeee', 'VENCIDO!', '2012-03-19 16:29:14'],
@@ -39,8 +39,7 @@ steal('can/util/fixture')
                  patente: fixt[i][3],
                  estado:fixt[i] [4],
                  fecha_ins:fixt[i][5]
-             }
-         )
+             })
     }
 
     can.fixture ('GET /hist_patentes/{id}',function(obj){
@@ -54,30 +53,69 @@ steal('can/util/fixture')
         }
         return (flag==true) ? aux[i]:{};
 
-    }
-
-
-
-)
-
-});
-
-     can.fixture('GET /hist_patentes',
-      function(params) {
+    })
+    can.fixture('GET /hist_patentes',function(params) {
+            var bool = false
             if (params.data) {
-                    console.log("reesttt")
-                    var bool = false
-                    return { items: $.grep(aux,function(elem,index) {
-                            for (var attr in params.data) {
+                     return { items: $.grep(aux,function(elem,index) {
+                             for (var attr in params.data) {
                                 if (elem[attr] == params.data[attr])
                                     bool = true
                                 else {
                                     bool = false
                                     break
                                 }
-                            }
-                            return bool
-                    })}
-            } else
+                             }
+                             return bool
+                             }
+                         )
+                    }
+          } else
                     return {items: aux}
-        })
+      })
+      can.fixture('GET /marcas',
+        function(params) {
+            return {items: [{
+                id: 1,
+                marca:'Volkswagen'
+            },
+            {
+                id: 2,
+                marca:'Ford'
+            },
+            {
+                id: 3,
+                marca:'Chevrolet'
+            },
+            {
+                id: 4,
+                marca:'Fiat'
+            },
+            {
+                id: 5,
+                marca:'Peugeot'
+            },
+            {
+                id: 6,
+                marca:'Renault'
+            },
+            {
+                id: 7,
+                marca:'Citroen'
+            },
+            {
+                id: 8,
+                marca:'Toyota'
+            },
+            {
+                id: 9,
+                marca:'Otros'
+            }
+          ]}
+        }
+      )
+
+});
+
+     
+  
