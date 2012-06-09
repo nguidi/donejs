@@ -1,18 +1,42 @@
-<div data-role="controlgroup">
-<div id="marcasSelect"> </div>
-    <label class="ui-input-text" for="name"> Patente </label>
+<div id="patentePage" data-role="page">
 
-    <input id="patente" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"
+    <div data-role="header">
+        <a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Volver">
+            <span class="ui-btn-inner ui-btn-corner-all">
+                <span class="ui-btn-text">
+                    Volver
+                </span>
+                <span class="ui-icon ui-icon-back ui-icon-shadow">
+                    &nbsp;
+                </span>
+            </span>
+        </a>
+        <h1>CPI</h1>
+        <div id="inspectorOptionsMenu" class="ui-btn-right"></div>
+    </div><!-- /header -->
+
+    <div id="mainResults" data-role="content">
+        <div data-role="controlgroup">
+            <div id="marcasSelect"> </div>
+            <label class="ui-input-text" for="name"> Patente </label>
+
+            <input id="patente" class="ui-input-text ui-body-c ui-corner-all ui-shadow-inset"
         type="text" value="" name="patente">
 
-    <a id= "aceptar" class="ui-btn ui-btn-inline ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-b"
-        data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true"
-        data-inline="true" data-theme="b" data-icon="check" data-role="button">
-    <span class="ui-btn-inner ui-btn-corner-all">
-        <span class="ui-btn-text"> Aceptar </span>
-        <span class="ui-icon ui-icon-check ui-icon-shadow"> &nbsp; </span>
-    </span>
-    </a>
+            <a id= "aceptar" class="ui-btn ui-btn-inline ui-shadow ui-btn-corner-all ui-btn-icon-left ui-btn-up-b"
+              data-wrapperels="span" data-iconshadow="true" data-shadow="true" data-corners="true"
+              data-inline="true" data-theme="b" data-icon="check" data-role="button">
+                  <span class="ui-btn-inner ui-btn-corner-all">
+                      <span class="ui-btn-text"> Aceptar </span>
+                      <span class="ui-icon ui-icon-check ui-icon-shadow"> &nbsp; </span>
+                  </span>
+            </a>
+        </div>
+    </div><!-- /content -->
+
+  <div data-role="footer">
+    <h4>Ver Version PC</h4>
+  </div>
+ </div><!-- /page -->
 
 
-</div>

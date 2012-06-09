@@ -18,7 +18,8 @@ steal(
         can.Control("Historial",{
 
             'init': function( element , options ) {
-                this.element.html(can.view(url+'gadget/historial/historialH.ejs'))
+                this.element.append(can.view(url+'gadget/historial/historialH.ejs'))
+                $.mobile.changePage($('#histPage'))
 
 
                 Municipio_select.findAll({},function(municipios) {

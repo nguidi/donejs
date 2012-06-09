@@ -20,7 +20,9 @@ then(
     function(){
         can.Control( "Patente_pantalla",{  
             'init':function(element ,options ){
-                this.element.html(can.view(url +'gadget/patente/patente.ejs'))
+                this.element.append(can.view(url +'gadget/patente/patente.ejs'))
+                $.mobile.changePage($('#patentePage'))
+
                 Marca_select.findAll({},function(marcas) {
                      $('div#marcasSelect').html(
                         can.view(url+'gadget/patente/selectP.ejs',
@@ -38,9 +40,6 @@ then(
                var nroPatente = this.element.find('input#patente').val()
                var marcaId = this.element.find('select#marcas').val()
                
-               //console.log((marcaId.is('select'))?'anda':'no anda')
-               console.log(marcaId)
-               console.log(nroPatente)
                if ((marcaId>0)&&(nroPatente.length>0)){
 
                  Reg_estacionamiento.findAll({patente:nroPatente,marca_auto_id:marcaId},function(registro){
