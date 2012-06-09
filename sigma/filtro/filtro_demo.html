@@ -19,15 +19,20 @@ and open the template in the editor.
         'can/control/control.js',
         'jquery/jquery.js')
     .then(
-        'jquery-mobile/jquery.mobile.structure-1.1.0.css',
-        'jquery-mobile/jquery.mobile.theme-1.1.0.css',
-        'jquery-mobile/jquery.mobile-1.1.0.css',
-        'jquery-mobile/jquery.mobile-1.1.0.js')
+        'sigma/filtro/filtro.js')
     .then( 
-        'sigma/filtro/filtro.js',
         function($){   
 
-               new Filtro( 'div#filtro', {} );
+                filter = new Filtro( 'div#filtro', {
+                        filterData: ["ASD","GDE","ARS"]
+                    }
+                );
+                    
+                filter.add({
+                    from: "ASD",
+                    type: "menu",
+                    filterData: ["AGP","BOLSON"]
+                })
         }
     );
 </script>
