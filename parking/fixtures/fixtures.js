@@ -1,6 +1,81 @@
-steal('can/util/fixture')
+function random_pf(from, to){
+    return Math.round((Math.random() * (to - from + 1) + from)*Math.pow(10,2))/Math.pow(10,2);
+}
+
+function random(from, to){
+    return Math.floor(Math.random() * (to - from + 1) + from);
+}
+
+function random_date(){
+    var myDate=new Date();
+    var m = this.random(1, 12);
+    var a = this.random(2011, 2012);
+    var d = 0;
+    if(m == 2 && a % 4 == 0){
+        d = this.random(1, 29)
+    }
+    else if(m == 2 && a % 4 != 0){
+        d = this.random(1, 28)
+    }
+    else if(m % 2 == 0){
+        d = this.random(1, 31)
+    }
+    else{
+        d = this.random(1, 30)
+    }
+    myDate.setFullYear(a,m,d);
+    return myDate;
+}
+
+var mes = 1;
+var anio = 2012;
+var dia = 1;
+
+function generar_date(fd){
+    var dia = 1, mes = 1, anio = 2011, max = 0;
+    var impar31 = true;
+    var array = new Array();
+    for(var x = 0; x < 500; x++){
+        dia++;
+        if(mes == 2){
+            max = 28;
+        }
+        else if(mes % 2 != 0 && impar31){
+            max = 31;
+        }
+        else if(mes % 2 == 0 && !impar31){
+            max = 31;
+        }
+        else
+        {
+            if(mes == 8){
+                max = 31;
+                impar31 = false;
+            }
+            max = 30;
+        }
+        if(max < dia){
+            mes++;
+            dia = 1;
+        }
+        if(x % 364 == 0){
+            anio++;
+            mes = 1;
+        }
+        array[x] = dia+'/'+mes+'/'+anio;
+    }
+    return array;
+}
+
+
+steal('can/util/fixture','./usuarios.js')
 .then(function(){
-    
+     //#############  HABILITAR O DESHABILITAR FIXTURES!  ############
+    //
+    //$.fixture.on = false
+    //
+    //
+    //
     can.fixture('GET /tmp_control', 
         function(params) {
             return {
@@ -483,55 +558,59 @@ steal('can/util/fixture')
         }
     )
         
-    var rpt_recaudacion_sql = [[232, 1, 31, 0, '0.00'],
-                                [232, 1, 30, 0, '0.00'],
-                                [232, 1, 29, 0, '0.00'],
-                                [232, 1, 28, 0, '0.00'],
-                                [232, 1, 27, 0, '0.00'],
-                                [232, 1, 26, 0, '0.00'],
-                                [232, 1, 25, 0, '0.00'],
-                                [232, 1, 24, 0, '0.00'],
-                                [232, 1, 23, 0, '0.00'],
-                                [232, 1, 22, 0, '0.00'],
-                                [232, 1, 21, 0, '0.00'],
-                                [232, 1, 20, 0, '0.00'],
-                                [232, 1, 19, 0, '0.00'],
-                                [232, 1, 18, 0, '0.00'],
-                                [232, 1, 17, 0, '0.00'],
-                                [232, 1, 16, 0, '0.00'],
-                                [232, 1, 15, 0, '0.00'],
-                                [232, 1, 14, 0, '0.00'],
-                                [232, 1, 13, 0, '0.00'],
-                                [232, 1, 12, 0, '0.00'],
-                                [232, 1, 11, 0, '0.00'],
-                                [232, 1, 10, 0, '0.00'],
-                                [232, 1, 9, 0, '0.00'],
-                                [232, 1, 8, 0, '0.00'],
-                                [232, 1, 7, 0, '0.00'],
-                                [232, 1, 6, 0, '0.00'],
-                                [232, 1, 5, 1, '2.00'],
-                                [232, 1, 4, 2, '4.00'],
-                                [232, 1, 3, 1, '3.00'],
-                                [232, 1, 2, 2, '4.00'],
-                                [232, 1, 1, 0, '0.00']]
+   /* var rpt_recaudacion_sql = [[232, 1, 31, 5, 2012, 0, '1479.00'],
+                                [232, 1, 30, 5, 2012, 0, '2359.50'],
+                                [232, 1, 29, 5, 2012, 0, '4781.25'],
+                                [232, 1, 28, 5, 2012, 0, '2354.80'],
+                                [232, 1, 27, 5, 2012, 0, '1879.40'],
+                                [232, 1, 26, 5, 2012, 0, '2469.20'],
+                                [232, 1, 25, 5, 2012, 0, '4512.40'],
+                                [232, 1, 24, 5, 2012, 0, '4142.40'],
+                                [232, 1, 23, 5, 2012, 0, '1312.80'],
+                                [232, 1, 22, 5, 2012, 0, '3612.25'],
+                                [232, 1, 21, 5, 2012, 0, '5512.40'],
+                                [232, 1, 20, 5, 2012, 0, '4792.10'],
+                                [232, 1, 19, 5, 2012, 0, '4512.40'],
+                                [232, 1, 18, 5, 2012, 0, '4298.00'],
+                                [232, 1, 17, 5, 2012, 0, '3212.40'],
+                                [232, 1, 16, 5, 2012, 0, '5941.00'],
+                                [232, 1, 15, 5, 2012, 0, '2369.40'],
+                                [232, 1, 14, 5, 2012, 0, '6561.40'],
+                                [232, 1, 13, 5, 2012, 0, '1213.00'],
+                                [232, 1, 12, 5, 2012, 0, '4002.60'],
+                                [232, 1, 11, 5, 2012, 0, '3652.20'],
+                                [232, 1, 10, 5, 2012, 0, '1574.00'],
+                                [232, 1, 9, 5, 2012, 0, '4369.00'],
+                                [232, 1, 8, 5, 2012, 0, '1235.50'],
+                                [232, 1, 7, 5, 2012, 0, '3654.30'],
+                                [232, 1, 6, 5, 2012, 0, '6512.20']]*/
                             
     var rpt_recaudacion = new Array()
     
-    for (i=0; i < rpt_recaudacion_sql.length; i++) {
+    var fechas = generar_date();
+    
+    for (i=0; i < 500; i++) {
         rpt_recaudacion.push({
             id: i+1,
-            usuario_id: rpt_recaudacion_sql[i][0],
-            muni_id: rpt_recaudacion_sql[i][1],
-            dia: rpt_recaudacion_sql[i][2],
-            autos: rpt_recaudacion_sql[i][3],
-            importe: rpt_recaudacion_sql[i][4]
-
+            usuario_id: 232,
+            muni_id: 7/*random(7,11)*/,
+            fecha: fechas[i],
+            autos: random(300,1000),
+            importe: random_pf(1000.00,6000.00)
         })
     }
     
-    can.fixture('GET /rpt_recaudacion', 
+    can.fixture('GET /recaudacions', 
         function(params) {
-            return rpt_recaudacion
+            if(params.data != undefined && params.data.muni_id != undefined){
+                console.log(params.data)
+                return {items: $.grep(rpt_recaudacion,function(item){
+                        return item.muni_id == params.data.muni_id
+                })}
+            }
+            else {
+                return {items: rpt_recaudacion}
+            }
         }
     )
     
@@ -544,7 +623,6 @@ steal('can/util/fixture')
      var menu_completo = [
          {id: 1, evento: 'menu-reportes', img: 'reportes.png', nombre: 'Reportes', control: 'parking_web_reportes', 
              dropdown: [{evento: 'submenu_recaudacion', nombre: 'Recaudacion'},
-                 {evento: 'submenu_cuenta_corriente', nombre: 'Cuenta corriente'},
                  {evento: 'submenu_infracciones', nombre: 'Infracciones'},
                  {evento: 'submenu_autos_estacionados', nombre: 'Autos estacionados'}]
          }, //Reportes
@@ -588,6 +666,24 @@ steal('can/util/fixture')
                 })
         }
         return {items: array}
-     
      });
+    //#############################################
+    //               Calendario
+    //#############################################
+    //#############################################
+    
+    /*can.fixture("GET /recaudacions", function(settings){
+         if(typeof(settings.data) == 'undefined')
+         {
+             return {items: menu_completo};
+         }
+         else
+         {
+            return {items: $.map($.grep(menu_perfils, function(item){
+                 return settings.data.perfil == item.perfil;
+            }),function(item){
+                return menu_completo[item.menu-1]
+            })};   
+         }
+     });*/
 })

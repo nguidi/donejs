@@ -7,21 +7,17 @@
 steal(
     'can/control/control.js',
     'can/view/ejs',
-    'parking_web/topbar/topbar.js',
-    'parking_web/home/home.js')
+    'parking_web/config.js')
 .then(
     function(){
         
-        can.Control("PrincipalWeb",{
+        can.Control("Grafica_recaudacion_web",{
             defaults: {
                 user: undefined
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view('./principal/main.ejs'))
-                new TopBar("#header",{user: this.options.user});
-                new Home("#content");
-                
+                //this.element.html(can.view(url+'reportes/recaudacion/recaudacion.ejs'))
             }
         })
     }

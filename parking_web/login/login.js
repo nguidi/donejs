@@ -8,7 +8,6 @@ steal(
     'parking_web/principal/principal.js').then('./views/init.ejs', function($){    // A este steal le agrego una pantalla ejs o algo asi
          can.Control('LoginWeb',
          {
-             listensTo:["loginOn","loginError","logOut","loginSessionOff"], // A la espera de estos eventos...
              defaults : {
                  title: 'Sistema de Parking',
                  error: ''
@@ -20,6 +19,7 @@ steal(
                  document.getElementById("username").focus();
              },
              'submit' : function(el, evento){
+                 var self = this;
                  evento.preventDefault(); // Seteo informacion por defecto
                  this.element.find('[type=submit]').val('Verificando'); //modifica valor del boton submit
                  var user = User.findAll({username: el.find('input#username').val(), password: el.find('input#password').val()}); // Consulto al modelo, para validar los parametros de usuario
@@ -34,13 +34,11 @@ steal(
                              user: obj.data, // solo hace falta pasarlo en caso de pooling o de timeout
                              element: "#mainframe"
                          });*/
-                         //can.data(can.$("#mainPage"),'controls')
-                         //console.log($("#mainPage"))
-                         new PrincipalWeb("#mainPage",{user: obj[0]})
-                         //el.trigger("loginOn",[obj.data]); // disparo un evento con dos handlers... uno en principal y el otro local...
+                         self.loginOn();
+                         self.principal_web = new PrincipalWeb("#mainPage",{user: obj[0]})
                      }
                      else
-                        el.trigger("loginError");
+                        self.loginError()
                  });
              },
              "loginOn" : function(){ //handler del evento de login correcto
@@ -53,17 +51,10 @@ steal(
              },
              "loginSessionOff": function() //bindea la sesión vencida
              {
-                 if(typeof($(document).controller()) == 'undefined')
-                 {
-                     $(document).controller().logout();
-                 }
+                 this.principal_web.destroy();
                  this.element.html(this.view('init.ejs',{message: 'Sesión vencida, debe volver a ingresar'}));
                  document.getElementById("username").focus();
                  $('h1').text(this.options.title);
-             },
-             "logOut": function() //logout voluntario
-             {
-                 this.init();
              }
          }
      );

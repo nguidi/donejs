@@ -17,10 +17,25 @@ steal(
                 user: undefined
             }
         },{
-            'init': function( element , options ) {
-                this.element.html(can.view('./principal/main.ejs'))
-                new TopBar("#header",{user: this.options.user});
-                new Home("#content");
+            init: function( element , options ) {
+                if(this.options.user != undefined)
+                {
+                    console.log(url)
+                    this.element.html(can.view(url+'principal/main.ejs'))
+                    this.topbar = new TopBar("#header",{user: this.options.user});
+                    this.home = new Home("#content")
+                }
+                else
+                {
+                    console.log("error")
+                }
+                
+            },
+            "a.salir click": function(el){
+                this.topbar.destroy();
+                this.home.destroy();
+                can.Control.prototype.destroy.call( this );
+                new LoginWeb( '#mainPage', {} );
             }
         })
     }
