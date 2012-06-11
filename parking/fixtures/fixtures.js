@@ -90,11 +90,8 @@ steal('can/util/fixture','./usuarios.js')
                 fecha_ins: '2012-05-11 18:46:22'
             }
         }
-    )
-        
-    can.fixture('GET /tarifas', 
-        function(params) {
-            return {items: [{
+    );
+    var tarifas=[{
                 id: 1,
                 tiempo:	30,
                 precio: 2.00,
@@ -117,7 +114,10 @@ steal('can/util/fixture','./usuarios.js')
                 tiempo:	120,
                 precio: 8.00,
                 fecha_ins: '2012-03-14 12:53:38'
-            }]}
+            }]
+    can.fixture('GET /tarifas', 
+        function(params) {
+            return {items:tarifas }
         }
     )
         
@@ -655,7 +655,77 @@ steal('can/util/fixture','./usuarios.js')
             })};   
          }
      });
-     
+     var marcas= [{
+                id: 0,
+                marca:'Todas'
+            },
+            {
+                id: 1,
+                marca:'Volkswagen'
+            },
+            {
+                id: 2,
+                marca:'Ford'
+            },
+            {
+                id: 3,
+                marca:'Chevrolet'
+            },
+            {
+                id: 4,
+                marca:'Fiat'
+            },
+            {
+                id: 5,
+                marca:'Peugeot'
+            },
+            {
+                id: 6,
+                marca:'Renault'
+            },
+            {
+                id: 7,
+                marca:'Citroen'
+            },
+            {
+                id: 8,
+                marca:'Toyota'
+            },
+            {
+                id: 9,
+                marca:'Otros'
+            }
+          ];
+      var municipios = //Localidades
+                [
+                //{id: 1, ciudad: 'Campana', codigo_postal: '2804', image: 'camp.jpg'},
+                //{id: 2, ciudad: 'Zárate', codigo_postal: '2800', image: 'zarate.jpg'},
+                //{id: 3, ciudad: 'Escobar', codigo_postal: '1625', image: 'escobar.jpg'},
+                //{id: 4, ciudad: 'Baradero', codigo_postal: '2942', image: 'baradero.jpg'},
+                //{id: 5, ciudad: 'San Pedro', codigo_postal: '2930', image: 'sanpedro.jpg'},
+               // {id: 6, ciudad: 'Capital Federal', codigo_postal: '1000', image: 'capital.jpg'},
+                {id: 7, ciudad: 'Avellaneda', codigo_postal: '2942', image: 'avellaneda.jpg'},
+                {id: 8, ciudad: 'San Martin', codigo_postal: '2930', image: 'sanmartin.jpg'},
+                {id: 9, ciudad: 'Tucumán', codigo_postal: '2814', image: 'tucuman.jpg'},
+                {id: 10, ciudad: 'Pilar', codigo_postal: '1000', image: 'pilar.jpg'}
+                ];
+       var zonas=new Array()
+        for (var i=1; i<5;i++){
+            zonas.push({
+                id:i,
+                zona: "Zona"+i
+            })
+        }
+      can.fixture("GET /manzana",function(settings){
+        var manzanas=new Array()
+        for (var i=1; i<10;i++){
+            manzanas.push({
+                id:i,
+                manzana: "Manzana"+i
+            })
+        }
+        return {items:manzanas}
+     });
      can.fixture("GET /manzana_slot", function(settings){
         var array = new Array()
         for (var i=0; i < 15; i++) {
@@ -667,6 +737,7 @@ steal('can/util/fixture','./usuarios.js')
         }
         return {items: array}
      });
+
     //#############################################
     //               Calendario
     //#############################################
@@ -686,4 +757,41 @@ steal('can/util/fixture','./usuarios.js')
             })};   
          }
      });*/
+})
+     
+        var reg_est= new Array()
+        for(var t=1;t<25;t++){
+            reg_est.push({
+                id:t,
+                fecha:"2011-06-02",
+                hora: "12.30",
+                patente: t+ 300,
+                tarifa_id:tarifas[t % 4].id,
+                marca_auto_id:marcas[t % 9].id,
+                muninicipio_id:municipios[t% 4].id,
+                zona_id:zonas[t % 3].id
+
+            })
+        }
+                
+
+        can.fixture('GET /reg_estacionamientos',function(params) {
+            var bool = false
+            if (params.data) {
+                     return { items: $.grep(reg_est,function(elem,index) {
+                             for (var attr in params.data) {
+                                if (elem[attr] == params.data[attr])
+                                    bool = true
+                                else {
+                                    bool = false
+                                    break
+                                }
+                             }
+                             return bool
+                             }
+                         )
+                    }
+          } else return {items: reg_est}
+      });
+     
 })
