@@ -27,10 +27,6 @@ function random_date(){
     return myDate;
 }
 
-var mes = 1;
-var anio = 2012;
-var dia = 1;
-
 function generar_date(fd){
     var dia = 1, mes = 1, anio = 2011, max = 0;
     var impar31 = true;
@@ -58,7 +54,7 @@ function generar_date(fd){
             mes++;
             dia = 1;
         }
-        if(x % 364 == 0){
+        if(x % 364 == 0 && x != 0){
             anio++;
             mes = 1;
         }
@@ -613,19 +609,19 @@ steal('can/util/fixture','./usuarios.js')
     can.fixture('GET /recaudacions', 
         function(params) {
             if(params.data != undefined){
-				var array_auxi = rpt_recaudacion;
-				if(params.data.muni_id != undefined){
-					array_auxi = $.grep(array_auxi,function(item){
-							return item.muni_id == params.data.muni_id
-					})
-				}
-				if(params.data.mes != undefined && params.data.anio != undefined){
-					array_auxi = $.grep(array_auxi,function(item){
-							return parseo_date_month(item.fecha) == params.data.mes && 
-							parseo_date_anio(item.fecha) == params.data.anio
-					})
-				}
-				return {items: array_auxi}
+		var array_auxi = rpt_recaudacion;
+                    if(params.data.muni_id != undefined){
+			array_auxi = $.grep(array_auxi,function(item){
+                        	return item.muni_id == params.data.muni_id
+			})
+                    }
+                    if(params.data.fecha.mes != undefined && params.data.fecha.anio != undefined){
+			array_auxi = $.grep(array_auxi,function(item){
+				return parseo_date_month(item.fecha) == params.data.fecha.mes && 
+				parseo_date_anio(item.fecha) == params.data.fecha.anio
+			})
+                    }
+                    return {items: array_auxi}
             }
             else {
                 return {items: rpt_recaudacion}
