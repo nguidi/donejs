@@ -67,6 +67,16 @@ function generar_date(fd){
     return array;
 }
 
+function parseo_date_month(string){
+	var substri = string.substring(string.search('/') + 1)
+    return substri.substring(0,substri.search('/'))
+}
+
+function parseo_date_anio(string){
+	var substri = string.substring(string.search('/') + 1)
+    return substri.substring(substri.search('/') + 1)
+}
+
 
 steal('can/util/fixture','./usuarios.js')
 .then(function(){
@@ -602,11 +612,20 @@ steal('can/util/fixture','./usuarios.js')
     
     can.fixture('GET /recaudacions', 
         function(params) {
-            if(params.data != undefined && params.data.muni_id != undefined){
-                console.log(params.data)
-                return {items: $.grep(rpt_recaudacion,function(item){
-                        return item.muni_id == params.data.muni_id
-                })}
+            if(params.data != undefined){
+				var array_auxi = rpt_recaudacion;
+				if(params.data.muni_id != undefined){
+					array_auxi = $.grep(array_auxi,function(item){
+							return item.muni_id == params.data.muni_id
+					})
+				}
+				if(params.data.mes != undefined && params.data.anio != undefined){
+					array_auxi = $.grep(array_auxi,function(item){
+							return parseo_date_month(item.fecha) == params.data.mes && 
+							parseo_date_anio(item.fecha) == params.data.anio
+					})
+				}
+				return {items: array_auxi}
             }
             else {
                 return {items: rpt_recaudacion}
@@ -757,7 +776,7 @@ steal('can/util/fixture','./usuarios.js')
             })};   
          }
      });*/
-})
+
      
         var reg_est= new Array()
         for(var t=1;t<25;t++){
@@ -792,6 +811,5 @@ steal('can/util/fixture','./usuarios.js')
                          )
                     }
           } else return {items: reg_est}
-      });
-     
+      });     
 })
