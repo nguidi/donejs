@@ -4,4 +4,6 @@
  */
 
 
-var url = '/donejs/parking_web/'
+var url = '/donejs/parking_web/';
+
+var array_mes = ['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];

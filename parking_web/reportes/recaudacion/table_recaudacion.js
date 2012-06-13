@@ -18,7 +18,7 @@ steal(
         },{
             'init': function( element , options ) {
                 this.element.html(can.view(url+'reportes/recaudacion/tabla_recaudacion.ejs'))
-                Recaudacion.findAll({muni_id: options.user.municipio, fecha: {mes: element.find('input#mes').val(), anio: element.find('input#anio').val()}},
+                Recaudacion.findAll({muni_id: options.user.municipio, fecha: {mes: element.find('select#mes').val(), anio: element.find('select#anio').val()}},
                     function(resumen_cuenta) {
                         $('table.cc tbody').html(can.view(url+'reportes/recaudacion/recipe.ejs',resumen_cuenta))
                         var importeTotal = 0
@@ -28,6 +28,9 @@ steal(
                         $('table.cc tbody tr:last td b').html('RECAUDACION TOTAL : '+importeTotal)
                     }
                 )
+            },
+            'select change': function(element){
+                console.log(element.val());
             }
         })
     }
