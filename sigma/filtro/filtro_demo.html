@@ -24,14 +24,52 @@ and open the template in the editor.
         function($){   
 
                 filter = new Filtro( 'div#filtro', {
-                        filterData: ["ASD","GDE","ARS"]
+                        filterData: ["Menu 1","Menu 2","Menu 3"]
                     }
                 );
-                    
+
                 filter.add({
-                    from: "ASD",
+                    from: "Menu 1",
                     type: "menu",
-                    filterData: ["AGP","BOLSON"]
+                    filterData: ["Filtro Bool","Filtro Input"]
+                })
+                
+                filter.add({
+                    from: "Menu 2",
+                    type: "menu",
+                    filterData: ["Filtro Autocomplete","Filtro Bool 2"]
+                })
+                
+                filter.add({
+                    from: "Menu 3",
+                    type: "menu",
+                    filterData: ["Filtro Compare","Menu 4"]
+                })
+                
+                filter.add({
+                    from: "Menu 4",
+                    type: "menu",
+                    filterData: ["Filtro Bool 3","Filtro Compare 2","Filtro Input 2"]
+                })
+                
+                filter.add({
+                    from: ["Filtro Bool","Filtro Bool 2","Filtro Bool 3"],
+                    type: "bool"
+                })
+                
+                filter.add({
+                    from: ["Filtro Input","Filtro Input 2"],
+                    type: "input"
+                })
+                
+                filter.add({
+                    from: ["Filtro Compare","Filtro Compare 2"],
+                    type: "compare"
+                })
+                
+                filter.add({
+                    from: "Filtro Autocomplete",
+                    type: "autocomplete"
                 })
         }
     );
