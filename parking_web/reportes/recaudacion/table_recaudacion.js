@@ -18,19 +18,24 @@ steal(
         },{
             'init': function( element , options ) {
                 this.element.html(can.view(url+'reportes/recaudacion/tabla_recaudacion.ejs'))
-                Recaudacion.findAll({muni_id: options.user.municipio, fecha: {mes: element.find('select#mes').val(), anio: element.find('select#anio').val()}},
+                this.mostrar_tabla({muni_id: options.user.municipio, fecha: {mes: element.find('select#mes').val(), anio: element.find('select#anio').val()}});
+            },
+            'select change': function(element){
+                /*console.log(element.val());
+                console.log(element.attr('id'));*/
+                this.mostrar_tabla({muni_id: this.options.user.municipio, fecha: {mes: this.element.find('select#mes').val(), anio: this.element.find('select#anio').val()}});
+            },
+            'mostrar_tabla': function(params){
+                Recaudacion.findAll(params,
                     function(resumen_cuenta) {
                         $('table.cc tbody').html(can.view(url+'reportes/recaudacion/recipe.ejs',resumen_cuenta))
                         var importeTotal = 0
                         $.each(resumen_cuenta,function(index,resumen) {
-                            importeTotal+= parseInt((resumen.debcred != 1) ? resumen.importe : -1*resumen.importe)
+                            importeTotal+= parseFloat(resumen.importe)
                         })
-                        $('table.cc tbody tr:last td b').html('RECAUDACION TOTAL : '+importeTotal)
+                        $('table.cc tbody tr:last td b').html('RECAUDACION TOTAL : $'+importeTotal)
                     }
                 )
-            },
-            'select change': function(element){
-                console.log(element.val());
             }
         })
     }
