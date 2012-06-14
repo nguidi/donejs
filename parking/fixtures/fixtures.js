@@ -57,6 +57,7 @@ function generar_date(fd){
         if(x % 364 == 0 && x != 0){
             anio++;
             mes = 1;
+            impar31 = true;
         }
         array[x] = dia+'/'+mes+'/'+anio;
     }
@@ -64,12 +65,12 @@ function generar_date(fd){
 }
 
 function parseo_date_month(string){
-	var substri = string.substring(string.search('/') + 1)
+    var substri = string.substring(string.search('/') + 1)
     return substri.substring(0,substri.search('/'))
 }
 
 function parseo_date_anio(string){
-	var substri = string.substring(string.search('/') + 1)
+    var substri = string.substring(string.search('/') + 1)
     return substri.substring(substri.search('/') + 1)
 }
 
