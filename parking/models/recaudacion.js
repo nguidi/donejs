@@ -19,18 +19,17 @@ steal('can/model')
      
     }, {})
     
-    can.Model("Cuenta_corriente_deb",{
-        findAll : 'GET /cuenta_corrientes',
+    can.Model("Autos",{
+        findAll : 'GET /recaudacions',
         models  : function(data){
             var newData = new Array()
-            $.each(data.items,function(index,elem){
+            $.each(data.items,function(i,elem){
                newData.push({
-                   id: elem.id,
-                   fecha: elem.fecha,
-                   debito: (elem.debcred == 1) ? elem.importe : 0,
-                   credito: (elem.debcred == 2) ? elem.importe : 0,
-                   detalle: elem.detalle
-               })
+                    id: elem.id,
+                    usuario_id: elem.usuario_id,
+                    fecha: elem.fecha,
+                    autos: elem.autos
+                })
             })
             return newData
         }     
