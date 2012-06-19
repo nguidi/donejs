@@ -8,7 +8,6 @@ function aleatorio(inferior,superior){
 	aleat = Math.round(aleat);
 	return parseInt(inferior) + aleat; 
 } 
-
 steal(
     'can/control/control.js',
     'can/view/ejs',
@@ -41,7 +40,7 @@ steal(
                     name = params.name_x
                 var data = $.map(categories,function(ite, index){
                         var c = colors[aleatorio(0,9)];
-                        if(subcategories != undefined){
+                        if(subcategories == undefined){
                             return { y: dias[index], color: c}
                         }
                         else {
@@ -53,8 +52,7 @@ steal(
                         }
                     })
                 
-                
-                    function setChart(name, categories, data, color) {
+                function setChart(name, categories, data, color) {
 				chart.xAxis[0].setCategories(categories);
 				chart.series[0].remove();
 				chart.addSeries({
@@ -65,12 +63,7 @@ steal(
 			}
                  var drill = (subcategories != undefined)?{ cursor: 'pointer', point: { events: { click: function() { var drilldown = this.drilldown;
                     if (drilldown) { setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);} else { setChart(name, categories, data);}
-                 }}}}:{}
-                 var column_options = $.extend(drill,
-                        {dataLabels: {enabled: true,color: colors[0],style: { fontWeight: 'bold' },formatter: function() {return params.formato_adicional_barras + this.y;}}
-                 })       
-                        
-			
+                 }}}}:{}    
 			chart = new Highcharts.Chart({
 				chart: { renderTo: params.element_html, type: 'column'},
 				title: {text: params.titulo_general},
@@ -78,7 +71,14 @@ steal(
 				xAxis: {categories: categories},
 				yAxis: {title: { text:params.name_y } },
 				plotOptions: {
-					column: column_options
+					column: $.extend(drill,
+                        {dataLabels: {
+							enabled: true,color: colors[0],
+							style: { fontWeight: 'bold' },
+							formatter: function() {
+								return (params.formato_adicional_barras == undefined)?'' + this.y:params.formato_adicional_barras + this.y;}
+							}
+                 		})
 				},
 				tooltip: {
 					formatter: function() {
