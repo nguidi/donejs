@@ -12,8 +12,9 @@ steal(
     'parking_web/config.js',
     'bootstrap/js/bootstrap-dropdown.js',
     './topbar.css',
-    'parking_web/zonas/zonas.js',
-    'parking_web/reportes/recaudacion/recaudacion.js')
+    'parking_web/zonas/handler/zonas.js',
+    'parking_web/reportes/recaudacion/recaudacion.js',
+    'parking_web/reportes/autos_estacionados/autos_estacionados.js')
 .then(
     function(){
         
@@ -36,6 +37,7 @@ steal(
                 switch(click){
                     case '#menu-zonas': new ZonasWeb("#content"); break;
                     case '#submenu_recaudacion': new Recaudacion_web("#content",{ user: this.options.user}); break;
+					case '#submenu_autos_estacionados': new Autos_estacionados("#content",{ user: this.options.user}); break;
                 }
                 if(click == '#menu-zonas')
                 {

@@ -11,14 +11,14 @@ steal(
 .then(
     function(){
         
-        can.Control("Grafica_recaudacion_web",{
+        can.Control("Grafica_autos_estacionados",{
             defaults: {
                 user: undefined,
                 model: undefined
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'reportes/recaudacion/graf_recaudacion.ejs'))
+                this.element.html(can.view(url+'reportes/autos_estacionados/graf_estacionados.ejs'))
                 var mes = 1//document.find('select#mes').val();
                 var anio = 2011//document.find('select#anio').val();
                 this.mostrar_grafica({muni_id: this.options.user.municipio, fecha: {mes: mes, anio: anio}});
@@ -34,16 +34,14 @@ steal(
                     new Graficas('#grafica_rec',
                         {data:{categories: $.map(obj,function(it){ return it.fecha.substring(0,it.fecha.search('/'))}),
                             //subcategories: ['7:00 - 10:00', '10:00 - 13:00', '13:00 - 16:00', '16:00 - 19:00'],
-                            data: $.map(obj,function(it){ return it.importe}),
+                            data: $.map(obj,function(it){ return it.autos}),
                             name_x: 'Dias',
-                            element_html: 'grafica_rec',
-                            titulo_general: 'Recaudación correspondiente al mes '+ array_mes[params.fecha.mes] +' del año '+ params.fecha.anio,
+                            element_html: 'grafica_est',
+                            titulo_general: 'Cantidad de autos estacionados correspondiente al mes '+ array_mes[params.fecha.mes] +' del año '+ params.fecha.anio,
                             subtitulo_general: '',
-                            name_y: 'Cantidad de dinero',
-                            //texto_barras: 'Click para ver lo recaudado por horarios',
-                            //texto_barras_drilldown: 'Click para ver lo recaudado por día',
-                            formato_adicional_barras: '$ '},
-                        type: 'columns_horizontal'})
+                            name_y: 'Cantidad de autos'
+                            },
+                        type: 'columns'})
                 });
             }
         })

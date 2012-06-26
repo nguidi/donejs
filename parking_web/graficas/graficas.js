@@ -2,7 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
+function aleatorio(inferior,superior){ 
+	var numPosibilidades = superior - inferior;
+	var aleat = Math.random() * numPosibilidades; 
+	aleat = Math.round(aleat);
+	return parseInt(inferior) + aleat; 
+} 
 steal(
     'can/control/control.js',
     'can/view/ejs',
@@ -32,22 +37,22 @@ steal(
                 var subcategories = params.subcategories
                 var chart;
                 var colors = Highcharts.getOptions().colors,
-                    name = params.name_x,
-                    data = $.map(categories,function(ite, index){
+                    name = params.name_x
+                var data = $.map(categories,function(ite, index){
                         var c = colors[aleatorio(0,9)];
-                        return {
-                            y: dias[index],//dias[index][0] + dias[index][1] + dias[index][2] + dias[index][3], 
-                            color: c,
-                            drilldown: {
-				name: "Dia " + ite,
-				categories: subcategories ,
-				data: dias[index],
-				color: c
+                        if(subcategories == undefined){
+                            return { y: dias[index], color: c}
+                        }
+                        else {
+                            return {
+                                y: dias[index][0] + dias[index][1] + dias[index][2] + dias[index][3], 
+                                color: c,
+                                drilldown: { name: "Dia " + ite, categories: subcategories , data: dias[index], color: c }
                             }
-			}
+                        }
                     })
-			
-                    function setChart(name, categories, data, color) {
+                
+                function setChart(name, categories, data, color) {
 				chart.xAxis[0].setCategories(categories);
 				chart.series[0].remove();
 				chart.addSeries({
@@ -56,7 +61,9 @@ steal(
 					color: color || 'white'
 				});
 			}
-			
+                 var drill = (subcategories != undefined)?{ cursor: 'pointer', point: { events: { click: function() { var drilldown = this.drilldown;
+                    if (drilldown) { setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);} else { setChart(name, categories, data);}
+                 }}}}:{}    
 			chart = new Highcharts.Chart({
 				chart: { renderTo: params.element_html, type: 'column'},
 				title: {text: params.titulo_general},
@@ -64,31 +71,23 @@ steal(
 				xAxis: {categories: categories},
 				yAxis: {title: { text:params.name_y } },
 				plotOptions: {
-					column: {
-						cursor: 'pointer',
-						point: {
-							events: {
-								click: function() {
-									var drilldown = this.drilldown;
-									if (drilldown) { // drill down
-										setChart(drilldown.name, drilldown.categories, drilldown.data, drilldown.color);
-									} else { // restore
-										setChart(name, categories, data);
-									}
-								}
+					column: $.extend(drill,
+                        {dataLabels: {
+							enabled: true,color: colors[0],
+							style: { fontWeight: 'bold' },
+							formatter: function() {
+								return (params.formato_adicional_barras == undefined)?'' + this.y:params.formato_adicional_barras + this.y;}
 							}
-						},
-						dataLabels: {enabled: true,color: colors[0],style: { fontWeight: 'bold' },formatter: function() {return params.formato_adicional_barras + this.y;}}
-					}
+                 		})
 				},
 				tooltip: {
 					formatter: function() {
 						var point = this.point,
-							s = 'Dia ' + this.x +' :<b> $'+ this.y +' recaudados</b><br/>';
+							s = 'Dia ' + this.x +' :<b> '+ this.y +' estacionados</b><br/>';
 						if (point.drilldown) {
-							s += params.texto_barras;
+							s += (params.texto_barras==undefined)?'':params.texto_barras;
 						} else {
-							s += params.texto_barras_drilldown;
+							s += (params.texto_barras_drilldown==undefined)?'':params.texto_barras_drilldown;
 						}
 						return s;
 					}
