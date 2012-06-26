@@ -90,7 +90,7 @@ function defaultValue(val,def) {
 */
 
 function indexOfObject(array,obj) {
-    var index = 0
+    var index = -1
     $.each(array,function(i,elem) {
         var bool = new Array()
         for (var attr in elem) {
@@ -232,4 +232,20 @@ function isSubstring(substring,string) {
         }
     }
     return bool
+}
+
+function isSubstringCaseSensitive(substring,string) {
+    return this.isSubstring(substring.toLowerCase(),string.toLowerCase())
+}
+
+function getFirst(array) {
+    return array[0]
+}
+
+function getLast(array) {
+    return array[array.length-1]
+}
+
+function random(from, to){
+    return Math.floor(Math.random() * (to - from + 1) + from);
 }

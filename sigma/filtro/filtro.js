@@ -14,67 +14,106 @@ steal(
         
         can.Control("Filtro",{
             defaults: {
+                filterType: '',
+                customView: '',
                 filterData: new Array(),
-                filterPath: new Array()
+                filterPath: new Array(),
+                filterFunction: function(path){
+                    console.log('Funcion por defecto')
+                    console.log(path)
+                }
             }
         },{
             'init': function( element , options ) {
-                element.html(can.view('view/mainMenu.ejs'))
-                this.insert(0,options.filterData,'mainmenu')
+                if (options.filterType == 'cascada'){
+                    element.html(can.view('view/cascada/mainMenu.ejs'))
+                    this.insertCascada(0,options.filterData,'mainmenu')
+                } 
+                else {
+                    element.html(can.view('view/init.ejs',stringToRE(options.filterType)))
+                    this.insert(options.filterType,options.filterData)
+                    element.append(can.view('view/buscar.ejs'))  
+                }
             },
             
-            insert: function(level,filterData,from) {
+            insertCascada: function(level,filterData,from) {
                 var element = this.element.find('div[filter-level="'+level+'"] div[from="'+stringToRE(from)+'"]')
                 $.each(filterData, function(i , filter ) {
-                    element.append(can.view('view/menuOptions.ejs',{
-                        menu_option: filter
+                    element.append(can.view('view/cascada/menuOptions.ejs',{
+                        menu_option: filter.title,
+                        field: isUndefined(filter.value) ? '' : filter.value
                     }))
                 })
             },
             
+            insert: function(elemClass,filterData) {
+                var element, editedFilter, label, self = this                
+                $.each(filterData, function(i , filter ) {
+                    label = stringToRE(filter.label)
+                    element = self.element.find('.'+stringToRE(elemClass))
+                    if (elemClass == 'column-inline') {
+                        element.append(can.view('view/column-inline/div.ejs',{
+                            label: label
+                        }))
+                        element = element.find('div.'+label)
+                    }
+                    element.append(can.view('view/'+((elemClass == 'column-inline') ? 'column' : elemClass)+'/label.ejs',{
+                        labelClass: label,
+                        label: filter.label
+                    }))
+                    if (filter.type == 'select')
+                        element.append(can.view('view/'+((elemClass == 'column-inline') ? 'inline' : elemClass)+'/select.ejs',{
+                            data: filter.selectOptions
+                        }))
+                    else     
+                        element.append(can.view('view/'+((elemClass == 'column-inline') ? 'inline' : elemClass)+'/input.ejs',{
+                            type: (filter.type == 'autocomplete' || filter.type == 'input') ? 'text' : filter.type
+                        }))
+                })
+            },
+
             add: function(options) {
                 var fromArray
                 var self = this
-                if (!$.isArray(options.from))
-                    fromArray = new Array(options.from)
-                else
+                if ($.isArray(options.from))
                     fromArray = options.from
+                else
+                    fromArray = new Array(options.from)
                 $.each(fromArray,function(i, from){
                     var level = self.getLevelFrom(from) + 1, compareLevel
                     self.addFilterLevel(level)
                     self.addFilterFrom(level,from)
                     if (options.type == 'menu') 
-                        self.insert(level,options.filterData,from)
+                        self.insertCascada(level,options.filterData,from)
                     else {
                         if (options.type == 'autocomplete')
                             self.element.find('div[filter-level="'+level+'"] div[from="'+stringToRE(from)+'"]')
-                                .append(can.view('view/input.ejs'))
+                                .append(can.view('view/cascada/input.ejs'))
                         else {
                             self.element.find('div[filter-level="'+level+'"] div[from="'+stringToRE(from)+'"]')
-                                    .append(can.view('view/'+options.type+'.ejs'))
+                                    .append(can.view('view/cascada/'+options.type+'.ejs'))
                             if (options.type == 'compare'){
                                 compareLevel = level + 1
                                 self.addFilterLevel(compareLevel)
                                 self.addFilterFrom(compareLevel,from)
                                 self.element.find('div[filter-level="'+compareLevel+'"] div[from="'+stringToRE(from)+'"]')
-                                    .append(can.view('view/input.ejs'))
+                                    .append(can.view('view/cascada/input.ejs'))
                             }
                         }
                     }    
                 })
-                
             },
 
             addFilterLevel: function(level) {
                 if (this.element.find('div[filter-level="'+level+'"]').length == 0)
-                    this.element.append(can.view('view/filterLevel.ejs',{
+                    this.element.append(can.view('view/cascada/filterLevel.ejs',{
                         filter_level: level
                     }))
             },
             
             addFilterFrom: function(level,from) {
                 if (this.element.find('div[filter-level="'+level+'"] div[from="'+stringToRE(from)+'"]').length == 0)
-                    this.element.find('div[filter-level="'+level+'"]').append(can.view('view/from.ejs',{
+                    this.element.find('div[filter-level="'+level+'"]').append(can.view('view/cascada/from.ejs',{
                         from: stringToRE(from)
                     }))
             },
@@ -96,12 +135,65 @@ steal(
                 return parseInt($(element).parents('div.filterLevel').attr('filter-level'))
             },
             
+            getOption: function(option) {
+                return this.options[option]
+            },
+            
+            getFilterType: function(element) {
+                var type
+                switch(element.attr('filter-type')) {
+                    case 'si': 
+                        type = true
+                        break;
+                    case 'no':
+                        type = false
+                        break;
+                    default:
+                        type = element.attr('filter-type')
+                        break
+                }
+                return type
+            },
+            
+            getFilterObject: function(element) {
+                return {
+                    level: this.getLevel(element),
+                    type: this.getFilterType(element),
+                    value: (element.is('input')) ? element.val() : $.trim(element.text()),
+                    field: (element.attr('filter-field') == "" || isUndefined(element.attr('filter-field'))) ? undefined : element.attr('filter-field')
+                }
+            },
+            
+            indexOfCurrentLevel: function(level) {
+                var index = -1
+                $.each(this.options.filterPath,function(i,elem) {
+                    var bool = new Array()
+                    if (elem.level == level)
+                        index = i
+                    if (index >= 0)
+                        return false
+                })
+                return index
+            },
+            
+            updateFilterPath: function(element) {
+                var index = (this.indexOfCurrentLevel(this.getLevel(element)) == -1) ? this.options.filterPath.length : this.indexOfCurrentLevel(this.getLevel(element)) 
+                var restOfItems = this.options.filterPath.length - index
+                this.options.filterPath
+                    .splice(
+                        index,
+                        restOfItems,
+                        this.getFilterObject(element)
+                    )
+            },
+            
             'div.filterOption click': function(element) {
-                if (element.hasClass('chosenOne')) 
+                if (element.hasClass('chosenOne')) {
                     this.hideFrom(element) 
-                else {
+                }else {
                     this.hideRestOfIt(element)
                     this.showFrom(element)
+                    this.updateFilterPath(element)
                 }
             },
             
@@ -129,15 +221,20 @@ steal(
             },
             
             'div.filterOption[filter-type="si"], div.filterOption[filter-type="no"] click': function(element) {
-                console.log($.trim(element.text()))
+                this.options.filterFunction(this.options.filterPath)
             },
             
             'div.filterOption[filter-type="igual"], div.filterOption[filter-type="menor"], div.filterOption[filter-type="mayor"] click': function(element) {
-                console.log(this.getFrom(element))
                 var level = this.getLevel(element)+1
-                console.log(level)
                 this.element.find('div[filter-level="'+level+'"] div[from="'+this.getFrom(element)+'"]').css('display','block')
+            },
+            
+            'input[filter-type="input"] keyup': function(element,event){
+                if (event.keyCode == 13) {
+                    this.updateFilterPath(element)
+                    this.options.filterFunction(this.options.filterPath)
+                }
             }
-        })
-    }
+        }
+    )}
 );

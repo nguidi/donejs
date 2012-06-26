@@ -1,0 +1,23 @@
+<ul>
+    <li class="jumpFirst">
+        <a href="javascript://">&larr; &larr;</a>
+    </li>
+    <li class="jumpPrev">
+        <a href="javascript://">Anterior</a>
+    </li>
+    <% for (var i=1; i <= this.numOfPages; i++) { %>
+        <% if (i > this.maxIndex) { %>
+            <li page="<%= i %>" class="jumpTo toScroll" style="display: none;">
+        <% } else { %>
+            <li page="<%= i %>" class="jumpTo">
+        <% } %>
+            <a href="javascript://"><%= i %></a>
+        </li>
+    <% } %>
+    <li class="jumpNext">
+        <a href="javascript://">Siguiente</a>
+    </li>
+    <li class="jumpLast">
+        <a href="javascript://">&rarr; &rarr;</a>
+    </li>
+</ul>

@@ -55,30 +55,39 @@ and open the template in the editor.
             }
             
             can.fixture( "GET /personas", function(params) {
-                var offset = (!isUndefined(params.data.offset)) ? params.data.offset : personas.length
-                return  $.grep( personas , function(e,i) {return i<offset})
+                var offset = (!isUndefined(params.data.offset)) ? params.data.offset : 0
+                var limit = (!isUndefined(params.data.limit)) ? params.data.limit : personas.length
+                return  {
+                    items: $.grep( personas , function(e,i) {return (i < offset+limit) && (i >= offset)}),
+                    count: personas.length
+                }
             });
             // findOne
             can.fixture( "GET /persona", function(params) {
                 var bool = false
                 return  $.grep( personas , function(i) {
-                                for (var attr in params.data) {
-                                    if (i[attr] == params.data[attr])
-                                        bool = true
-                                    else {
-                                        bool = false
-                                        break
-                                    }
-                                }
-                                return bool
-                            })
+                    for (var attr in params.data) {
+                        if (i[attr] == params.data[attr])
+                            bool = true
+                        else {
+                            bool = false
+                            break
+                        }
+                    }
+                    return bool
+                })
             });
         }
     ).then(function($){
+    
         tabla = new Tabla('div#tableArea',{
             model: Persona,
             tableStyle: 'simple striped bordered',
-            offset: 50
+            limit: 50,
+            paginate: {
+                perPage: 10,
+                maxIndex: 5
+            }
         })
     })   
 </script>

@@ -10,21 +10,70 @@ and open the template in the editor.
     </head>
     <body>
         <h1>Filtro Demo</h1>
-        <div id="filtro"></div>
+        <div id="tab">
+            <ul>
+                <li tab="filtroCascada"> Filtro Cascada </li>
+                <li tab="filtroInline"> Filtro Inline </li>
+                <li tab="filtroColumn"> Filtro Column </li>
+                <li tab="filtroColumnInline"> Filtro Inline Column </li>
+            </ul>
+        </div>
+        <div id="toTab">
+            <div toTab="filtroCascada" class="tab" style="width: 100%; border: 1px solid #ccc; height: 200px;">
+                <h2>Filtro Cascada</h2>
+                <div id="filtroCascada"></div>    
+            </div>
+            <div toTab="filtroInline" class="tab" style="width: 100%; border: 1px solid #ccc; height: 150px;">
+                <h2>Filtro Inline</h2>
+                <div id="filtroInline"></div>
+            </div>
+            <div toTab="filtroColumn" class="tab" style="width: 100%; border: 1px solid #ccc; height: 320px;">
+                <h2>Filtro Column</h2>
+                <div id="filtroColumn"></div>
+            </div>
+            <div toTab="filtroColumnInline" class="tab" style="width: 100%; border: 1px solid #ccc; height: 200px;">
+                <h2>Filtro Column-Inline</h2>
+                <div id="filtroColumnInline"></div>
+            </div>    
+        </div>
+        
     </body>
 </html>
 <script type='text/javascript' src='/donejs/steal/steal.js'></script>
 <script type='text/javascript'>
     steal(
         'can/control/control.js',
-        'jquery/jquery.js')
+        'jquery/jquery.js',
+        'sigma/panels.css')
     .then(
         'sigma/filtro/filtro.js')
     .then( 
         function($){   
+                
+                //TABS
+            
+                $('div#toTab div.tab').hide()
 
-                filter = new Filtro( 'div#filtro', {
-                        filterData: ["Menu 1","Menu 2","Menu 3"]
+                $('div#tab ul li').bind('click',function(){
+                    if ($('div#tab ul li.active').length > 0) {
+                        $('div#toTab div[toTab="'+$('div#tab ul li.active').attr('tab')+'"]').hide()
+                        $('div#tab ul li.active').removeClass('active')
+                    }
+                    $(this).addClass('active')
+                    $('div#toTab div.tab[toTab="'+$(this).attr('tab')+'"]').show()
+                })
+
+                $('div#tab ul li:first').click()
+
+                // FIN TABS
+
+                filter = new Filtro( 'div#filtroCascada', {
+                        filterType: 'cascada',
+                        filterData: ["Menu 1","Menu 2","Menu 3"],
+                        filterFunction: function(path) {
+                            console.log('Remplazo funcion filterFunction')
+                            console.log(path)
+                        }
                     }
                 );
 
@@ -71,6 +120,87 @@ and open the template in the editor.
                     from: "Filtro Autocomplete",
                     type: "autocomplete"
                 })
+                
+                filterInline = new Filtro( 'div#filtroInline', {
+                        filterType: 'inline',
+                        filterData: [
+                            {
+                                label: 'Nombre',
+                                type: 'input'
+                            },
+                            {
+                                label: 'Ingles',
+                                type: 'checkbox'
+                            },
+                            {
+                                label: 'Pais',
+                                type: 'select',
+                                selectOptions: [{value: 1, text: 'Argentina'},{value: 2, text: 'Brazil'}]
+                            },{
+                                label: 'Hombre',
+                                type: 'radio'
+                            },
+                            {
+                                label: 'Prefesion',
+                                type: 'autocomplete'
+                            }
+                        ]
+                    }
+                );
+                
+                filterColumn = new Filtro( 'div#filtroColumn', {
+                        filterType: 'column',
+                        filterData: [
+                            {
+                                label: 'Nombre',
+                                type: 'input'
+                            },
+                            {
+                                label: 'Ingles',
+                                type: 'checkbox'
+                            },
+                            {
+                                label: 'Pais',
+                                type: 'select',
+                                selectOptions: [{value: 1, text: 'Argentina'},{value: 2, text: 'Brazil'}]
+                            },{
+                                label: 'Hombre',
+                                type: 'radio'
+                            },
+                            {
+                                label: 'Prefesion',
+                                type: 'autocomplete'
+                            }
+                        ]
+                    }
+                );
+                
+                filterColumnInline = new Filtro( 'div#filtroColumnInline', {
+                        filterType: 'column-inline',
+                        filterData: [
+                            {
+                                label: 'Nombre',
+                                type: 'input'
+                            },
+                            {
+                                label: 'Ingles',
+                                type: 'checkbox'
+                            },
+                            {
+                                label: 'Pais',
+                                type: 'select',
+                                selectOptions: [{value: 1, text: 'Argentina'},{value: 2, text: 'Brazil'}]
+                            },{
+                                label: 'Hombre',
+                                type: 'radio'
+                            },
+                            {
+                                label: 'Prefesion',
+                                type: 'autocomplete'
+                            }
+                        ]
+                    }
+                );
         }
     );
 </script>
