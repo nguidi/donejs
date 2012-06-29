@@ -47,28 +47,24 @@ steal(
             },
             
             insert: function(elemClass,filterData) {
-                var element, editedFilter, label, self = this                
-                $.each(filterData, function(i , filter ) {
-                    label = stringToRE(filter.label)
-                    element = self.element.find('.'+stringToRE(elemClass))
-                    if (elemClass == 'column-inline') {
-                        element.append(can.view('view/column-inline/div.ejs',{
-                            label: label
-                        }))
-                        element = element.find('div.'+label)
-                    }
-                    element.append(can.view('view/'+((elemClass == 'column-inline') ? 'column' : elemClass)+'/label.ejs',{
-                        labelClass: label,
-                        label: filter.label
-                    }))
-                    if (filter.type == 'select')
-                        element.append(can.view('view/'+((elemClass == 'column-inline') ? 'inline' : elemClass)+'/select.ejs',{
-                            data: filter.selectOptions
-                        }))
-                    else     
-                        element.append(can.view('view/'+((elemClass == 'column-inline') ? 'inline' : elemClass)+'/input.ejs',{
-                            type: (filter.type == 'autocomplete' || filter.type == 'input') ? 'text' : filter.type
-                        }))
+                var self = this
+                $.each(filterData,function(index,filter){
+                    //self.element.append(can.view('view/'+elemClass+'.ejs'))
+                    self.element.find('div.'+stringToRE(elemClass)+':last')
+                        .append(
+                            can.view('view/label.ejs'),
+                            {
+                                label: filter.label
+                            }
+                        )
+                        .append(
+                            can.view('view/'+filter.type+'.ejs'),
+                            {
+                                label: filter.label,
+                                value: filter.value,
+                                data: filter.selectOptions
+                            }
+                        )
                 })
             },
 
@@ -86,9 +82,9 @@ steal(
                     if (options.type == 'menu') 
                         self.insertCascada(level,options.filterData,from)
                     else {
-                        if (options.type == 'autocomplete')
+                        if (options.type == 'autocomplete' || options.type == 'input')
                             self.element.find('div[filter-level="'+level+'"] div[from="'+stringToRE(from)+'"]')
-                                .append(can.view('view/cascada/input.ejs'))
+                                .append(can.view('view/input.ejs'))
                         else {
                             self.element.find('div[filter-level="'+level+'"] div[from="'+stringToRE(from)+'"]')
                                     .append(can.view('view/cascada/'+options.type+'.ejs'))
@@ -97,7 +93,7 @@ steal(
                                 self.addFilterLevel(compareLevel)
                                 self.addFilterFrom(compareLevel,from)
                                 self.element.find('div[filter-level="'+compareLevel+'"] div[from="'+stringToRE(from)+'"]')
-                                    .append(can.view('view/cascada/input.ejs'))
+                                    .append(can.view('view/input.ejs'))
                             }
                         }
                     }    
@@ -119,7 +115,10 @@ steal(
             },
 
             getLevel: function(element) {
-                return parseInt(element.parents('div.filterLevel').attr('filter-level')) 
+                if (this.element.filterType == 'cascada')
+                    return parseInt(element.parents('div.filterLevel').attr('filter-level')) 
+                else
+                    return 0
             },
 
             getFrom: function(element) {
@@ -230,10 +229,18 @@ steal(
             },
             
             'input[filter-type="input"] keyup': function(element,event){
-                if (event.keyCode == 13) {
+                if (event.keyCode == 13 && this.options.filterType == 'cascada') {
                     this.updateFilterPath(element)
                     this.options.filterFunction(this.options.filterPath)
                 }
+            },
+        
+            'button.filtrar click': function() {
+                var self = this
+                this.element.find('input, select').each(function(i,filter) {
+                    self.updateFilterPath(filter)
+                })
+                console.log(this.options.filterPath)
             }
         }
     )}

@@ -99,6 +99,24 @@ and open the template in the editor.
                 }
             },{});
             
+            var profesion = [
+                {
+                    id: 1,
+                    nombre: 'Ingeniero en Sistema'
+                },{
+                    id: 2,
+                    nombre: 'Ingeniero Quimico'
+                },{
+                    id: 3,
+                    nombre: 'Ingeniero Mecanico'
+                },
+                {
+                    id: 4,
+                    nombre: 'Ingeniero Electrico'
+                }
+            ]
+            
+            
             var idiomas = [
                 {
                     id: 1,
@@ -131,11 +149,12 @@ and open the template in the editor.
                     id: i+1,
                     nombre: 'Nombre '+i,
                     apellido: 'Apellido '+i,
-                    codigopostal: 'Codigo Postal '+i,
                     domicilio: 'Domicilio '+i,
                     telefono: 'Telefono '+i,
                     email: 'E-mail '+i,
-                    idioma: persona_idiomas[i]
+                    edad: random(20,65),
+                    idioma: persona_idiomas[i], 
+                    profesion: profesion[random(0,4)]
                 })
             }
 
@@ -178,13 +197,13 @@ and open the template in the editor.
                                                 bool.push(isSubstringCaseSensitive(idioma.descripcion,filtro.valor))
                                             })
                                         }
-                                        if (isUndefined(params.data.filtro.comparar))
+                                        if (isUndefined(filtro.comparar))
                                             bool.push(isSubstringCaseSensitive(filtro.valor,e[filtro.campo]))
                                         else 
-                                            if (params.data.filtro.comparar == 'igual')
+                                            if (filtro.comparar == 'igual')
                                                 bool.push((e[filtro.campo] == filtro.valor))
                                             else 
-                                                if (params.data.filtro.comparar == 'menor')
+                                                if (filtro.comparar == 'menor')
                                                     bool.push((e[filtro.campo] <= filtro.valor))
                                                 else 
                                                     bool.push((e[filtro.campo] >= filtro.valor))    
@@ -287,5 +306,32 @@ and open the template in the editor.
                     maxIndex: 5
                 }
             })
+            
+            filterInline = new Filtro( 'div#filtroInline', {
+                    filterType: 'inline',
+                    filterData: [
+                        {
+                            label: 'Nombre',
+                            value: 'nombre',
+                            type: 'input'
+                        },
+                        {
+                            label: 'Idioma',
+                            value: 'idioma',
+                            type: 'select',
+                            selectOptions: [{value: 1, text: 'Argentina'},{value: 2, text: 'Brazil'}]
+                        },
+                        {
+                            label: 'Prefesion',
+                            value: 'profesion',
+                            type: 'autocomplete'
+                        }
+                    ],
+                    filterFunction: function(path) {
+                        console.log(path)
+                        can.trigger($('div#tableArea'),'newFilter',{path: path})
+                    }
+                }
+            );
     })   
 </script>
