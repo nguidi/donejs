@@ -77,31 +77,31 @@ steal('can/util/fixture')
         function(params) {
             return {items: [{
                 id: 1,
-                marca:'Volkswagen'
-            },
-            {
-                id: 2,
-                marca:'Ford'
-            },
-            {
-                id: 3,
                 marca:'Chevrolet'
             },
             {
-                id: 4,
+                id: 2,
+                marca:'Citroen'
+            },
+            {
+                id: 3,
                 marca:'Fiat'
             },
             {
+                id: 4,
+                marca:'Ford'
+            },
+            {
                 id: 5,
-                marca:'Peugeot'
+                marca:'Otros'
             },
             {
                 id: 6,
-                marca:'Renault'
+                marca:'Peugeot'
             },
             {
                 id: 7,
-                marca:'Citroen'
+                marca:'Renault'
             },
             {
                 id: 8,
@@ -109,7 +109,7 @@ steal('can/util/fixture')
             },
             {
                 id: 9,
-                marca:'Otros'
+                marca:'Volkswagen'
             }
           ]}
         }
