@@ -12,12 +12,12 @@ steal(
   function(){
 
         can.Control("Stat",{
-        defaults: {elemento: new Object}
+        defaults: new Object
         },{
            'init': function( element , options ) {
-               console.log("llega")
+              
               this.element.append(can.view(url+'gadget/estadoUsuario/estadoUsuario.ejs'
-                ,this.options.elemento))
+                ,this.options))
               $.mobile.changePage($('#statusPage'))
                }
     })

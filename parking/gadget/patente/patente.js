@@ -40,10 +40,15 @@ then(
                var nroPatente = this.element.find('input#patente').val()
                var marcaId = this.element.find('select#marcas').val()
               
-                if ((marcaId>0)&&(nroPatente.length>0)){
-                   
-                   Reg_estacionamiento.findAll({patente:nroPatente,marca_auto_id:marcaId},
-                   function(elem){console.log(elem)})
+				if ((nroPatente.length>0)){
+                   var aux=new Array()
+                  $.when(Reg_estacionamiento.findAll({patente:nroPatente},
+                   function(elem){
+					   $.extend(aux,elem)
+					})
+				  ).done(function()
+				 {new Stat('body',aux)})
+                
                      
 
                
