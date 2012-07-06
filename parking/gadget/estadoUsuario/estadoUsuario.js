@@ -11,12 +11,14 @@ steal(
 .then(
   function(){
 
-        can.Control("Luz_verde",{
-        defaults: {status:false}
+        can.Control("Stat",{
+        defaults: {elemento: new Object}
         },{
            'init': function( element , options ) {
-              this.element.html(can.view(url+'gadget/estadoUsuario/estadoUsuario.ejs'
-                ,this.options.status))
+               console.log("llega")
+              this.element.append(can.view(url+'gadget/estadoUsuario/estadoUsuario.ejs'
+                ,this.options.elemento))
+              $.mobile.changePage($('#statusPage'))
                }
     })
 })

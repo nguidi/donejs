@@ -39,43 +39,16 @@ then(
             'a#aceptar click':function(){
                var nroPatente = this.element.find('input#patente').val()
                var marcaId = this.element.find('select#marcas').val()
+              
+                if ((marcaId>0)&&(nroPatente.length>0)){
+                   
+                   Reg_estacionamiento.findAll({patente:nroPatente,marca_auto_id:marcaId},
+                   function(elem){console.log(elem)})
+                     
+
                
-               if ((marcaId>0)&&(nroPatente.length>0)){
-
-                 Reg_estacionamiento.findAll({patente:nroPatente,marca_auto_id:marcaId},function(registro){
-                   console.log(registro)
-                    })
-               }
-                else{
-                     if (nroPatente.length > 0){
-                        Reg_estacionamiento.findAll({patente:nroPatente},function(registro){
-                         console.log(registro)
-                       })
-                     }
-                      else{
-                           if(marcaId>0){
-                              Reg_estacionamiento.findAll({marca_auto_id:marcaId},function(registro){
-                                console.log(registro)})
-                           }
-                            else{
-                                 Reg_estacionamiento.findAll().then(function(registro){
-                                   console.log(registro)})
-                            }
-                       }
-                }
-
-//        
-//               if(!($.isEmptyObject(objeto._data))&& (objeto.estado=="OK!")){
-//                    $.mobile.changePage(url +'gadget/estadoUsuario/estadoUsuario.html')
-//                    $('#pageEstado').live( 'pagecreate',function(event){
-//                         new Luz_verde( '#mainEstado', {status:true} )
-//                    })
-//                }else{
-//                     $.mobile.changePage(url +'gadget/estadoUsuario/estadoUsuario.html')
-//                     $('#pageEstado').live( 'pagecreate',function(event){
-//                         new Luz_verde( '#mainEstado', {} )
-//                        })}
-//               })
+                }else{ Reg_estacionamiento.findAll({patente:nroPatente},function(elem){console.log(elem)})}
+//               
               }
             }  
     )}
