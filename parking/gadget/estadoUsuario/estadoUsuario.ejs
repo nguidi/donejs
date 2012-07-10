@@ -1,8 +1,17 @@
 <div id="statusPage" data-role="page">
     <div data-role="controlgroup">
       <div id="luzVerde">
-
-        <%=this%>
+	<%for (var attr in this[0])
+		{%>
+			<label><%=attr%></label>
+			<div><%=this[0][attr]%></div>
+		<%}
+	%>
+        	<label>Patente: <%=this[0].patente%></label>
+		<a data-role="button">Registrar?</a>
+		
     </div>
-
+	
 </div>
+
+
