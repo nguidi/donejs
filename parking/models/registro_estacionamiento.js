@@ -19,7 +19,7 @@ steal('can/model')
 
 
     ),
-    can.Model("Status",{
+    can.Model("Estado",{
         findAll : 'GET /reg_estacionamientos',
         models  : function(data){
             var newData = new Array()
@@ -28,8 +28,10 @@ steal('can/model')
                    id: elem.id,
                    marca:elem.marca_auto_id,
                    fechaHora: new Date((elem.fecha).replace(" ","T")),
-                   tiempo:( (new Date())-(this.fechaHora)  )/60000),//obtener minutos ya q un minuto son 60000 milisegundos
+                   tiempo:this.fechaHora,
+                       //((new Date())-(this.fechaHora))/60000,//obtener minutos ya q un minuto son 60000 milisegundos
                    status:this.tiempo>=elem.tarifa_id
+
                })
             })
             return newData
