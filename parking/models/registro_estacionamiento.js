@@ -27,11 +27,9 @@ steal('can/model')
                newData.push({
                    id: elem.id,
                    marca:elem.marca_auto_id,
-                   dias:getday(new Date(elem.fecha))
-                   tiempo:((new Date("2012-03-13 14:04:23")-(new Date("2012-03-13 14:03:10")))/1000)
-                   debito: (elem.debcred == 1) ? elem.importe : 0,
-                   credito: (elem.debcred == 2) ? elem.importe : 0,
-                   detalle: elem.detalle
+                   fechaHora: new Date((elem.fecha).replace(" ","T")),
+                   tiempo:( (new Date())-(this.fechaHora)  )/60000),//obtener minutos ya q un minuto son 60000 milisegundos
+                   status:this.tiempo>=elem.tarifa_id
                })
             })
             return newData
