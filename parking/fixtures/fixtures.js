@@ -786,8 +786,9 @@ steal('can/util/fixture','./usuarios.js')
         for(var t=1;t<25;t++){
             reg_est.push({
                 id:t,
-                fecha:"2011-06-02",
-                hora: "12.30",
+                fecha:"2011/06/02",
+                horaEntrada: "12:30",
+                horaFin:"14:30",
                 patente: t+ 300,
                 tarifa_id:tarifas[t % 4].id,
                 marca_auto_id:marcas[t % 9].id,
