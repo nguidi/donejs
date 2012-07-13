@@ -1,0 +1,94 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1 style="text-align: center; font-size: 3em;">Tabla.Demo</h1>
+        <div id="tableArea"></div>
+    </body>
+</html>
+<script type='text/javascript' src='/donejs/steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'jquery/jquery.js',
+        'can/control',
+        'can/model',
+        'can/model/list',
+        'can/util/fixture',
+        'can/view/ejs')
+    .then( 
+        'sigma/panels.css',
+        'sigma/tabla',
+        'sigma/common.js',
+        function($){
+            can.Model("Persona",{
+                findAll: "GET /personas",
+                findOne : "GET /persona",
+                models: function(raw) {
+                    return  raw
+                },
+                model: function(raw) {
+                    return raw
+                }
+            },{});
+            
+            var personas = new Array()
+            
+            for (var i=0; i < 100; i++) {
+                personas.push({
+                    nombre: 'Nombre '+i,
+                    apellido: 'Apellido '+i,
+                    dni: 'DNI '+i,
+                    cuil: 'CUIL '+i,
+                    provincia: 'Una Provincia '+ i,
+                    ciudad: 'Una Ciudad '+ i,
+                    codigopostal: 'Codigo Postal '+i,
+                    domicilio: 'Domicilio '+i,
+                    telefono: 'Telefono '+i,
+                    email: 'E-mail '+i
+                })
+            }
+            
+            can.fixture( "GET /personas", function(params) {
+                var offset = (!isUndefined(params.data.offset)) ? params.data.offset : 0
+                var limit = (!isUndefined(params.data.limit)) ? params.data.limit : personas.length
+                return  {
+                    items: $.grep( personas , function(e,i) {return (i < offset+limit) && (i >= offset)}),
+                    count: personas.length
+                }
+            });
+            // findOne
+            can.fixture( "GET /persona", function(params) {
+                var bool = false
+                return  $.grep( personas , function(i) {
+                    for (var attr in params.data) {
+                        if (i[attr] == params.data[attr])
+                            bool = true
+                        else {
+                            bool = false
+                            break
+                        }
+                    }
+                    return bool
+                })
+            });
+        }
+    ).then(function($){
+    
+        tabla = new Tabla('div#tableArea',{
+            model: Persona,
+            tableStyle: 'simple striped bordered',
+            limit: 50,
+            paginate: {
+                perPage: 10,
+                maxIndex: 5
+            }
+        })
+    })   
+</script>
