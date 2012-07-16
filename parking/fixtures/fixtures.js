@@ -678,37 +678,33 @@ steal('can/util/fixture','./usuarios.js')
             })};   
          }
      });
-     var marcas= [{
-                id: 0,
-                marca:'Todas'
-            },
-            {
+     var marcas= items: [{
                 id: 1,
-                marca:'Volkswagen'
-            },
-            {
-                id: 2,
-                marca:'Ford'
-            },
-            {
-                id: 3,
                 marca:'Chevrolet'
             },
             {
-                id: 4,
+                id: 2,
+                marca:'Citroen'
+            },
+            {
+                id: 3,
                 marca:'Fiat'
             },
             {
+                id: 4,
+                marca:'Ford'
+            },
+            {
                 id: 5,
-                marca:'Peugeot'
+                marca:'Otros'
             },
             {
                 id: 6,
-                marca:'Renault'
+                marca:'Peugeot'
             },
             {
                 id: 7,
-                marca:'Citroen'
+                marca:'Renault'
             },
             {
                 id: 8,
@@ -716,9 +712,11 @@ steal('can/util/fixture','./usuarios.js')
             },
             {
                 id: 9,
-                marca:'Otros'
+                marca:'Volkswagen'
             }
           ];
+    can.fixture('GET /marcas/{id}',function(params))//como se hace??
+      
       var municipios = //Localidades
                 [
                 //{id: 1, ciudad: 'Campana', codigo_postal: '2804', image: 'camp.jpg'},
@@ -786,9 +784,9 @@ steal('can/util/fixture','./usuarios.js')
         for(var t=1;t<25;t++){
             reg_est.push({
                 id:t,
-                fecha:"2011/06/02",
-                horaEntrada: "12:30",
-                horaFin:"14:30",
+                fecha:'2012-07-16',
+                horaEntrada: '12:30',
+                horaFin:'14:30',
                 patente: t+ 300,
                 tarifa_id:tarifas[t % 4].id,
                 marca_auto_id:marcas[t % 9].id,

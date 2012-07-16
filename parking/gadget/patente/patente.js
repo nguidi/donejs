@@ -52,9 +52,9 @@ then(
                      
 
                
-                }else{ Reg_estacionamiento.findAll({patente:nroPatente},function(elem){console.log(elem)})}
-//               
-              }
+                }else{Reg_estacionamiento.findAll({patente:nroPatente},function(elem){console.log(elem)})}
+               
+               }
             }  
     )}
 )

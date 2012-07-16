@@ -1,5 +1,13 @@
-steal('can/model')
-.then(function(){
+
+
+steal('can/model',
+'parking/models/municipio.js',
+'parking/models/marca.js',
+'parking/models/tarifa.js')
+.then(
+
+
+function(){
  can.Model('Reg_estacionamiento',{
      /* @Static */
 
@@ -19,41 +27,34 @@ steal('can/model')
 
 
     ),
+    
     can.Model("Estado",{
         findAll : 'GET /reg_estacionamientos',
         models  : function(data){
             var newData = new Array()
+            function horas(elemFecha,horaFin){
+				var fechaHoy=new Date()
+                var fecha=new Date(elemFecha+'T'+horaFin)
+                
+                 //dif de años
+                var anios= fechaHoy.getFullYear() - fecha.getFullYear()
+                 //dif de meses, falla si no es el mismo año
+                var meses=fechaHoy.getMonth() -fecha.getMonth()
+                 //falla si no es la misma semana
+                var dias= (fechaHoy.getDate()) - (fecha.getDate())
+                //diferencia de minutos entre la fecha y hora de control con 
+                //fecha y hora del fin de tarifa
+                var minutos= ((fechaHoy.getTime()) - (fecha.getTime()))/60000 
+			                       
+		        return [anios,meses,dias,Math.round(minutos)]
+				}
             $.each(data.items,function(index,elem){
                newData.push({
                    id: elem.id,
                    marca:elem.marca_auto_id,
-                   tiempo:function(){
-                       var fechaHoy=new Date()
-                       var fecha=new Date(elem.fecha)
-                       var diaOK=false
-                       var anios= fechaHoy.getFullYear() - fecha.getFullYear()
-                       if (anios == 0){
-                        var mes=fechaHoy.getMonth() -fecha.getMonth()
-                        if (mes==0){
-                         var dia= fechaHoy.getDate() -fecha.getDate()
-                         if (dia==0)
-                            diaOK=true
-                          }
-                       }
-                       if (diaOK){
-                            
-                       }else{
-
-                       }return ((new Date().getTime() - new Date("T"+elem.horaFin))/60000) 
-
-
-               },
-
-
-
-                   status:this.tiempo>=elem.tarifa_id
-
-               })
+                   tiempo:horas(elem.fecha,elem.horaFin)
+                  
+		   		})
             })
             return newData
         }

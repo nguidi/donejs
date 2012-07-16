@@ -43,6 +43,13 @@ can.Model('Marca_select',
             })
             return newData
         }
+},can.Model('Marca_nombre',
+/* @Static */
+{
+        findOne : 'GET /marcas/{id}',
+        model  : function(elem){
+            return elem.marca
+        }
 },
 /* @Prototype */
 {});
