@@ -678,7 +678,7 @@ steal('can/util/fixture','./usuarios.js')
             })};   
          }
      });
-     var marcas= items: [{
+     var marcas= [{
                 id: 1,
                 marca:'Chevrolet'
             },
@@ -714,8 +714,12 @@ steal('can/util/fixture','./usuarios.js')
                 id: 9,
                 marca:'Volkswagen'
             }
-          ];
-    can.fixture('GET /marcas/{id}',function(params))//como se hace??
+          ]
+    can.fixture('GET /marcas/{id}',function(params){
+        return marcas[(params.data.id)]
+        })
+
+
       
       var municipios = //Localidades
                 [
@@ -788,10 +792,10 @@ steal('can/util/fixture','./usuarios.js')
                 horaEntrada: '12:30',
                 horaFin:'14:30',
                 patente: t+ 300,
-                tarifa_id:tarifas[t % 4].id,
-                marca_auto_id:marcas[t % 9].id,
-                muninicipio_id:municipios[t% 4].id,
-                zona_id:zonas[t % 3].id
+                tarifa_id:tarifas[t % 4],
+                marca_auto_id:marcas[t % 9],
+                muninicipio_id:municipios[t% 4],
+                zona_id:zonas[t % 3]
 
             })
         }

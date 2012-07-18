@@ -32,8 +32,9 @@ function(){
         findAll : 'GET /reg_estacionamientos',
         models  : function(data){
             var newData = new Array()
+            
             function horas(elemFecha,horaFin){
-				var fechaHoy=new Date()
+		var fechaHoy=new Date()
                 var fecha=new Date(elemFecha+'T'+horaFin)
                 
                  //dif de años
@@ -46,14 +47,14 @@ function(){
                 //fecha y hora del fin de tarifa
                 var minutos= ((fechaHoy.getTime()) - (fecha.getTime()))/60000 
 			                       
-		        return [anios,meses,dias,Math.round(minutos)]
+	        return [anios,meses,dias,Math.round(minutos)]
 				}
             $.each(data.items,function(index,elem){
                newData.push({
                    id: elem.id,
-                   marca:elem.marca_auto_id,
+                   marca:elem.marca_auto_id.marca,
                    tiempo:horas(elem.fecha,elem.horaFin)
-                  
+
 		   		})
             })
             return newData

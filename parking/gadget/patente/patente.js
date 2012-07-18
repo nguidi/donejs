@@ -42,6 +42,7 @@ then(
               
 				if ((nroPatente.length>0)){
                    var aux=new Array()
+                  
                   $.when(Estado.findAll({patente:nroPatente},
                    function(elem){
 					   $.extend(aux,elem)

@@ -50,7 +50,7 @@ can.Model('Marca_select',
         model  : function(elem){
             return elem.marca
         }
-},
+}),
 /* @Prototype */
 {});
 
