@@ -1,6 +1,11 @@
 <div id="statusPage" data-role="page">
     <div data-role="controlgroup">
       <div id="luzVerde">
+      <%if (this[0].fecha[0]==0)  
+      {%>$(div#luzVerde).css('background-color','green'})
+		<%})%>
+      
+      
 	<%for (var attr in this[0])
 		{%>
 			<label><%=attr%></label>
