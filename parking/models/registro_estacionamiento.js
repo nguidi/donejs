@@ -53,7 +53,8 @@ function(){
                newData.push({
                    id: elem.id,
                    marca:elem.marca_auto_id.marca,
-                   tiempo:horas(elem.fecha,elem.horaFin)
+                   tiempo:horas(elem.fecha,elem.horaFin),
+                   patente:elem.patente
 
 		   		})
             })

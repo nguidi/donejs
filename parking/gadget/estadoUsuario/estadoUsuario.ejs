@@ -1,22 +1,32 @@
 <div id="statusPage" data-role="page">
     <div data-role="controlgroup">
-      <div id="luzVerde">
-      <%if (this[0].fecha[0]==0)  
-      {%>$(div#luzVerde).css('background-color','green'})
-		<%})%>
       
+        <%if (this[0].tiempo[0]==1){%>
+        <div id="luzVerde" <%=function(element){
+            
+             element.style.backgroundColor = 'green'
+                }%> >Con este está todo legal</div
+              <%}else {%>
+           
       
-	<%for (var attr in this[0])
+        <div id="luzRoja" <%=function(element){
+            element.style.backgroundColor = 'red'}%>>Con este todo mal
+
+            <%for (var attr in this[0])
 		{%>
 			<label><%=attr%></label>
 			<div><%=this[0][attr]%></div>
 		<%}
+	     %>
+        </div>
+
+
+                 <%}
 	%>
-        	<label>Patente: <%=this[0].patente%></label>
-		<a data-role="button">Registrar?</a>
-		
-    </div>
-	
+        </div>
 </div>
+
+<label>Patente: <%=this[0].patente%></label>
+		<a data-role="button">Registrar?</a>
 
 
