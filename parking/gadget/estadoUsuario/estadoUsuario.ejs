@@ -1,10 +1,11 @@
 <div id="statusPage" data-role="page">
     <div data-role="controlgroup">
-      <div style=<%="{background-color="orange"}"%>sjaknak</div>
-        <%if ((this[0].tiempo[0]==0)){%>
+      
+        <%if ((this[0].tiempo[0]==0)&&(tiempo[1]==0)&&(tiempo[2]==0)){%>
         <div id="luzVerde" <%=function(element){
             
              element.style.backgroundColor = '00FF00'
+             
                 }%> ><h1>Usuario en regla</h1>
 						<p>Le quedan <%=this[0].tiempo[3]%> minutos</p>
                 </div>
@@ -12,7 +13,7 @@
            
       
         <div id="luzRoja" <%=function(element){
-            element.style.backgroundColor = 'red'}%>>Con este todo mal
+            element.style.backgroundColor = 'red'}%>><h1>Patente en infraccion</h1>
 
             <%for (var attr in this[0])
 		{%>

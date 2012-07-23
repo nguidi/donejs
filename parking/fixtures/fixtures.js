@@ -799,6 +799,17 @@ steal('can/util/fixture','./usuarios.js')
 
             })
         }
+        reg_est.push({
+			id:26,
+			fecha:'2012-07-24',
+                horaEntrada: '12:30',
+                horaFin:'20:30',
+                patente: 200,
+                tarifa_id:tarifas[4],
+                marca_auto_id:marcas[3],
+                muninicipio_id:municipios[4],
+                zona_id:zonas[3]
+			})
                 
 
         can.fixture('GET /reg_estacionamientos',function(params) {
