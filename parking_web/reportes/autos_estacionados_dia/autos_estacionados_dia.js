@@ -9,29 +9,28 @@ steal(
     'can/view/ejs',
     'parking/fixtures/fixtures.js',
     'parking_web/reportes/common/reportes.css',
-    'parking/models/reportes.js',
+    'parking/models/registro_estacionamiento.js',
     'parking_web/config.js',
-    'parking_web/reportes/common/table_reportes.js',
-    'parking_web/reportes/autos_estacionados/grafica_estacionados_web.js')
+    'parking_web/reportes/common/table_reportes.js')
 .then(
     function(){
         
-        can.Control("Autos_estacionados_mes",{
+        can.Control("Autos_estacionados_dia",{
             defaults: {
                 user: undefined
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'reportes/common/main.ejs',{mensaje: 'Autos estacionados por día: '}))
+                this.element.html(can.view(url+'reportes/autos_estacionados_dia/main.ejs',{mensaje: 'Autos estacionados por día: '}))
                 this.table_est = new Table_reportes("#tabla_reportes", {
-                    model: Autos, 
+                    model: Reg_estacionamiento, 
                     user: options.user,
                     msg_total: 'CANTIDAD TOTAL DE AUTOS ESTACIONADOS: ',
-                    recipe: 'reportes/autos_estacionados/recipe.ejs',
+                    recipe: 'reportes/autos_estacionados_dia/recipe.ejs',
                     parseResult: 'Int',
-                    table_main: 'reportes/autos_estacionados/tabla_autos_estacionados.ejs'
+                    table_main: 'reportes/autos_estacionados_dia/tabla_autos_estacionados.ejs'
                 });
-                this.grafica_est = new Grafica_autos_estacionados("#grafica_reportes", {model: Autos, user: options.user});
+                //this.grafica_est = new Grafica_autos_estacionados("#grafica_reportes", {model: Autos, user: options.user});
             }
         })
     }

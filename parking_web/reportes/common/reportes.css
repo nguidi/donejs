@@ -17,6 +17,8 @@ table.table {
 }
 
 .span13{
-    width: 1050px;
-    height: 1000px;
+    width: 72%;
+}
+.span20{
+    width: 25%;
 }
