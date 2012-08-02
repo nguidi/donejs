@@ -36,9 +36,11 @@ steal(
                 var click = element.find('a').attr('href');
                 switch(click){
                     case '#menu-zonas': new ZonasWeb("#content"); break;
-                    case '#submenu_infracciones': new Infracciones("#content",{ user: this.options.user}); break;
+                    case '#submenu_infracciones_dia': new Infracciones_dia("#content",{ user: this.options.user}); break;
                     case '#submenu_recaudacion': new Recaudacion_web("#content",{ user: this.options.user}); break;
-                    case '#submenu_autos_estacionados': new Autos_estacionados("#content",{ user: this.options.user}); break;
+                    case '#submenu_autos_estacionados_mes': new Autos_estacionados_mes("#content",{ user: this.options.user}); break;
+                    case '#submenu_autos_estacionados_dia': new Autos_estacionados_dia("#content",{ user: this.options.user}); break;
+                    case '#submenu_infracciones_mes': new Infracciones_mes("#content",{ user: this.options.user}); break;
                 }
             },
             'a.brand click': function(element, options){
