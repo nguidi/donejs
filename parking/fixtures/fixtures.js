@@ -434,8 +434,9 @@ steal('can/util/fixture','./usuarios.js')
                     }
                 ]
         }
-    )    
-        
+    )
+    
+   
     can.fixture('GET /multas', 
         function(params) {
             return [{
@@ -606,13 +607,15 @@ steal('can/util/fixture','./usuarios.js')
             usuario_id: 232,
             muni_id: 7/*random(7,11)*/,
             fecha: fechas[i],
-            autos: random(300,1000),
+            autos_est: random(300,1000),
+            autos_inf: random(5,50),
             importe: random_pf(1000.00,6000.00)
         })
     }
     
-    can.fixture('GET /recaudacions', 
+    can.fixture('GET /recaudacions',
         function(params) {
+            console.log(params)
             if(params.data != undefined){
 		var array_auxi = rpt_recaudacion;
                     if(params.data.muni_id != undefined){
@@ -653,7 +656,9 @@ steal('can/util/fixture','./usuarios.js')
          {id: 3, evento: 'menu-inspectores', img: 'users.png', nombre: 'Inspectores', control: 'parking_web_inspectores', dropdown: []},
          {id: 4, evento: 'menu-multas', img: 'notifications.png', nombre: 'Multas', control: 'parking_web_multas', dropdown: []},
          {id: 5, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda', dropdown: []},
-         {id: 6, evento: 'menu-news', img: 'notifications.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []}
+         {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []},
+         {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []}, //agregar menues
+         {id: 8, evento: 'menu-', img: 'notifications.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []}
      ];
      
      var menu_perfils = 
