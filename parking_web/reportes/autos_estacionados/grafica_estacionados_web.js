@@ -18,7 +18,7 @@ steal(
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'reportes/autos_estacionados/graf_estacionados.ejs'))
+                this.element.html(can.view(url+'reportes/common/graf_reportes.ejs'))
                 var mes = 1//document.find('select#mes').val();
                 var anio = 2011//document.find('select#anio').val();
                 this.mostrar_grafica({muni_id: this.options.user.municipio, fecha: {mes: mes, anio: anio}});
@@ -31,7 +31,7 @@ steal(
             },
             'mostrar_grafica': function(params){
                 this.options.model.findAll(params).then(function(obj){
-                    new Graficas('#grafica_rec',
+                    new Graficas('#grafica_est',
                         {data:{categories: $.map(obj,function(it){ return it.fecha.substring(0,it.fecha.search('/'))}),
                             //subcategories: ['7:00 - 10:00', '10:00 - 13:00', '13:00 - 16:00', '16:00 - 19:00'],
                             data: $.map(obj,function(it){ return it.autos}),
