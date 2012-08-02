@@ -18,12 +18,11 @@ steal(
             }
         },{
             init: function( element , options ) {
-                if(this.options.user != undefined)
+                if(options.user != undefined)
                 {
-                    console.log(url)
                     this.element.html(can.view(url+'principal/main.ejs'))
-                    this.topbar = new TopBar("#header",{user: this.options.user});
-                    this.home = new Home("#content")
+                    this.topbar = new TopBar("#header",{user: options.user});
+                    this.home = new Home("#content",{user: options.user})
                 }
                 else
                 {
