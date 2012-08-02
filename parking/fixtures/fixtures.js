@@ -570,32 +570,6 @@ steal('can/util/fixture','./usuarios.js')
    //                RECAUDACION
    //#############################################
    //#############################################
-   /* var rpt_recaudacion_sql = [[232, 1, 31, 5, 2012, 0, '1479.00'],
-                                [232, 1, 30, 5, 2012, 0, '2359.50'],
-                                [232, 1, 29, 5, 2012, 0, '4781.25'],
-                                [232, 1, 28, 5, 2012, 0, '2354.80'],
-                                [232, 1, 27, 5, 2012, 0, '1879.40'],
-                                [232, 1, 26, 5, 2012, 0, '2469.20'],
-                                [232, 1, 25, 5, 2012, 0, '4512.40'],
-                                [232, 1, 24, 5, 2012, 0, '4142.40'],
-                                [232, 1, 23, 5, 2012, 0, '1312.80'],
-                                [232, 1, 22, 5, 2012, 0, '3612.25'],
-                                [232, 1, 21, 5, 2012, 0, '5512.40'],
-                                [232, 1, 20, 5, 2012, 0, '4792.10'],
-                                [232, 1, 19, 5, 2012, 0, '4512.40'],
-                                [232, 1, 18, 5, 2012, 0, '4298.00'],
-                                [232, 1, 17, 5, 2012, 0, '3212.40'],
-                                [232, 1, 16, 5, 2012, 0, '5941.00'],
-                                [232, 1, 15, 5, 2012, 0, '2369.40'],
-                                [232, 1, 14, 5, 2012, 0, '6561.40'],
-                                [232, 1, 13, 5, 2012, 0, '1213.00'],
-                                [232, 1, 12, 5, 2012, 0, '4002.60'],
-                                [232, 1, 11, 5, 2012, 0, '3652.20'],
-                                [232, 1, 10, 5, 2012, 0, '1574.00'],
-                                [232, 1, 9, 5, 2012, 0, '4369.00'],
-                                [232, 1, 8, 5, 2012, 0, '1235.50'],
-                                [232, 1, 7, 5, 2012, 0, '3654.30'],
-                                [232, 1, 6, 5, 2012, 0, '6512.20']]*/
                             
     var rpt_recaudacion = new Array()
     
@@ -615,7 +589,6 @@ steal('can/util/fixture','./usuarios.js')
     
     can.fixture('GET /recaudacions',
         function(params) {
-            console.log(params)
             if(params.data != undefined){
 		var array_auxi = rpt_recaudacion;
                     if(params.data.muni_id != undefined){
@@ -649,16 +622,18 @@ steal('can/util/fixture','./usuarios.js')
      var menu_completo = [
          {id: 1, evento: 'menu-reportes', img: 'reportes.png', nombre: 'Reportes', control: 'parking_web_reportes', 
              dropdown: [{evento: 'submenu_recaudacion', nombre: 'Recaudacion'},
-                 {evento: 'submenu_infracciones', nombre: 'Infracciones'},
-                 {evento: 'submenu_autos_estacionados', nombre: 'Autos estacionados'}]
+                 {evento: 'submenu_infracciones_mes', nombre: 'Infracciones por mes'},
+                 {evento: 'submenu_infracciones_dia', nombre: 'Infracciones por día'},
+                 {evento: 'submenu_autos_estacionados_mes', nombre: 'Autos estacionados por mes'},
+                 {evento: 'submenu_autos_estacionados_dia', nombre: 'Autos estacionados por día'}]
          }, //Reportes
          {id: 2, evento: 'menu-zonas', img: 'zonas.png', nombre: 'Zonas', control: 'parking_web_zonas', dropdown: []},
          {id: 3, evento: 'menu-inspectores', img: 'users.png', nombre: 'Inspectores', control: 'parking_web_inspectores', dropdown: []},
          {id: 4, evento: 'menu-multas', img: 'notifications.png', nombre: 'Multas', control: 'parking_web_multas', dropdown: []},
          {id: 5, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda', dropdown: []},
-         {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []},
-         {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []}, //agregar menues
-         {id: 8, evento: 'menu-', img: 'notifications.png', nombre: 'lallaa', control: 'oficios_news_general', dropdown: []}
+         {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'Notificaciones', control: 'oficios_notificaciones', dropdown: []},
+         {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'Municipios', control: 'oficios_municipios', dropdown: []}, //agregar menues
+         {id: 8, evento: 'menu-configuracion', img: 'configuracion.png', nombre: 'Configuracion', control: 'oficios_configuracion', dropdown: []}
      ];
      
      var menu_perfils = 
@@ -805,16 +780,16 @@ steal('can/util/fixture','./usuarios.js')
             })
         }
         reg_est.push({
-			id:26,
-			fecha:'2012-07-24',
-                horaEntrada: '12:30',
-                horaFin:'20:30',
-                patente: 200,
-                tarifa_id:tarifas[4],
-                marca_auto_id:marcas[3],
-                muninicipio_id:municipios[4],
-                zona_id:zonas[3]
-			})
+            id:26,
+            fecha:'2012-07-24',
+            horaEntrada: '12:30',
+            horaFin:'20:30',
+            patente: 200,
+            tarifa_id:tarifas[4],
+            marca_auto_id:marcas[3],
+            muninicipio_id:municipios[4],
+            zona_id:zonas[3]
+        })
                 
 
         can.fixture('GET /reg_estacionamientos',function(params) {
