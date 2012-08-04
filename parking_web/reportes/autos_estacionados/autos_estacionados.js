@@ -22,7 +22,7 @@ steal(
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'reportes/common/main.ejs',{mensaje: 'Autos estacionados por día: '}))
+                this.element.html(can.view(url+'reportes/common/main.ejs',{mensaje: 'Autos estacionados por mes: '}))
                 this.table_est = new Table_reportes("#tabla_reportes", {
                     model: Autos, 
                     user: options.user,
