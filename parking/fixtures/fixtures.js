@@ -589,6 +589,7 @@ steal('can/util/fixture','./usuarios.js')
     
     can.fixture('GET /recaudacions',
         function(params) {
+            console.log(params.data)
             if(params.data != undefined){
 		var array_auxi = rpt_recaudacion;
                     if(params.data.muni_id != undefined){
@@ -596,10 +597,10 @@ steal('can/util/fixture','./usuarios.js')
                         	return item.muni_id == params.data.muni_id
 			})
                     }
-                    if(params.data.fecha.mes != undefined && params.data.fecha.anio != undefined){
+                    if(params.data.data.fecha.mes != undefined && params.data.data.fecha.anio != undefined){
 			array_auxi = $.grep(array_auxi,function(item){
-				return parseo_date_month(item.fecha) == params.data.fecha.mes && 
-				parseo_date_anio(item.fecha) == params.data.fecha.anio
+				return parseo_date_month(item.fecha) == params.data.data.fecha.mes && 
+				parseo_date_anio(item.fecha) == params.data.data.fecha.anio
 			})
                     }
                     return {items: array_auxi}
@@ -795,19 +796,24 @@ steal('can/util/fixture','./usuarios.js')
         can.fixture('GET /reg_estacionamientos',function(params) {
             var bool = false
             if (params.data) {
-                     return { items: $.grep(reg_est,function(elem,index) {
-                             for (var attr in params.data) {
-                                if (elem[attr] == params.data[attr])
-                                    bool = true
-                                else {
-                                    bool = false
-                                    break
-                                }
-                             }
-                             return bool
-                             }
-                         )
-                    }
+                console.log(params.data.patente)
+                console.log(params.data.fecha)
+                if(false){
+                    return { items: $.grep(reg_est,function(elem,index) {
+                         for (var attr in params.data) {
+                            if (elem[attr] == params.data[attr])
+                                bool = true
+                            else {
+                                bool = false
+                                break
+                            }
+                         }
+                     return bool
+                     })
+                 }
+                }
+                else return {items: reg_est}
+                 
           } else return {items: reg_est}
       });     
 })
