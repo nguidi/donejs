@@ -8,7 +8,8 @@ steal(
     'can/control/control.js',
     'can/view/ejs',
     'sigma/paginador/paginador.js',
-    'parking_web/config.js')
+    'parking_web/config.js',
+    'jquery/dom/form_params')
 .then(
     function(){
         
@@ -26,11 +27,13 @@ steal(
                 if(options.table_main != undefined){
                     this.element.html(can.view(url+options.table_main));
                     if(options.user != undefined && options.model != undefined)
-                    {
-                        this.mostrar_tabla({muni_id: options.user.municipio, fecha: {mes: element.find('select#mes').val(), anio: element.find('select#anio').val()}});
+                    {   
+                        console.log(element.formParams())
+                        this.mostrar_tabla({muni_id: options.user.municipio, data: element.formParams()});
                     }
                 }
-                else{
+                else
+                {
                     console.log("Error, archivos de tabla no encontrado")
                 }
                 
@@ -38,7 +41,7 @@ steal(
             'select change': function(element){
                 if(this.options.user != undefined && this.options.model != undefined)
                 {
-                    this.mostrar_tabla({muni_id: this.options.user.municipio, fecha: {mes: this.element.find('select#mes').val(), anio: this.element.find('select#anio').val()}});
+                    this.mostrar_tabla({muni_id: this.options.user.municipio, data: element.formParams()});
                 }
             },
             'mostrar_tabla': function(params){
@@ -48,7 +51,8 @@ steal(
                         console.log(resumen)
                         $('table.cc tbody').html(can.view(url+self.options.recipe,resumen))
                         var cant = 0;
-                        $.each(resumen,function(index,resume) {
+                        $.each(resumen,function(index,resume) 
+                        {
                             if(self.options.parseResult == 'Float'){
                                 cant+= parseFloat(resume.importe);
                             }
@@ -56,12 +60,12 @@ steal(
                                 cant+= parseInt(resume.autos);
                             }
                             else{
-                                cant+= resume.autos;
+                                cant++;
                             }
                         })
                         if(self.options.parseResult == 'Float'){
-                                cant = Math.round(cant);
-                            }
+                            cant = Math.round(cant);
+                        }
                         if(self.options.msg_total != undefined){
                             $('table.cc tbody tr:last td b').html(self.options.msg_total + ' ' + cant)
                             $('table.cc tbody tr:last').addClass('unPaginated')

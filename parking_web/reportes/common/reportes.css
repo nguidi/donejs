@@ -11,8 +11,14 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
+div.alto{
+    height: 450px;
+}
 
-table.table {
+table.t2{
+    width: 600px;
+}
+table.t1 {
     width: 250px;
 }
 
@@ -21,4 +27,12 @@ table.table {
 }
 .span20{
     width: 25%;
+}
+
+.spanTotal{
+    width: 100%;
+}
+
+.span000{
+    width: 50%;
 }
