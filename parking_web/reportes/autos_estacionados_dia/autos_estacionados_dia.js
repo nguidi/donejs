@@ -27,7 +27,6 @@ steal(
                     user: options.user,
                     msg_total: 'CANTIDAD TOTAL DE AUTOS ESTACIONADOS: ',
                     recipe: 'reportes/autos_estacionados_dia/recipe.ejs',
-                    parseResult: 'Int',
                     table_main: 'reportes/autos_estacionados_dia/tabla_autos_estacionados.ejs'
                 });
                 //this.grafica_est = new Grafica_autos_estacionados("#grafica_reportes", {model: Autos, user: options.user});
