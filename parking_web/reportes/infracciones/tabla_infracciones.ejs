@@ -1,5 +1,5 @@
-<h3>Autos estacionados por día</h3>
-<b>Mes:</b> <select name="mes" id="mes" class="span2">
+<h3>Autos en infracción por mes</h3>
+<b>Mes:</b> <select name="fecha[mes]" id="mes" class="span2">
     <option value="1">Enero</option>
     <option value="2">Febrero</option>
     <option value="3">Marzo</option>
@@ -14,23 +14,25 @@
     <option value="12">Diciembre</option>
 </select> 
 <b>Año:</b> 
-<select name="anio" id="anio" class="span2">
+<select name="fecha[anio]" id="anio" class="span2">
     <option value="2011">2011</option>
     <option value="2012">2012</option>
 </select>
 <div id="tabla">
-    <table class="cc table table-striped" align="center">
-        <thead>
-            <tr>
-                <th align="center">
-                    Fecha
-                </th>
-                <th align="center">
-                    Cantidad de Autos
-                </th>										
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
+    <div class="alto">
+        <table class="cc table table-striped" align="center">
+            <thead>
+                <tr>
+                    <th align="center">
+                        Fecha
+                    </th>
+                    <th align="center">
+                        Cantidad de Autos
+                    </th>										
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 </div>
