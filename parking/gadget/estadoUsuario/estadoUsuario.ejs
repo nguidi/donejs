@@ -2,25 +2,26 @@
     <div data-role="controlgroup">
       
         <%if ((this[0].tiempo[0]==0)&&(tiempo[1]==0)&&(tiempo[2]==0)){%>
-        <div id="luzVerde" <%=function(element){
+        <div id="luzVerde" data-role="controlgroup" <%=function(element){
             
              element.style.backgroundColor = '00FF00'
              
                 }%> ><h1>Usuario en regla</h1>
-						<p>Le quedan <%=this[0].tiempo[3]%> minutos</p>
+                    <h3>Marca del auto</h3>
+                     <%=this[0].marca%>
+                    <h3>Numero de Patente</h3>
+                      <%=this[0].patente%>
+
+			<p>Le quedan <%=this[0].tiempo[3]%> minutos</p>
                 </div>
               <%}else {%>
            
       
-        <div id="luzRoja" <%=function(element){
-            element.style.backgroundColor = 'red'}%>><h1>Patente en infraccion</h1>
+        <div id="luzRoja" data-role="controlgroup" <%=function(element){
+            element.style.backgroundColor = 'red'}%>>
+        <h1>Patente en infraccion</h1>
+           <a data-role="button">Registrar multa</a>
 
-            <%for (var attr in this[0])
-		{%>
-			<label><%=attr%></label>
-			<div><%=this[0][attr]%></div>
-		<%}
-	     %>
         </div>
 
 

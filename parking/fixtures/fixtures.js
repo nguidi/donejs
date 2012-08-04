@@ -810,12 +810,25 @@ steal('can/util/fixture','./usuarios.js')
                 muninicipio_id:municipios[4],
                 zona_id:zonas[3]
 			})
-                
+//fixturear respuesta server, neriHELP!
+          var control_reg=new Array()
+          for(var t=1;t<25;t++){
+            reg_est.push({
+                id:t,
+                fecha:'2012-07-16',
+                ingreso: '12:30',
+                egreso:'14:30',
+                patente: t+ 300,
+
+                marca_auto_id:marcas[t % 9]
+
+            })
+
 
         can.fixture('GET /reg_estacionamientos',function(params) {
             var bool = false
             if (params.data) {
-                     return { items: $.grep(reg_est,function(elem,index) {
+                     return { items: $.grep(control_reg,function(elem,index) {
                              for (var attr in params.data) {
                                 if (elem[attr] == params.data[attr])
                                     bool = true
@@ -828,6 +841,8 @@ steal('can/util/fixture','./usuarios.js')
                              }
                          )
                     }
-          } else return {items: reg_est}
-      });     
+          } else return {items: control_reg}
+      })
+
+      ;
 })
