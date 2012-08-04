@@ -15,7 +15,8 @@ steal(
     'parking_web/zonas/handler/zonas.js',
     'parking_web/reportes/infracciones/infracciones.js',
     'parking_web/reportes/recaudacion/recaudacion.js',
-    'parking_web/reportes/autos_estacionados/autos_estacionados.js')
+    'parking_web/reportes/autos_estacionados/autos_estacionados.js',
+    'parking_web/reportes/autos_estacionados_dia/autos_estacionados_dia.js')
 .then(
     function(){
         
