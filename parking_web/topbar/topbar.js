@@ -13,6 +13,7 @@ steal(
     'bootstrap/js/bootstrap-dropdown.js',
     './topbar.css',
     'parking_web/zonas/handler/zonas.js',
+    'parking_web/reportes/infracciones/infracciones.js',
     'parking_web/reportes/recaudacion/recaudacion.js',
     'parking_web/reportes/autos_estacionados/autos_estacionados.js')
 .then(
@@ -27,25 +28,23 @@ steal(
                 var self = this
                 $.when(Menu.findAll({perfil: this.options.user.perfil}))
                 .then(function(menu) {
-                    console.log(menu)
-                    self.element.html(can.view(url+'topbar/topbar.ejs', {base_url: url+'images/',username: self.options.user.username,data: menu}))
-                    $('.dropdown-toggle').dropdown()
+                    self.element.html(can.view(url+'topbar/topbar.ejs', {base_url: url+'images/',username: self.options.user.username,data: menu}));
+                    $('.dropdown-toggle').dropdown();
                 })
             },
             'ul.nav li click': function(element, options){
                 var click = element.find('a').attr('href');
                 switch(click){
                     case '#menu-zonas': new ZonasWeb("#content"); break;
+                    case '#submenu_infracciones_dia': new Infracciones_dia("#content",{ user: this.options.user}); break;
                     case '#submenu_recaudacion': new Recaudacion_web("#content",{ user: this.options.user}); break;
-					case '#submenu_autos_estacionados': new Autos_estacionados("#content",{ user: this.options.user}); break;
-                }
-                if(click == '#menu-zonas')
-                {
-                    new ZonasWeb("#content")
+                    case '#submenu_autos_estacionados_mes': new Autos_estacionados_mes("#content",{ user: this.options.user}); break;
+                    case '#submenu_autos_estacionados_dia': new Autos_estacionados_dia("#content",{ user: this.options.user}); break;
+                    case '#submenu_infracciones_mes': new Infracciones_mes("#content",{ user: this.options.user}); break;
                 }
             },
             'a.brand click': function(element, options){
-                    new Home("#content")
+                    new Home("#content");
             }
         })
     }

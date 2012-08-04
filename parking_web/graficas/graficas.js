@@ -71,26 +71,26 @@ steal(
 				xAxis: {categories: categories},
 				yAxis: {title: { text:params.name_y } },
 				plotOptions: {
-					column: $.extend(drill,
-                        {dataLabels: {
-							enabled: true,color: colors[0],
-							style: { fontWeight: 'bold' },
-							formatter: function() {
-								return (params.formato_adicional_barras == undefined)?'' + this.y:params.formato_adicional_barras + this.y;}
-							}
+                                    column: $.extend(drill,
+                                        {dataLabels: {
+                                            enabled: true,color: colors[0],
+                                            style: { fontWeight: 'bold' },
+                                            formatter: function() {
+                                                    return (params.formato_adicional_barras == undefined)?'' + this.y:params.formato_adicional_barras + this.y;}
+                                            }
                  		})
 				},
 				tooltip: {
-					formatter: function() {
-						var point = this.point,
-							s = 'Dia ' + this.x +' :<b> '+ this.y +' estacionados</b><br/>';
-						if (point.drilldown) {
-							s += (params.texto_barras==undefined)?'':params.texto_barras;
-						} else {
-							s += (params.texto_barras_drilldown==undefined)?'':params.texto_barras_drilldown;
-						}
-						return s;
-					}
+                                    formatter: function() {
+                                        var point = this.point,
+                                                s = 'Dia ' + this.x +' :<b> '+ this.y +' estacionados</b><br/>';
+                                        if (point.drilldown) {
+                                                s += (params.texto_barras==undefined)?'':params.texto_barras;
+                                        } else {
+                                                s += (params.texto_barras_drilldown==undefined)?'':params.texto_barras_drilldown;
+                                        }
+                                        return s;
+                                    }
 				},
 				series: [{name: name ,data: data}],
 				exporting: {enabled: false}

@@ -11,7 +11,7 @@ steal(
 .then(
     function(){
         
-        can.Control("Grafica_recaudacion_web",{
+        can.Control("Grafica_infracciones",{
             defaults: {
                 user: undefined,
                 model: undefined
@@ -34,16 +34,14 @@ steal(
                     new Graficas('#grafica_est',
                         {data:{categories: $.map(obj,function(it){ return it.fecha.substring(0,it.fecha.search('/'))}),
                             //subcategories: ['7:00 - 10:00', '10:00 - 13:00', '13:00 - 16:00', '16:00 - 19:00'],
-                            data: $.map(obj,function(it){ return it.importe}),
+                            data: $.map(obj,function(it){ return it.autos}),
                             name_x: 'Dias',
                             element_html: 'grafica_est',
-                            titulo_general: 'Recaudación correspondiente al mes '+ array_mes[params.fecha.mes] +' del año '+ params.fecha.anio,
+                            titulo_general: 'Cantidad de autos en infracción correspondiente al mes '+ array_mes[params.fecha.mes] +' del año '+ params.fecha.anio,
                             subtitulo_general: '',
-                            name_y: 'Cantidad de dinero',
-                            //texto_barras: 'Click para ver lo recaudado por horarios',
-                            //texto_barras_drilldown: 'Click para ver lo recaudado por día',
-                            formato_adicional_barras: '$ '},
-                        type: 'columns_horizontal'})
+                            name_y: 'Cantidad de autos'
+                            },
+                        type: 'columns'})
                 });
             }
         })

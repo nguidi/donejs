@@ -20,10 +20,10 @@
         'can/control/control.js',
         'bootstrap/docs/assets/css/bootstrap.css',
         'jquery/jquery.js')
-    .then('parking_web/reportes/autos_estacionados/autos_estacionados.js')
+    .then('parking_web/reportes/autos_estacionados_dia/autos_estacionados_dia.js')
     .then(
         function(){ 
-            new Autos_estacionados_mes( '#mainPage', {user: {username: 'avellaneda', password: 'avellaneda', perfil: 3, id: 232, municipio: 7}} );
+            new Autos_estacionados_dia( '#mainPage', {user: {username: 'avellaneda', password: 'avellaneda', perfil: 3, id: 232, municipio: 7}} );
         }
     );
 </script>
