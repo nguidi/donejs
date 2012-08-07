@@ -17,11 +17,19 @@ div.h1{
 div.h2{
     font-size: 18px;
 }
+
 ul.nav{
     font-size: 14px;
 }
+
 table.inspectores{
     width: 50%
 }
 
+div#datosPersonales {
+    width: 70%;
+}
 
+div#form {
+    font-size: 16px;
+}

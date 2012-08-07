@@ -6,7 +6,8 @@ steal(
     'parking_web/inspectores/handler/inspectores.css',
     'parking_web/config.js',
     'bootstrap/js/bootstrap-tab.js',
-    'sigma/tabla/tabla.js')
+    'sigma/tabla/tabla.js',
+    'parking_web/inspectores/alta/alta.js')
 .then(
     function(){
         
@@ -23,6 +24,7 @@ steal(
                     row: url + 'inspectores/tabla/recipe.ejs',
                     tableStyle: 'table inspectores'
                 });
+                this.alta = new AltaInspectores('#alta_inspectores')
                 
             },
             "ul.nav li click": function(el) { //Handler del evento de cambio de tab...
