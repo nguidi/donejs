@@ -7,7 +7,7 @@ steal('can/model')
 .then(function(){
 
 /**
- * @class Oficios.Ciudad
+ * @class Oficios.Marca
  * @parent index
  * @inherits jQuery.Model
  * Wraps backend candidato services.

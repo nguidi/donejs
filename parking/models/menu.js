@@ -2,7 +2,7 @@ steal('can/model')
 .then(function(){
 
 /**
- * @class Oficios.Models.Usuario
+ * @class Menu
  * @parent index
  * @inherits jQuery.Model
  * Wraps backend usuario services.  
