@@ -28,7 +28,7 @@ steal(
                     user: options.user, 
                     msg_total: 'CANTIDAD TOTAL DE AUTOS EN INFRACCIÓN: ', 
                     recipe: 'reportes/infracciones/recipe.ejs',
-                    parse: 'Int',
+                    parseResult: 'Int',
                     table_main: 'reportes/infracciones/tabla_infracciones.ejs'
                 });
                 this.grafica_est = new Grafica_infracciones("#grafica_reportes", {model: Infracciones_rep, user: options.user});
