@@ -17,7 +17,9 @@ steal(
     'parking_web/reportes/infracciones_dia/infracciones_dia.js',
     'parking_web/reportes/recaudacion/recaudacion.js',
     'parking_web/reportes/autos_estacionados/autos_estacionados.js',
-    'parking_web/reportes/autos_estacionados_dia/autos_estacionados_dia.js')
+    'parking_web/reportes/autos_estacionados_dia/autos_estacionados_dia.js',
+    'parking_web/reportes/autos_estacionados_dia/autos_estacionados_dia.js',
+    'parking_web/inspectores/handler/inspectores.js')
 .then(
     function(){
         
@@ -43,6 +45,7 @@ steal(
                     case '#submenu_autos_estacionados_mes': new Autos_estacionados_mes("#content",{ user: this.options.user}); break;
                     case '#submenu_autos_estacionados_dia': new Autos_estacionados_dia("#content",{ user: this.options.user}); break;
                     case '#submenu_infracciones_mes': new Infracciones_mes("#content",{ user: this.options.user}); break;
+                    case '#menu-inspectores': new Inspectores("#content",{ user: this.options.user}); break;
                 }
             },
             'a.brand click': function(element, options){

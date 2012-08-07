@@ -13,7 +13,14 @@ steal(
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'zonas/handler/main.ejs'))
+                this.element.html(can.view(url+'zonas/handler/main.ejs'));
+                this.tabla = new Tabla("#tabla_zonas",{
+                    head: url + 'inspectores/tabla/head.ejs',
+                    model: Inspector,
+                    row: url + 'inspectores/tabla/recipe.ejs',
+                    tableStyle: 'table inspectores'
+                });
+                this.alta = new AltaInspectores('#alta_inspectores')
             },
             "ul.nav li click": function(el) {
                 if (!el.hasClass('active')) {
