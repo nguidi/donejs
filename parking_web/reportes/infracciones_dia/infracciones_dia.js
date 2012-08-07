@@ -9,7 +9,7 @@ steal(
     'can/view/ejs',
     'parking/fixtures/fixtures.js',
     'parking_web/reportes/common/reportes.css',
-    'parking/models/reportes.js',
+    'parking/models/multa.js',
     'parking_web/config.js',
     'parking_web/reportes/common/table_reportes.js',
     'parking_web/reportes/infracciones/grafica_infracciones_web.js')
@@ -22,15 +22,15 @@ steal(
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'reportes/common/main.ejs',{mensaje: 'Cantidad de infracciones por mes: '}))
+                this.element.html(can.view(url+'reportes/infracciones_dia/main.ejs',{mensaje: 'Cantidad de infracciones por día: '}))
                 this.table_est = new Table_reportes("#tabla_reportes", {
-                    model: Infracciones_rep, 
+                    model: Multa, 
                     user: options.user, 
                     msg_total: 'CANTIDAD TOTAL DE AUTOS EN INFRACCIÓN: ', 
-                    recipe: 'reportes/infracciones/recipe.ejs',
-                    parse: 'Int'
+                    recipe: 'reportes/infracciones_dia/recipe.ejs',
+                    table_main: 'reportes/infracciones_dia/tabla_infracciones.ejs'
                 });
-                this.grafica_est = new Grafica_infracciones("#grafica_reportes", {model: Infracciones_rep, user: options.user});
+                //this.grafica_est = new Grafica_infracciones("#grafica_reportes", {model: Infracciones_rep, user: options.user});
             }
         })
     }
