@@ -726,32 +726,32 @@ steal('can/util/fixture','./usuarios.js')
     //#############################################
     //#############################################
     
-        var reg_est= new Array()
-        for(var t=1;t<25;t++){
-            reg_est.push({
-                id:t,
-                fecha:'2012-07-16',
-                horaEntrada: '12:30',
-                horaFin:'14:30',
-                patente: t+ 300,
-                tarifa_id:tarifas[t % 4],
-                marca_auto_id:marcas[t % 9],
-                muninicipio_id:municipios[t% 4],
-                zona_id:zonas[t % 3]
-
-            })
-        }
-        reg_est.push({
-            id:26,
-            fecha:'2012-07-24',
-            horaEntrada: '12:30',
-            horaFin:'20:30',
-            patente: 200,
-            tarifa_id:tarifas[4],
-            marca_auto_id:marcas[3],
-            muninicipio_id:municipios[4],
-            zona_id:zonas[3]
-        })
+//        var reg_est= new Array()
+//        for(var t=1;t<25;t++){
+//            reg_est.push({
+//                id:t,
+//                fecha:'2012-07-16',
+//                horaEntrada: '12:30',
+//                horaFin:'14:30',
+//                patente: t+ 300,
+//                tarifa_id:tarifas[t % 4],
+//                marca_auto_id:marcas[t % 9],
+//                muninicipio_id:municipios[t% 4],
+//                zona_id:zonas[t % 3]
+//
+//            })
+//        }
+//        reg_est.push({
+//            id:26,
+//            fecha:'2012-07-24',
+//            horaEntrada: '12:30',
+//            horaFin:'20:30',
+//            patente: 200,
+//            tarifa_id:tarifas[4],
+//            marca_auto_id:marcas[3],
+//            muninicipio_id:municipios[4],
+//            zona_id:zonas[3]
+//        })
                 
 
         can.fixture('GET /reg_estacionamientos',function(params) {
@@ -856,5 +856,31 @@ steal('can/util/fixture','./usuarios.js')
                 else return {items: multa}
                  
           } else return {items: multa}
-      });     
+      });
+
+     //#############################################
+    //               Control
+    //#############################################
+    //#############################################
+
+      var control_ins= new Array()
+      for(var it=0;it<10;it++){
+      control_ins.push({
+          id:it,
+          idMarca:marcas[i],
+          patente:300+it,
+          //ingreso y egreso son objetos Date, pero hay que tener en cuenta que
+          //deben ser diferentes y la dif entre egreso e ingreso es positiva y
+          //varia segun los tiempos de las tarifas
+          ingreso:new Date(),
+          egreso:new Date()
+
+       })
+      }
+      //devolver los controles
+      can.fixture('GET /control_ins',
+      function(params){params.data},"fail")
+
+
+
 })
