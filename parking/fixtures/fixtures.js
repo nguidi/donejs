@@ -436,30 +436,7 @@ steal('can/util/fixture','./usuarios.js')
         }
     )
     
-   
-    can.fixture('GET /multas', 
-        function(params) {
-            return [{
-                        id: 3, 
-                        usuario_id: 229, 
-                        muni: 1, 
-                        patente: 'efweee', 
-                        ingreso: '2012-03-19 22:06:14', 
-                        egreso: '2012-03-19 18:17:05', 
-                        fecha_ins: '2012-03-19 22:04:01'
-                    },
-                    {
-                        id: 4,
-                        usuario_id: 225,
-                        muni: 1,
-                        patente: 'akr007',
-                        ingreso: '2012-03-31 00:51:42',
-                        egreso: '2012-03-31 01:36:42',
-                        fecha_ins: '2012-03-31 01:45:46'
-                    }
-                ]
-        }
-    )
+ 
         
     var rpt_estacionados_sql = [[232, 1, 31, 1, '4.00'],
                                 [232, 1, 30, 3, '7.00'],
@@ -749,22 +726,6 @@ steal('can/util/fixture','./usuarios.js')
     //#############################################
     //#############################################
     
-    /*can.fixture("GET /recaudacions", function(settings){
-         if(typeof(settings.data) == 'undefined')
-         {
-             return {items: menu_completo};
-         }
-         else
-         {
-            return {items: $.map($.grep(menu_perfils, function(item){
-                 return settings.data.perfil == item.perfil;
-            }),function(item){
-                return menu_completo[item.menu-1]
-            })};   
-         }
-     });*/
-
-     
         var reg_est= new Array()
         for(var t=1;t<25;t++){
             reg_est.push({
@@ -815,5 +776,85 @@ steal('can/util/fixture','./usuarios.js')
                 else return {items: reg_est}
                  
           } else return {items: reg_est}
+      });     
+      
+    //#############################################
+    //               INSPECTORES
+    //#############################################
+    //#############################################
+  
+        inspectores = [{id: 1, nombre: "Perez, José"},{id: 2, nombre: "Dominguez, Juan Manuel"}];
+        
+        can.fixture('GET /inspectors',function(params) {
+            var bool = false
+            if (params.data) {
+                if(false){
+                    return { items: $.grep(inspectores,function(elem,index) {
+                         for (var attr in params.data) {
+                            if (elem[attr] == params.data[attr])
+                                bool = true
+                            else {
+                                bool = false
+                                break
+                            }
+                         }
+                     return bool
+                     })
+                 }
+                }
+                else return {items: inspectores}
+                 
+          } else return {items: inspectores}
+      });
+        
+      
+    //#############################################
+    //                 MULTA
+    //#############################################
+    //#############################################
+        
+        patentes =['sad','gfr','ert','poi','asw','fgr','rww']
+        
+        var multa= new Array()
+        for(var t=1;t<25;t++){
+            multa.push({
+                id: t, 
+                usuario_id: 229, //inspector
+                inspector: inspectores[this.random(0,1)],
+                patente: patentes[this.random(0,6)]+this.random(100,600), 
+                ingreso: '2012-03-19 22:06:14', 
+                egreso: '2012-03-19 18:17:05', 
+                fecha_ins: '2012-03-19 22:04:01',
+                marca_auto_id:marcas[t % 9],
+                muninicipio_id:municipios[t% 4],
+                zona_id:zonas[t % 3]
+
+            })
+        }
+        
+        can.fixture('GET /multas',function(params) {
+            var bool = false
+            if (params.data) {
+                console.log(params.data.patente)
+                console.log(params.data.fechaDesde)
+                console.log(params.data.fechaHasta)
+                console.log(params.data.inspectores)
+                if(false){
+                    return { items: $.grep(multa,function(elem,index) {
+                         for (var attr in params.data) {
+                            if (elem[attr] == params.data[attr])
+                                bool = true
+                            else {
+                                bool = false
+                                break
+                            }
+                         }
+                     return bool
+                     })
+                 }
+                }
+                else return {items: multa}
+                 
+          } else return {items: multa}
       });     
 })
