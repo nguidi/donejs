@@ -11,11 +11,14 @@ can.Model('Zona',
 /* @Static */
 {
         
-	findAll: "/zonas.json",
-  	findOne : "/zonas/{id}.json",
-  	create : "/zonas.json",
- 	update : "/zonas/{id}.json",
-  	destroy : "/zonas/{id}.json"
+	findAll: "GET /zonas",
+  	findOne : "GET /zonas/{id}",
+  	create : "POST /zonas",
+ 	update : "PUT /zonas/{id}",
+  	destroy : "DELETE /zonas/{id}",
+        models  : function(data){
+            return data.items;
+        } 
         
 },
 /* @Prototype */

@@ -704,9 +704,26 @@ steal('can/util/fixture','./usuarios.js')
         for (var i=1; i<5;i++){
             zonas.push({
                 id:i,
-                zona: "Zona"+i
+                zona: "Zona"+i,
+                municipio: 7
             })
         }
+        
+      can.fixture("GET /zonas",function(settings){
+          var ret = [];
+          if(settings.data != undefined)
+          {
+              ret = {items: $.grep(zonas, function(obj){
+                      return settings.data.municipio == obj.ciudad
+              })}
+          }
+          else 
+          {
+              ret = zonas;
+          }
+          return {items: ret}
+      });
+      
       can.fixture("GET /manzana",function(settings){
         var manzanas=new Array()
         for (var i=1; i<10;i++){
