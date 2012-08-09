@@ -611,7 +611,11 @@ steal('can/util/fixture','./usuarios.js')
          {id: 5, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda', dropdown: []},
          {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'Notificaciones', control: 'oficios_notificaciones', dropdown: []},
          {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'Municipios', control: 'oficios_municipios', dropdown: []}, //agregar menues
-         {id: 8, evento: 'menu-configuracion', img: 'configuracion.png', nombre: 'Configuracion', control: 'oficios_configuracion', dropdown: []}
+         {id: 8, evento: 'menu-configuracion', img: 'configuracion.png', nombre: 'Configuracion', control: 'oficios_configuracion', dropdown: []},
+         {id: 9, evento: 'menu-estacionar', img: 'estacionar.png', nombre: 'Estacionar', control: 'parking_web_ayuda', dropdown: []},
+         {id: 10, evento: 'menu-historial', img: 'historial.png', nombre: 'Historial', control: 'oficios_notificaciones', dropdown: []},
+         {id: 11, evento: 'menu-cuenta-corriente', img: 'cuenta-corriente.png', nombre: 'Cuenta corriente', control: 'oficios_municipios', dropdown: []}, //agregar menues
+         {id: 12, evento: 'menu-recargas', img: 'recargas.png', nombre: 'Recarga', control: 'oficios_configuracion', dropdown: []}
      ];
      
      var menu_perfils = 
@@ -620,7 +624,11 @@ steal('can/util/fixture','./usuarios.js')
          {id: 3, menu: 3, perfil: 3},
          {id: 4, menu: 4, perfil: 3},
          {id: 5, menu: 5, perfil: 3},
-         {id: 6, menu: 5, perfil: 1}];
+         {id: 6, menu: 5, perfil: 1},
+         {id: 3, menu: 9, perfil: 8},
+         {id: 4, menu: 10, perfil: 8},
+         {id: 5, menu: 11, perfil: 8},
+         {id: 6, menu: 12, perfil: 8}];
      
      can.fixture("GET /menus", function(settings){
          if(typeof(settings.data) == 'undefined')
@@ -726,32 +734,31 @@ steal('can/util/fixture','./usuarios.js')
     //#############################################
     //#############################################
     
-//        var reg_est= new Array()
-//        for(var t=1;t<25;t++){
-//            reg_est.push({
-//                id:t,
-//                fecha:'2012-07-16',
-//                horaEntrada: '12:30',
-//                horaFin:'14:30',
-//                patente: t+ 300,
-//                tarifa_id:tarifas[t % 4],
-//                marca_auto_id:marcas[t % 9],
-//                muninicipio_id:municipios[t% 4],
-//                zona_id:zonas[t % 3]
-//
-//            })
-//        }
-//        reg_est.push({
-//            id:26,
-//            fecha:'2012-07-24',
-//            horaEntrada: '12:30',
-//            horaFin:'20:30',
-//            patente: 200,
-//            tarifa_id:tarifas[4],
-//            marca_auto_id:marcas[3],
-//            muninicipio_id:municipios[4],
-//            zona_id:zonas[3]
-//        })
+        var reg_est= new Array()
+        for(var t=1;t<25;t++){
+            reg_est.push({
+                id:t,
+                fecha:'2012-07-16',
+                horaEntrada: '12:30',
+                horaFin:'14:30',
+                patente: t+ 300,
+                tarifa_id:tarifas[t % 4],
+                marca_auto_id:marcas[t % 9],
+                muninicipio_id:municipios[t% 4],
+                zona_id:zonas[t % 3]
+            })
+        }
+        reg_est.push({
+            id:26,
+            fecha:'2012-07-24',
+            horaEntrada: '12:30',
+            horaFin:'20:30',
+            patente: 200,
+            tarifa_id:tarifas[4],
+            marca_auto_id:marcas[3],
+            muninicipio_id:municipios[4],
+            zona_id:zonas[3]
+        })
                 
 
         can.fixture('GET /reg_estacionamientos',function(params) {

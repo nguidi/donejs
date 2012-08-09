@@ -72,5 +72,20 @@ steal('can/util/fixture')
                 return {items: municipio}
             }
 	);
+            
+        can.fixture('POST /users',function(params){
+            users.push({
+                id : users.length + 1,
+                username: params.data.username,
+                password: params.data.password,
+                municipio: 1,
+                perfil: 8,
+                recuperacion: params.data.palabraClave,
+                email: '',
+                nombre: '',
+                apellido: ''
+            })
+        });
+        
         
 })
