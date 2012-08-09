@@ -18,9 +18,15 @@ steal(
     function(){
         
         can.Control("Home",{
+            defaults: {
+                user: undefined
+            }
+        },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'home/main.ejs'))
-		this.mostrar_barras({})
+                if(options.user.perfil == 3){
+                    this.element.html(can.view(url+'home/main.ejs'))
+                    this.mostrar_barras({})
+                }
                },
             'mostrar_barras':function(){
                 var categories = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13',
