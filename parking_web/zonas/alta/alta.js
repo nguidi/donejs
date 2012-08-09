@@ -9,13 +9,13 @@ steal(
 .then(
     function(){
         
-        can.Control("AltaInspectores",{
+        can.Control("AltaZona",{
             defaults: {
                 user: undefined
             }
         },{
             'init': function( element , options ) {
-                this.element.html(can.view(url+'inspectores/alta/alta.ejs'));
+                this.element.html(can.view(url+'zonas/alta/alta.ejs'));
             }
         })
     }

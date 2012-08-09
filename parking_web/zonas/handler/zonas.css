@@ -21,4 +21,28 @@ ul.nav{
     font-size: 14px;
 }
 
+table.inspectores{
+    width: 50%;
+    font-size: 16px;
+}
 
+div#datosPersonales {
+    width: 70%;
+}
+
+div#form {
+    font-size: 16px;
+}
+
+select.filtrosCortos {
+    width: 100px;
+}
+
+div.alta_zona {
+    text-align: center;
+    width: 80%;
+}
+
+.alta_zona .form-horizontal .control-label {
+    width: 200px;
+}

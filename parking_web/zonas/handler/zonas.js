@@ -3,7 +3,10 @@ steal(
     'can/view/ejs',
     'parking_web/zonas/handler/zonas.css',
     'parking_web/config.js',
-    'bootstrap/js/bootstrap-tab.js')
+    'bootstrap/js/bootstrap-tab.js',
+    'parking/fixtures/fixtures.js',
+    'parking_web/zonas/alta/alta.js',
+    'parking/models/zona.js')
 .then(
     function(){
         
@@ -15,12 +18,13 @@ steal(
             'init': function( element , options ) {
                 this.element.html(can.view(url+'zonas/handler/main.ejs'));
                 this.tabla = new Tabla("#tabla_zonas",{
-                    head: url + 'inspectores/tabla/head.ejs',
-                    model: Inspector,
-                    row: url + 'inspectores/tabla/recipe.ejs',
+                    head: url + 'zonas/tabla/head.ejs',
+                    model: Zona,
+                    row: url + 'zonas/tabla/recipe.ejs',
+                    filter: {municipio: options.user.municipio},
                     tableStyle: 'table inspectores'
                 });
-                this.alta = new AltaInspectores('#alta_inspectores')
+                this.alta = new AltaZona('#alta_zonas')
             },
             "ul.nav li click": function(el) {
                 if (!el.hasClass('active')) {
