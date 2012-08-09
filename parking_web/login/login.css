@@ -85,3 +85,21 @@ input[type=text], input[type=password], textarea, select {
 .newuser a:hover{
     text-decoration: none;
 }
+
+.ind_log{
+    float: left;
+    width: 33%;
+}
+
+.center{
+    width: 34%;
+}
+
+.utn
+{
+    float: right;
+}
+
+.muni{
+    float: left;
+}
