@@ -48,7 +48,6 @@ steal(
                 var self = this;
                 $.when(this.options.model.findAll(params,
                     function(resumen) {
-                        console.log(resumen)
                         $('table.cc tbody').html(can.view(url+self.options.recipe,resumen))
                         var cant = 0;
                         $.each(resumen,function(index,resume) 
