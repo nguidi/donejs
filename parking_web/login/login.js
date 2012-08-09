@@ -5,17 +5,19 @@ steal(
     'parking/fixtures/usuarios.js',
     'parking_web/login/login.css',
     'parking/config.js',
-    'parking_web/principal/principal.js').then('./views/init.ejs', function($){    // A este steal le agrego una pantalla ejs o algo asi
+    'parking_web/principal/principal.js',
+    'parking_web/register/register.js').then( function($){    // A este steal le agrego una pantalla ejs o algo asi
          can.Control('LoginWeb',
          {
              defaults : {
                  title: 'Sistema de Parking',
-                 error: ''
+                 error: '',
+                 view: ''
              }
          },
          {
-             'init' : function(){ // inicializacion
-                 this.element.html(can.view('./login/views/init.ejs',{message: this.options.error, img_url: "http://localhost/donejs/parking_web/images"})); // La idea es mostrar el elemento login.ejs
+             'init' : function(element, options){ // inicializacion
+                 this.element.html(can.view(url + options.view,{message: this.options.error, img_url: "http://localhost/donejs/parking_web/images"})); // La idea es mostrar el elemento login.ejs
                  document.getElementById("username").focus();
              },
              'submit' : function(el, evento){
@@ -27,6 +29,7 @@ steal(
                  {
                      if(obj.length > 0)
                      {
+                         console.log("ok!!!!")
                          /*$(document).sigma_session({
                              inactivity: 400000, //Tiempo de inactividad permitido
                              noconfirm: 10000, // Tiempo de popup abierto en caso de no confirmacion
@@ -55,6 +58,14 @@ steal(
                  this.element.html(this.view('init.ejs',{message: 'Sesión vencida, debe volver a ingresar'}));
                  document.getElementById("username").focus();
                  $('h1').text(this.options.title);
+             },
+             "a click": function(element) //bindea la sesión vencida
+             {
+                 switch(element.attr('href'))
+                 {
+                     case '#newuser': this.register = new Register('#mainPage'); break;
+                 }
+                 
              }
          }
      );

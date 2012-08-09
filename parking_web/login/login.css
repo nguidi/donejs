@@ -67,14 +67,6 @@ input[type=text], input[type=password], textarea, select {
     resize: none;
 }
 
-input:focus, textarea:focus, select:focus {
-  outline: 0;
-  border-color: #000;
-  -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px #0037B9;
-  -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px #0037B9;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 8px #0037B9;
-}
-
 #login input[type = submit] {
     width: 200px;
     height: 35px;
@@ -86,7 +78,10 @@ input:focus, textarea:focus, select:focus {
     -webkit-border-radius: 20px;
 }
 
-a.passloss {
-    color: #0088CC;
+.lostpass a:hover{
+    text-decoration: none;
+}
+
+.newuser a:hover{
     text-decoration: none;
 }
