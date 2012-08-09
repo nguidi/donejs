@@ -6,29 +6,46 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
-    display: block;
+body{
+    font-size: 16px;
+    margin:0px;
+    font-family: arial;
+    color: #000033;
+    background-color: #FFF;
 }
 
-div#patentesList { 
-    margin: 0 auto;    
+#mainframe{
+    padding: 0;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center
 }
 
-div#patentesList li {
-    text-indent: 20px;
+#register{
+    font-weight: bold;
+    width: 70%;
+    background-color: #F7F2E0;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#CEE3F6), to(#EFF5FB));
+    background-image: -moz-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: -ms-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #CEE3F6), color-stop(100%, #EFF5FB));
+    background-image: -webkit-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: -o-linear-gradient(top, #CEE3F6, #EFF5FB);
+    background-image: linear-gradient(top, #CEE3F6, #EFF5FB);
+    border-radius: 10px;
+    -moz-border-radius: 10px;
 }
 
-h2.subtitle {
-    color: #2489CE;
-    border-bottom: 2px solid #295b8e;
-    width: 100%;
-    font-size: 1.2em;
+.form-horizontal .control-label {
+    width: 300px;
 }
 
-h1 {
-    font-size: 1.5em;
+.control-group{
+    margin-top: 18px;
 }
 
-ul#listaPatente li {
-    text-transform: uppercase;
+div.invisible{
+    display: none;
 }

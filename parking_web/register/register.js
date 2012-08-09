@@ -7,43 +7,52 @@
 steal(
     'can/control/control.js',
     'can/view/ejs',
-    'parking/config.js',
-    './style.css')
+    'parking_web/config.js',
+    './style.css',
+    'jquery/dom/form_params',
+    'parking/fixtures/usuarios.js',
+    'parking/models/usuario.js',
+    'bootstrap/js/bootstrap-alert.js')
 .then(
     function(){
         
         can.Control("Register",{
             defaults: {
-                back_page_id: '#registerFormPage'
+                error: ''
             }
         },{
             'init': function( element , options ) {
-                this.element.append(can.view(url+'register/register_page.ejs'))
-                $.mobile.changePage($('#registerFormPage'))
+                this.element.html(can.view(url+'register/register_page.ejs',{message: options.error}));
             },
-            
-            'a[data-rel="back"] click': function() {
+            /*'a[data-rel="back"] click': function() {
                 $.mobile.changePage($('#mainPage'))
+            },*/
+            'div.btn click': function(element) {
+                var self = this;
+                switch(element.attr('id')){
+                    case "guardar": 
+                        console.log(element.parents().formParams());
+                        var data = element.parents().formParams();
+                        console.log(data.password == data.repPassword)
+                        if(data.password == data.repPassword){
+                            var u = new User(data);
+                            u.save(function() {
+                                $(".alert-error").alert('close');
+                                $(".alert").removeClass('invisible');
+                            });
+                        }
+                        else{
+                            $(".alert-error").find('span#error_msg').text('Las claves ingresadas no coinciden entre sí');
+                            $(".alert-error").removeClass('invisible');
+                        }
+                        break;
+                }
             },
-                      
-            'a#addPatente click': function() {
-                if ($('input#patente').val().length > 0){
-                    if ($('div#patentesList ul').length > 0){
-                        $('div#patentesList ul').append(can.view(url+'register/li.ejs',{
-                            patente: $('input#patente').val()
-                        }))
-                    }  
-                    else {                    
-                        $('div#patentesList').html(can.view(url+'register/ul.ejs',$('input#patente').val()))
-                        $('label[for="patente"]').html("Agregar otra patente:")
-                    }
-                    $('input#patente').attr('value','')    
-                } else
-                    alert("Por favor ingrese una patente y vuelvalo a intentar")
+            "div#volver click": function(element){
+                new LoginWeb( '#mainPage', {view: 'login/views/init_user.ejs'});
             },
-            
-            'ul#listaPatente li span.ui-icon-delete click': function(clickedSpan) {
-                clickedSpan.parents('li').remove()
+            "div#cancelar click": function(element){
+                new LoginWeb( '#mainPage', {view: 'login/views/init_user.ejs'});
             }
         })
     }
