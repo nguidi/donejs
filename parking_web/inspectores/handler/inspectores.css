@@ -38,3 +38,13 @@ div#form {
 select.filtrosCortos {
     width: 100px;
 }
+
+div.alta_inspectores {
+    text-align: center;
+    width: 80%;
+}
+
+.alta_inspectores .form-horizontal .control-label {
+    width: 200px;
+}
+
