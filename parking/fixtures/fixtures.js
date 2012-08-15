@@ -609,13 +609,21 @@ steal('can/util/fixture','./usuarios.js')
          {id: 3, evento: 'menu-inspectores', img: 'users.png', nombre: 'Inspectores', control: 'parking_web_inspectores', dropdown: []},
          {id: 4, evento: 'menu-multas', img: 'notifications.png', nombre: 'Multas', control: 'parking_web_multas', dropdown: []},
          {id: 5, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda', dropdown: []},
-         {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'Notificaciones', control: 'oficios_notificaciones', dropdown: []},
-         {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'Municipios', control: 'oficios_municipios', dropdown: []}, //agregar menues
-         {id: 8, evento: 'menu-configuracion', img: 'configuracion.png', nombre: 'Configuracion', control: 'oficios_configuracion', dropdown: []},
+         {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'Notificaciones', control: 'parking_web_notificaciones', dropdown: []},
+         {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'Municipios', control: 'parking_web_municipios', dropdown: []}, //agregar menues
+         {id: 8, evento: 'menu-configuracion', img: 'configuracion.png', nombre: 'Configuracion', control: 'parking_web_configuracion', dropdown: []},
          {id: 9, evento: 'menu-estacionar', img: 'estacionar.png', nombre: 'Estacionar', control: 'parking_web_ayuda', dropdown: []},
-         {id: 10, evento: 'menu-historial', img: 'historial.png', nombre: 'Historial', control: 'oficios_notificaciones', dropdown: []},
-         {id: 11, evento: 'menu-cuenta-corriente', img: 'cuenta-corriente.png', nombre: 'Cuenta corriente', control: 'oficios_municipios', dropdown: []}, //agregar menues
-         {id: 12, evento: 'menu-recargas', img: 'recargas.png', nombre: 'Recarga', control: 'oficios_configuracion', dropdown: []}
+         {id: 10, evento: 'menu-historial', img: 'historial.png', nombre: 'Historial', control: 'parking_web_historial', dropdown: []},
+         {id: 11, evento: 'menu-cuenta-corriente', img: 'cuenta-corriente.png', nombre: 'Cuenta corriente', control: 'parking_web_cuenta_corriente', dropdown: []}, //agregar menues
+         {id: 12, evento: 'menu-recargas', img: 'recargas.png', nombre: 'Recarga', control: 'parking_web_recargas', dropdown: []},
+         {id: 13, evento: 'menu-recuperacion-clave', img: 'key.png', nombre: 'Recuperación de clave', control: 'parking_web_ayuda', dropdown: []},
+         {id: 14, evento: 'menu-recuperacion-credito', img: 'cuenta-corriente.png', nombre: 'Recuperación de crédito', control: 'parking_web_notificaciones', dropdown: []},
+         {id: 15, evento: 'menu-carga-estacionamiento', img: 'estacionar.png', nombre: 'Carga estacionamiento', control: 'parking_web_municipios', dropdown: []}, //agregar menues
+         {id: 16, evento: 'menu-consultas', img: 'find.png', nombre: 'Consultas', control: 'parking_web_consultas', 
+             dropdown: 
+                 [{evento: 'submenu_cuenta_corriente', nombre: 'Cuenta corriente'},
+                 {evento: 'submenu_infracciones', nombre: 'Infracciones'}]
+         }// submenu de consultas para hdsuper
      ];
      
      var menu_perfils = 
@@ -624,6 +632,10 @@ steal('can/util/fixture','./usuarios.js')
          {id: 3, menu: 3, perfil: 3},
          {id: 4, menu: 4, perfil: 3},
          {id: 5, menu: 5, perfil: 3},
+         {id: 6, menu: 13, perfil: 1},
+         {id: 6, menu: 14, perfil: 1},
+         {id: 6, menu: 15, perfil: 1},
+         {id: 6, menu: 16, perfil: 1},
          {id: 6, menu: 5, perfil: 1},
          {id: 3, menu: 9, perfil: 8},
          {id: 4, menu: 10, perfil: 8},
