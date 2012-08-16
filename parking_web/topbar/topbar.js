@@ -12,6 +12,7 @@ steal(
     'parking_web/config.js',
     'bootstrap/js/bootstrap-dropdown.js',
     './topbar.css',
+    'parking_web/home/home.js',
     'parking_web/zonas/handler/zonas.js',
     'parking_web/reportes/infracciones/infracciones.js',
     'parking_web/reportes/infracciones_dia/infracciones_dia.js',
@@ -19,6 +20,8 @@ steal(
     'parking_web/reportes/autos_estacionados/autos_estacionados.js',
     'parking_web/reportes/autos_estacionados_dia/autos_estacionados_dia.js',
     'parking_web/recuperacion_clave/handler/recuperacion_clave.js',
+    'parking_web/recuperacion_credito/handler/recuperacion_credito.js',
+    'parking_web/carga_estacionamiento/handler/carga_estacionamiento.js',
     'parking_web/inspectores/handler/inspectores.js')
 .then(
     function(){
@@ -47,10 +50,12 @@ steal(
                     case '#submenu_infracciones_mes': new Infracciones_mes("#content",{ user: this.options.user}); break;
                     case '#menu-inspectores': new Inspectores("#content",{ user: this.options.user}); break;
                     case '#menu-recuperacion-clave': new RecuperacionClave("#content",{ user: this.options.user}); break;
+                    case '#menu-recuperacion-credito': new RecuperacionCredito("#content",{ user: this.options.user}); break;
+                    case '#menu-carga-estacionamiento': new Carga_estacionamiento("#content",{ user: this.options.user}); break;
                 }
             },
             'a.brand click': function(element, options){
-                    new Home("#content", {user: this.options.user});
+                new Home("#content", {user: this.options.user});
             }
         })
     }
