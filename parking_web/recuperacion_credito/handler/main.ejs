@@ -1,21 +1,35 @@
-<div class="h1">Administración geográfica del municipio</div>
-<div class="tabbable tabs-left zonas">
-    <ul class="nav nav-tabs">
-        <li><a href="#tabla" data-togle="tab"><i class="icon-list-alt"></i>  Zonas del municipio</a></li>
-        <li><a href="#alta" data-togle="tab"><i class="icon-plus"></i>  Nueva Zona</a></li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active">
-            <div class="h2">En esta sección podrá administrar las zonas en la cual está dividida el municipio y las tarifas correspondientes</div>  
-        </div>
-        <div class="tab-pane" id="tabla">
-            <div class="h2">Zonas del municipio</div>  
-            <div id="tabla_zonas"></div>
-        </div>
-        <div class="tab-pane" id="alta">
-            <div class="h2">Alta de zona</div>  
-            <div id="alta_zonas" class="alta_zona"></div>
-        </div>
-        
+<div class="h1">Recuperación del crédito con datos del ticket</div>
+<div class="recuperacion_credito">
+    <br/>
+    <div id="form">
+        <form class="form-horizontal" id="recuperacion_credito">
+
+            <div class="control-group celular">
+                <span class="control-label" for="input01">Celular:</span>
+                <div class="controls">
+                    <input type="text" name="celular"/>
+                </div>
+            </div>
+
+            <div class="control-group numero_caja">
+                <span class="control-label" for="input02">Número de caja:</span>
+                <div class="controls">
+                    <input type="text" name="numero_caja"/>
+                </div>
+            </div>
+
+            <div class="control-group codigo_carga">
+                <span class="control-label" for="input03">código de carga:</span>
+                <div class="controls">
+                    <input type="text" name="codigo_carga"/>
+                </div>
+            </div>
+
+
+            <div class="form-actions">
+                <div class="btn btn-primary">Recuperar</div>
+                <div class="btn right">Cancelar</div>
+            </div>
+        </form>
     </div>
 </div>
