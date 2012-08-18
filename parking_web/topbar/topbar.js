@@ -52,6 +52,7 @@ steal(
                     case '#menu-recuperacion-clave': new RecuperacionClave("#content",{ user: this.options.user}); break;
                     case '#menu-recuperacion-credito': new RecuperacionCredito("#content",{ user: this.options.user}); break;
                     case '#menu-carga-estacionamiento': new Carga_estacionamiento("#content",{ user: this.options.user}); break;
+                    case '#menu-consultas': new Consultas("#content",{ user: this.options.user}); break;
                 }
             },
             'a.brand click': function(element, options){
