@@ -12,7 +12,8 @@ steal(
     'parking/models/reportes.js',
     'parking_web/config.js',
     'parking_web/reportes/common/table_reportes.js',
-    'parking_web/reportes/autos_estacionados/grafica_estacionados_web.js')
+    'parking_web/reportes/autos_estacionados/grafica_estacionados_web.js',
+    'parking_web/common.css')
 .then(
     function(){
         
