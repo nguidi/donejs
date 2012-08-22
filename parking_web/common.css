@@ -1,0 +1,20 @@
+/* 
+    Document   : common.css
+    Created on : 21-ago-2012, 19:14:52
+    Author     : fsoto
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+select.filtrosCortos {
+    width: 100px;
+}
+
+input.filtrosCortos {
+    width: 100px;
+}

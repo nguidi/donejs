@@ -3,7 +3,6 @@ steal(
     'can/view/ejs',
     'parking_web/zonas/handler/zonas.css',
     'parking_web/config.js',
-    'bootstrap/js/bootstrap-tab.js',
     'parking/fixtures/fixtures.js',
     'parking_web/zonas/alta/alta.js',
     'parking/models/zona.js')
