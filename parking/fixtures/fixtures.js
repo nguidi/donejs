@@ -607,7 +607,7 @@ steal('can/util/fixture','./usuarios.js')
      
      var menu_completo = [
          {id: 1, evento: 'menu-reportes', img: 'reportes.png', nombre: 'Reportes', control: 'parking_web_reportes', 
-             dropdown: [{evento: 'submenu_recaudacion', nombre: 'Recaudacion'},
+             dropdown: [{evento: 'submenu_recaudacion', nombre: 'Recaudacion'}, //dropdown para los reportes... distintos resportes
                  {evento: 'submenu_infracciones_mes', nombre: 'Infracciones por mes'},
                  {evento: 'submenu_infracciones_dia', nombre: 'Infracciones por día'},
                  {evento: 'submenu_autos_estacionados_mes', nombre: 'Autos estacionados por mes'},
@@ -618,33 +618,37 @@ steal('can/util/fixture','./usuarios.js')
          {id: 4, evento: 'menu-multas', img: 'notifications.png', nombre: 'Multas', control: 'parking_web_multas', dropdown: []},
          {id: 5, evento: 'menu-ayuda', img: 'help.png', nombre: 'Ayuda', control: 'parking_web_ayuda', dropdown: []},
          {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'Notificaciones', control: 'parking_web_notificaciones', dropdown: []},
-         {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'Municipios', control: 'parking_web_municipios', dropdown: []}, //agregar menues
+         {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'Municipios', control: 'parking_web_municipios', dropdown: []},
          {id: 8, evento: 'menu-configuracion', img: 'configuracion.png', nombre: 'Configuracion', control: 'parking_web_configuracion', dropdown: []},
          {id: 9, evento: 'menu-estacionar', img: 'estacionar.png', nombre: 'Estacionar', control: 'parking_web_ayuda', dropdown: []},
          {id: 10, evento: 'menu-historial', img: 'historial.png', nombre: 'Historial', control: 'parking_web_historial', dropdown: []},
-         {id: 11, evento: 'menu-cuenta-corriente', img: 'cuenta-corriente.png', nombre: 'Cuenta corriente', control: 'parking_web_cuenta_corriente', dropdown: []}, //agregar menues
+         {id: 11, evento: 'menu-cuenta-corriente', img: 'cuenta-corriente.png', nombre: 'Cuenta corriente', control: 'parking_web_cuenta_corriente', dropdown: []}, 
          {id: 12, evento: 'menu-recargas', img: 'recargas.png', nombre: 'Recarga', control: 'parking_web_recargas', dropdown: []},
          {id: 13, evento: 'menu-recuperacion-clave', img: 'key.png', nombre: 'Recuperación de clave', control: 'parking_web_ayuda', dropdown: []},
          {id: 14, evento: 'menu-recuperacion-credito', img: 'cuenta-corriente.png', nombre: 'Recuperación de crédito', control: 'parking_web_notificaciones', dropdown: []},
-         {id: 15, evento: 'menu-carga-estacionamiento', img: 'estacionar.png', nombre: 'Carga estacionamiento', control: 'parking_web_municipios', dropdown: []}, //agregar menues
-         {id: 16, evento: 'menu-consultas', img: 'find.png', nombre: 'Consultas', control: 'parking_web_consultas', dropdown: []}
+         {id: 15, evento: 'menu-carga-estacionamiento', img: 'estacionar.png', nombre: 'Carga estacionamiento', control: 'parking_web_municipios', dropdown: []}, 
+         {id: 16, evento: 'menu-consultas', img: 'find.png', nombre: 'Consultas', control: 'parking_web_consultas', dropdown: []}, 
+         {id: 17, evento: 'menu-usuarios', img: 'users.png', nombre: 'Usuarios', control: 'parking_web_usuarios', dropdown: []}
      ];
      
      var menu_perfils = 
-         [{id: 1, menu: 1, perfil: 3},
+         [{id: 1, menu: 1, perfil: 3}, // Menú para municipios
          {id: 2, menu: 2, perfil: 3},
          {id: 3, menu: 3, perfil: 3},
          {id: 4, menu: 4, perfil: 3},
          {id: 5, menu: 5, perfil: 3},
-         {id: 6, menu: 13, perfil: 1},
-         {id: 6, menu: 14, perfil: 1},
-         {id: 6, menu: 15, perfil: 1},
-         {id: 6, menu: 16, perfil: 1},
-         {id: 6, menu: 5, perfil: 1},
-         {id: 3, menu: 9, perfil: 8},
-         {id: 4, menu: 10, perfil: 8},
-         {id: 5, menu: 11, perfil: 8},
-         {id: 6, menu: 12, perfil: 8}];
+         {id: 6, menu: 13, perfil: 7},// Menú para help desk
+         {id: 7, menu: 14, perfil: 7},
+         {id: 8, menu: 15, perfil: 7},
+         {id: 9, menu: 16, perfil: 7},
+         {id: 10, menu: 5, perfil: 7},
+         {id: 11, menu: 9, perfil: 8},// Menú para usuarios corrientes
+         {id: 12, menu: 10, perfil: 8},
+         {id: 13, menu: 11, perfil: 8},
+         {id: 14, menu: 12, perfil: 8},
+         {id: 15, menu: 5, perfil: 8},
+         {id: 16, menu: 17, perfil: 1},// Menú para administrador
+         {id: 17, menu: 5, perfil: 1}];
      
      can.fixture("GET /menus", function(settings){
          if(typeof(settings.data) == 'undefined')

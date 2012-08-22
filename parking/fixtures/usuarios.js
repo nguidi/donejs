@@ -24,12 +24,12 @@ steal('can/util/fixture')
                         [225, '11959489', '2109', 3, 'maria', 8, 'rios@gmail.com', 'Matias', 'Rios'],
                         [230, 'admin', 'toto', 1, 'apodo', 1, 'soto@gmail.com', 'Franco', 'Soto'],
                         [229, 's22333444', '000', 7, 'super', 4, 'martinez@gmail.com', 'Gisela', 'Martinez'],
-                        [231, 'sanmartin', 'sanmartin', 8, 'martin', 2, 'msanmartin@gmail.com', 'Julian', 'Farina'],
+                        [231, 'sanmartin', 'sanmartin', 8, 'martin', 3, 'msanmartin@gmail.com', 'Julian', 'Farina'],
                         [232, 'avellaneda', 'avellaneda', 7, 'avellaneda', 3, 'avellaneda@gmail.com', 'German', 'Cabral'],
                         [233, 'pilar', 'pilar', 10, 'pilar', 3, 'pilar@gmail.com', 'Carina', 'Luque'],
-                        [234, 'tucuman', 'tucuman', 9, 'tucuman', 4, 'tucuman@gmail.com', 'Juan', 'Prongue'],
+                        [234, 'tucuman', 'tucuman', 9, 'tucuman', 3, 'tucuman@gmail.com', 'Juan', 'Prongue'],
                         [237, 'hd001', 'hd001',4, 'hd1', 1, 'asdasd@gmail.com', 'Federico', 'Calle'],
-                        [238, 'hdsuper', 'hdsuper', 7, 'super', 1, 'super@gmail.com', 'Mariano', 'Campello']]
+                        [238, 'hdsuper', 'hdsuper', 7, 'super', 7, 'super@gmail.com', 'Mariano', 'Campello']]
         
         var users = new Array()
         
@@ -51,17 +51,23 @@ steal('can/util/fixture')
             function(params) {
                 var bool = false
                 if (params.data) {
-                    return { items: $.grep(users,function(elem,index) {
-                            for (var attr in params.data) {
-                                if (elem[attr] == params.data[attr])
-                                    bool = true
-                                else {
-                                    bool = false
-                                    break
+                    if(params.data.password != undefined && params.data.username != undefined)
+                    {
+                        return { items: $.grep(users,function(elem,index) {
+                                for (var attr in params.data) {
+                                    if (elem[attr] == params.data[attr])
+                                        bool = true
+                                    else {
+                                        bool = false
+                                        break
+                                    }
                                 }
-                            }
-                            return bool
-                    })}
+                                return bool
+                        })}
+                    }
+                    else{
+                        return {items: users} // sin filtros de usuarios (dame todos los usuarios)
+                    }
                 } else 
                     return {items: users}
             }
