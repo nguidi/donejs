@@ -31,16 +31,21 @@ steal(  'jquery/jquery.js',
                     select: undefined,
                     paginador: undefined,
                     cached: undefined,
-                    filter: undefined
+                    filter: undefined,
+                    data: undefined
                 }
         },
         /** @Prototype */
         {
                 'init' : function(element , options){
-                    if (isUndefined(options.model))
-                        console.log('Modelo no definido')
+                    if (isUndefined(options.model)){
+                        console.log('Modelo no definido');
+                        if(options.data != undefined){
+                            this.createTable(element, options, options.data)
+                        }
+                    }
                     else 
-                        this.createTable(element, options)
+                        this.fromModel(element, options)
                     var self = this
                     can.bind.call(this.element,'rowsUpdated',function(){
                         self.checkRowsDependencies()
@@ -53,8 +58,8 @@ steal(  'jquery/jquery.js',
                     })
                 },
                 
-                createTable: function(element, options) {
-                    var index, self = this
+                fromModel: function(element, options){
+                    var index, self = this;
                     options.model.findAll(
                         {
                             limit: options.limit,
@@ -62,43 +67,48 @@ steal(  'jquery/jquery.js',
                             filter: options.filter
                         },
                         function(data){
-                            element.html(can.view('//sigma/tabla/view/plainTable'))
-                            // compruebo si se paso o no una estilo
-                            if (!isUndefined(options.tableStyle))
-                                element.find('table').addClass(options.tableStyle)
-                            
-                            // compruebo si se paso o no una clase
-                            if (!isUndefined(options.tableClass))
-                                element.find('table').addClass('class',options.tableClass)
-                            
-                            // compruebo si se paso o no un identificador
-                            if (!isUndefined(options.tableId))
-                                element.find('table').attr('id',options.tableId)
-                            
-                            // compruebo si se suministro un template para el head, sino lo genero
-                            if (isUndefined(options.head)) {
-                                element.find('thead').html('<tr></tr>')
-                                for (var attr in data.items[0]) 
-                                    element.find('thead tr').append('<th>'+attr+'</th>')
-                            } else
-                                element.find('thead').html(can.view(options.head))
-                            
-                            // compruebo si se suministro un template para los rows, sino los genero
-                            self.addRows(data)
-                            options.cached = [options.offset,options.offset+data.items.length-1]
-                            
-                            // compruebo si debo agregar un paginador
-                            if (!isUndefined(options.paginate))
-                                options.paginador = new Paginador(element,{
-                                    toPaginate: element.find('tbody tr:not(".filtered")'),
-                                    perPage: options.paginate.perPage,
-                                    maxIndex: options.paginate.maxIndex,
-                                    count: data.count,
-                                    pageChangeEvent: 'checkPage'
-                                })
+                            self.createTable(element,options,data);
                         },
                         function(){
                             console.log('Error en el findAll')
+                        })
+                    
+                },
+                
+                createTable: function(element, options, data) {
+                    element.html(can.view('//sigma/tabla/view/plainTable'))
+                    // compruebo si se paso o no una estilo
+                    if (!isUndefined(options.tableStyle))
+                        element.find('table').addClass(options.tableStyle)
+
+                    // compruebo si se paso o no una clase
+                    if (!isUndefined(options.tableClass))
+                        element.find('table').addClass('class',options.tableClass)
+
+                    // compruebo si se paso o no un identificador
+                    if (!isUndefined(options.tableId))
+                        element.find('table').attr('id',options.tableId)
+
+                    // compruebo si se suministro un template para el head, sino lo genero
+                    if (isUndefined(options.head)) {
+                        element.find('thead').html('<tr></tr>')
+                        for (var attr in data.items[0]) 
+                            element.find('thead tr').append('<th>'+attr+'</th>')
+                    } else
+                        element.find('thead').html(can.view(options.head))
+
+                    // compruebo si se suministro un template para los rows, sino los genero
+                    this.addRows(data)
+                    options.cached = [options.offset,options.offset+data.items.length-1]
+
+                    // compruebo si debo agregar un paginador
+                    if (!isUndefined(options.paginate))
+                        options.paginador = new Paginador(element,{
+                            toPaginate: element.find('tbody tr:not(".filtered")'),
+                            perPage: options.paginate.perPage,
+                            maxIndex: options.paginate.maxIndex,
+                            count: data.count,
+                            pageChangeEvent: 'checkPage'
                         })
                 },                
                 
