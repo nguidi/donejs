@@ -22,7 +22,8 @@ steal(
     'parking_web/recuperacion_clave/handler/recuperacion_clave.js',
     'parking_web/recuperacion_credito/handler/recuperacion_credito.js',
     'parking_web/carga_estacionamiento/handler/carga_estacionamiento.js',
-    'parking_web/inspectores/handler/inspectores.js')
+    'parking_web/inspectores/handler/inspectores.js',
+    'parking_web/consultas/handler/consultas.js')
 .then(
     function(){
         
