@@ -27,7 +27,7 @@ steal(
                  var user = User.findAll({username: el.find('input#username').val(), password: el.find('input#password').val()}); // Consulto al modelo, para validar los parametros de usuario
                  user.then(function(obj)
                  {
-                     if(obj.length > 0)
+                     if(obj.items.length > 0)
                      {
                          console.log("ok!!!!")
                          /*$(document).sigma_session({
@@ -38,7 +38,7 @@ steal(
                              element: "#mainframe"
                          });*/
                          self.loginOn();
-                         self.principal_web = new PrincipalWeb("#mainPage",{user: obj[0]})
+                         self.principal_web = new PrincipalWeb("#mainPage",{user: obj.items[0]})
                      }
                      else
                         self.loginError()

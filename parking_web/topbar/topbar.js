@@ -23,7 +23,8 @@ steal(
     'parking_web/recuperacion_credito/handler/recuperacion_credito.js',
     'parking_web/carga_estacionamiento/handler/carga_estacionamiento.js',
     'parking_web/inspectores/handler/inspectores.js',
-    'parking_web/consultas/handler/consultas.js')
+    'parking_web/consultas/handler/consultas.js',
+    'parking_web/usuarios/handler/usuarios.js')
 .then(
     function(){
         
@@ -54,10 +55,15 @@ steal(
                     case '#menu-recuperacion-credito': new RecuperacionCredito("#content",{ user: this.options.user}); break;
                     case '#menu-carga-estacionamiento': new Carga_estacionamiento("#content",{ user: this.options.user}); break;
                     case '#menu-consultas': new Consultas("#content",{ user: this.options.user}); break;
+                    case '#menu-usuarios': new Usuarios("#content",{ user: this.options.user}); break;
                 }
             },
             'a.brand click': function(element, options){
                 new Home("#content", {user: this.options.user});
+            },
+            'a.salir click': function(element, options){
+                new Login("#mainframe", {user: this.options.user});
+                console.log("salir")
             }
         })
     }
