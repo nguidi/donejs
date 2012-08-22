@@ -538,7 +538,15 @@ steal('can/util/fixture','./usuarios.js')
     
     can.fixture('GET /rpt_infracciones', 
         function(params) {
-            return rpt_infracciones
+            console.log(params.data)
+            //return {items: rpt_infracciones}
+            if(params.data.celular == "" && params.data.palabra_secreta == ""){
+                return {items: []}
+            }
+            else{
+                return {items: []}
+                //return {items: rpt_infracciones}
+            }
             
         }
     )
@@ -619,11 +627,7 @@ steal('can/util/fixture','./usuarios.js')
          {id: 13, evento: 'menu-recuperacion-clave', img: 'key.png', nombre: 'Recuperación de clave', control: 'parking_web_ayuda', dropdown: []},
          {id: 14, evento: 'menu-recuperacion-credito', img: 'cuenta-corriente.png', nombre: 'Recuperación de crédito', control: 'parking_web_notificaciones', dropdown: []},
          {id: 15, evento: 'menu-carga-estacionamiento', img: 'estacionar.png', nombre: 'Carga estacionamiento', control: 'parking_web_municipios', dropdown: []}, //agregar menues
-         {id: 16, evento: 'menu-consultas', img: 'find.png', nombre: 'Consultas', control: 'parking_web_consultas', 
-             dropdown: 
-                 [{evento: 'submenu_cuenta_corriente', nombre: 'Cuenta corriente'},
-                 {evento: 'submenu_infracciones', nombre: 'Infracciones'}]
-         }// submenu de consultas para hdsuper
+         {id: 16, evento: 'menu-consultas', img: 'find.png', nombre: 'Consultas', control: 'parking_web_consultas', dropdown: []}
      ];
      
      var menu_perfils = 
