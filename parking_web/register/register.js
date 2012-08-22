@@ -24,9 +24,6 @@ steal(
             'init': function( element , options ) {
                 this.element.html(can.view(url+'register/register_page.ejs',{message: options.error}));
             },
-            /*'a[data-rel="back"] click': function() {
-                $.mobile.changePage($('#mainPage'))
-            },*/
             'div.btn click': function(element) {
                 var self = this;
                 switch(element.attr('id')){
