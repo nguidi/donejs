@@ -1,17 +1,20 @@
-<br/>
-<div id="form">
-    <form class="span11 form-horizontal" id="alta_inspectores">
+<br />
+<div class="form">
+    <form id="consultas_infracciones">
 
-        <div class="control-group apellido">
-            <span class="control-label" for="input01">Nombre de la zona*:</span>
-            <div class="controls">
-                <input type="text" name="zona"/>
-            </div>
-        </div>
+        <span>Celular:</span>
+        <input type="text" name="celular" class="filtrosCortos"/>
 
-        <div class="form-actions">
-            <div class="btn btn-primary">Guardar</div>
-            <div class="btn right">Cancelar</div>
-        </div>
+        <span>Palabra secreta:</span>
+        <input type="text" name="palabra_secreta" class="filtrosCortos"/>
+
+        <div class="btn btn-primary" id="consultar_infracciones">Consultar</div>
+        <div class="btn right">Cancelar</div>
     </form>
+</div>
+<div id="table_resultados_inf">
+</div>
+<div class="alert fade in alert-error invisible" id="error">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>No hay registros para mostrar: </strong> <span id="error_msg"></span>.
 </div>

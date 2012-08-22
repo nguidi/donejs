@@ -3,7 +3,6 @@ steal(
     'can/view/ejs',
     'parking_web/consultas/handler/consultas.css',
     'parking_web/config.js',
-    'bootstrap/js/bootstrap-tab.js',
     'parking/fixtures/fixtures.js',
     'parking_web/consultas/infracciones/infracciones.js',
     'parking_web/consultas/cuenta_corriente/cuenta_corriente.js',

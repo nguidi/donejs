@@ -1,4 +1,4 @@
-div.zonas{
+div.consultas{
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -21,28 +21,18 @@ ul.nav{
     font-size: 14px;
 }
 
-table.inspectores{
-    width: 50%;
+div.form {
     font-size: 16px;
-}
-
-div#datosPersonales {
-    width: 70%;
-}
-
-div#form {
-    font-size: 16px;
-}
-
-select.filtrosCortos {
-    width: 100px;
-}
-
-div.alta_zona {
     text-align: center;
     width: 80%;
 }
 
-.alta_zona .form-horizontal .control-label {
-    width: 200px;
+div.consultas select, div.consultas input  {
+    margin: 10px;
+}
+
+table.resultados_inf{
+    width: 400px;
+}
+#table_resultados_inf{
 }
