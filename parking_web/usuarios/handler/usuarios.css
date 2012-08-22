@@ -1,0 +1,40 @@
+div.usuarios{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.h1{
+    width: 90%;
+    font-size: 22px;
+    margin-bottom: 40px;
+    text-align: left;
+    border-bottom: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #0088CC;
+}
+
+div.h2{
+    font-size: 18px;
+}
+ul.nav{
+    font-size: 14px;
+}
+
+table.usuarios{
+    width: 50%;
+    font-size: 16px;
+}
+
+div#form {
+    font-size: 16px;
+}
+
+div.alta_usuarios {
+    text-align: center;
+    width: 80%;
+}
+
+.alta_usuarios .form-horizontal .control-label {
+    width: 200px;
+}
