@@ -14,7 +14,7 @@ steal('can/model')
         update  : 'PUT /users/{id}',
         destroy : 'DELETE /users/{id}',
         models  : function(data){
-            return data.items;
+            return data;
         } 
     }, {})
     
