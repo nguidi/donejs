@@ -17,7 +17,7 @@ steal(
          },
          {
              'init' : function(element, options){ // inicializacion
-                 this.element.html(can.view(url + options.view,{message: this.options.error, img_url: "http://localhost/donejs/parking_web/images"})); // La idea es mostrar el elemento login.ejs
+                 this.element.html(can.view(url + this.options.view,{message: this.options.error, img_url: "http://localhost/donejs/parking_web/images"})); // La idea es mostrar el elemento login.ejs
                  document.getElementById("username").focus();
              },
              'submit' : function(el, evento){
@@ -38,7 +38,7 @@ steal(
                              element: "#mainframe"
                          });*/
                          self.loginOn();
-                         self.principal_web = new PrincipalWeb("#mainPage",{user: obj.items[0]})
+                         self.principal_web = new PrincipalWeb("#mainPage",{user: obj.items[0]});
                      }
                      else
                         self.loginError()
@@ -52,20 +52,19 @@ steal(
                  this.element.find('[type=submit]').val('Acceder');
                  $('.error_tag').text('Nombre de usuario o contraseña incorrecto');
              },
-             "loginSessionOff": function() //bindea la sesión vencida
-             {
-                 this.principal_web.destroy();
-                 this.element.html(this.view('init.ejs',{message: 'Sesión vencida, debe volver a ingresar'}));
-                 document.getElementById("username").focus();
-                 $('h1').text(this.options.title);
-             },
-             "a click": function(element) //bindea la sesión vencida
+             "a click": function(element) 
              {
                  switch(element.attr('href'))
                  {
                      case '#newuser': this.register = new Register('#mainPage'); break;
                  }
                  
+             },
+             'a.salir click': function(element, options)//bindea la sesión vencida
+             {
+                 this.on();
+                 this.principal_web.destroy();
+                 this.init()
              }
          }
      );

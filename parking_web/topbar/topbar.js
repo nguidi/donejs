@@ -37,7 +37,7 @@ steal(
                 var self = this
                 $.when(Menu.findAll({perfil: this.options.user.perfil}))
                 .then(function(menu) {
-                    self.element.html(can.view(url+'topbar/topbar.ejs', {base_url: url+'images/',username: self.options.user.username,data: menu}));
+                    element.html(can.view(url+'topbar/topbar.ejs', {base_url: url+'images/',username: options.user.username,data: menu}));
                     $('.dropdown-toggle').dropdown();
                 })
             },
@@ -60,10 +60,6 @@ steal(
             },
             'a.brand click': function(element, options){
                 new Home("#content", {user: this.options.user});
-            },
-            'a.salir click': function(element, options){
-                new Login("#mainframe", {user: this.options.user});
-                console.log("salir")
             }
         })
     }

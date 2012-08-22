@@ -29,13 +29,13 @@ steal(
                     console.log("error")
                 }
                 
-            },
+            }/*,
             "a.salir click": function(el){
                 this.topbar.destroy();
                 this.home.destroy();
                 can.Control.prototype.destroy.call( this );
                 new LoginWeb( '#mainPage', {} );
-            }
+            }*/
         })
     }
 );
