@@ -11,11 +11,14 @@ $.Model('Perfil',
 /* @Static */
 {
         
-	findAll: "/perfils.json",
-  	findOne : "/perfils/{id}.json",
-  	create : "/perfils.json",
- 	update : "/perfils/{id}.json",
-  	destroy : "/perfils/{id}.json"
+	findAll: "GET /perfils",
+  	findOne : "GET /perfils/{id}",
+  	create : "POST /perfils",
+ 	update : "PUT /perfils/{id}",
+  	destroy : "DELETE /perfils/{id}",
+        models  : function(data){
+            return data;
+        } 
         
 },
 /* @Prototype */

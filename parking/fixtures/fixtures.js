@@ -396,43 +396,55 @@ steal('can/util/fixture','./usuarios.js')
         }
     )
     
-    
-
-    can.fixture('GET /perfiles', 
-        function(params) {
-            return [{
+    var perfiles = [{
                         id: 1,
-                        descrip: 'Administrador'
+                        descripcion: 'Administrador'
                     },
                     {
                         id:2, 
-                        descrip:'Control'
+                        descripcion:'Control'
                     },
                     {
                         id:3, 
-                        descrip:'Municipalidades'
+                        descripcion:'Municipalidades'
                     },
                     {
                         id:4, 
-                        descrip:'Inspectores'
+                        descripcion:'Inspectores'
                     },
                     {
                         id:5, 
-                        descrip:'Locales'
+                        descripcion:'Locales'
                     },
                     {
                         id:8, 
-                        descrip:'Usuarios'
+                        descripcion:'Usuarios'
                     },
                     {
                         id:6, 
-                        descrip:'Soporte Tecnico'
+                        descripcion:'Soporte Tecnico'
                     },
                     {
                         id:7, 
-                        descrip:'Soporte Tecnico Master'
+                        descripcion:'Soporte Tecnico Master'
                     }
                 ]
+    
+
+    can.fixture('GET /perfils', 
+        function(params) {
+            if(params.data != undefined)
+            {
+                var notid = 0;
+                if(params.data.perfil == 1) notid = 8;
+                return {items: $.grep(perfiles,function(obj){
+                    return obj.id != notid
+                })};
+            }
+            else
+            {
+                return {items: perfiles}
+            }
         }
     )
     
@@ -715,10 +727,10 @@ steal('can/util/fixture','./usuarios.js')
                 //{id: 4, ciudad: 'Baradero', codigo_postal: '2942', image: 'baradero.jpg'},
                 //{id: 5, ciudad: 'San Pedro', codigo_postal: '2930', image: 'sanpedro.jpg'},
                // {id: 6, ciudad: 'Capital Federal', codigo_postal: '1000', image: 'capital.jpg'},
-                {id: 7, ciudad: 'Avellaneda', codigo_postal: '2942', image: 'avellaneda.jpg'},
+                {id: 7, ciudad: 'Avellaneda', codigo_postal: '2942', image: 'avellaneda.jpg'}/*,
                 {id: 8, ciudad: 'San Martin', codigo_postal: '2930', image: 'sanmartin.jpg'},
                 {id: 9, ciudad: 'Tucumán', codigo_postal: '2814', image: 'tucuman.jpg'},
-                {id: 10, ciudad: 'Pilar', codigo_postal: '1000', image: 'pilar.jpg'}
+                {id: 10, ciudad: 'Pilar', codigo_postal: '1000', image: 'pilar.jpg'}*/
                 ];
        var zonas=new Array()
         for (var i=1; i<5;i++){

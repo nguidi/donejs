@@ -2,10 +2,45 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+function random(from, to){
+    return Math.floor(Math.random() * (to - from + 1) + from);
+}
 
 steal('can/util/fixture')
 .then(function(){
-    
+        var perfiles = [{
+                        id: 1,
+                        descripcion: 'Administrador'
+                    },
+                    {
+                        id:2, 
+                        descripcion:'Control'
+                    },
+                    {
+                        id:3, 
+                        descripcion:'Municipalidades'
+                    },
+                    {
+                        id:4, 
+                        descripcion:'Inspectores'
+                    },
+                    {
+                        id:5, 
+                        descripcion:'Locales'
+                    },
+                    {
+                        id:8, 
+                        descripcion:'Usuarios'
+                    },
+                    {
+                        id:6, 
+                        descripcion:'Soporte Tecnico'
+                    },
+                    {
+                        id:7, 
+                        descripcion:'Soporte Tecnico Master'
+                    }
+                ]
         var municipio = //Localidades
                 [
                 //{id: 1, ciudad: 'Campana', codigo_postal: '2804', image: 'camp.jpg'},
@@ -14,7 +49,7 @@ steal('can/util/fixture')
                 //{id: 4, ciudad: 'Baradero', codigo_postal: '2942', image: 'baradero.jpg'},
                 //{id: 5, ciudad: 'San Pedro', codigo_postal: '2930', image: 'sanpedro.jpg'},
                // {id: 6, ciudad: 'Capital Federal', codigo_postal: '1000', image: 'capital.jpg'},
-                {id: 7, ciudad: 'Avellaneda', codigo_postal: '2942', image: 'avellaneda.jpg'},
+                {id: 1, ciudad: 'Avellaneda', codigo_postal: '2942', image: 'avellaneda.jpg'},
                 {id: 8, ciudad: 'San Martin', codigo_postal: '2930', image: 'sanmartin.jpg'},
                 {id: 9, ciudad: 'Tucumán', codigo_postal: '2814', image: 'tucuman.jpg'},
                 {id: 10, ciudad: 'Pilar', codigo_postal: '1000', image: 'pilar.jpg'}
@@ -23,13 +58,13 @@ steal('can/util/fixture')
          var users_sql =[[220, '22333444', '333', 1, 'cabildo', 8, 'neri@gmail.com', 'Neri', 'Guidi'],
                         [225, '11959489', '2109', 3, 'maria', 8, 'rios@gmail.com', 'Matias', 'Rios'],
                         [230, 'admin', 'toto', 1, 'apodo', 1, 'soto@gmail.com', 'Franco', 'Soto'],
-                        [229, 's22333444', '000', 7, 'super', 4, 'martinez@gmail.com', 'Gisela', 'Martinez'],
+                        [229, 's22333444', '000', 1, 'super', 4, 'martinez@gmail.com', 'Gisela', 'Martinez'],
                         [231, 'sanmartin', 'sanmartin', 8, 'martin', 3, 'msanmartin@gmail.com', 'Julian', 'Farina'],
                         [232, 'avellaneda', 'avellaneda', 7, 'avellaneda', 3, 'avellaneda@gmail.com', 'German', 'Cabral'],
                         [233, 'pilar', 'pilar', 10, 'pilar', 3, 'pilar@gmail.com', 'Carina', 'Luque'],
                         [234, 'tucuman', 'tucuman', 9, 'tucuman', 3, 'tucuman@gmail.com', 'Juan', 'Prongue'],
-                        [237, 'hd001', 'hd001',4, 'hd1', 1, 'asdasd@gmail.com', 'Federico', 'Calle'],
-                        [238, 'hdsuper', 'hdsuper', 7, 'super', 7, 'super@gmail.com', 'Mariano', 'Campello']]
+                        [237, 'hd001', 'hd001',1, 'hd1', 1, 'asdasd@gmail.com', 'Federico', 'Calle'],
+                        [238, 'hdsuper', 'hdsuper', 1, 'super', 7, 'super@gmail.com', 'Mariano', 'Campello']]
         
         var users = new Array()
         
@@ -39,7 +74,7 @@ steal('can/util/fixture')
                 username: users_sql[i][1],
                 password: users_sql[i][2],
                 municipio: municipio[users_sql[i][3]],
-                perfil: users_sql[i][5],
+                perfil: $.grep(perfiles,function(item){return item.id == users_sql[i][5]})[0],
                 recuperacion: users_sql[i][4],
                 email: users_sql[i][6],
                 nombre: users_sql[i][7],
@@ -80,17 +115,36 @@ steal('can/util/fixture')
 	);
             
         can.fixture('POST /users',function(params){
-            users.push({
+            var user = {};
+            console.log(params.data.username)
+            if(params.data.perfil == 1){
+                var p = "";
+                for(x=0;x<5;x++){
+                    p += random(1,9)
+                }
+                user = {
+                    username: params.data.username,
+                    password: p,
+                    recuperacion: ''
+                }
+            }
+            else if(params.data.perfil == 8){
+                user = {
+                    username: params.data.username,
+                    password: params.data.password,
+                    recuperacion: params.data.palabraClave
+                }
+            }
+            users.push($.extend(user,{
                 id : users.length + 1,
-                username: params.data.username,
-                password: params.data.password,
                 municipio: 1,
-                perfil: 8,
-                recuperacion: params.data.palabraClave,
+                perfil: params.data.perfil,
                 email: '',
                 nombre: '',
                 apellido: ''
-            })
+            }))
+            console.log(users)
+                
         });
         
         
