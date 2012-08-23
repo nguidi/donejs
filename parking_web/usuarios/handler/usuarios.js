@@ -5,8 +5,8 @@ steal(
     'parking_web/config.js',
     'parking/fixtures/fixtures.js',
     'parking_web/usuarios/alta/alta.js',
-    'parking/models/usuario.js',
-    'sigma/tabla/tabla.js')
+    'parking_web/usuarios/tabla/tabla.js',
+    'parking/models/usuario.js')
 .then(
     function(){
         
@@ -17,13 +17,8 @@ steal(
         },{
             'init': function( element , options ) {
                 this.element.html(can.view(url+'usuarios/handler/main.ejs'));
-                this.tabla = new Tabla("#tabla_usuarios",{
-                    head: url + 'usuarios/tabla/head.ejs',
-                    model: User,
-                    row: url + 'usuarios/tabla/recipe.ejs',
-                    tableStyle: 'table usuarios'
-                });
-                this.alta = new AltaUsuarios('#alta_usuarios')
+                this.tabla = new TablaUsuarios('#tabla_usuarios',{user: options.user});
+                this.alta = new AltaUsuarios('#alta_usuarios',{user: options.user});
             },
             "ul.nav li click": function(el) {
                 if (!el.hasClass('active')) {

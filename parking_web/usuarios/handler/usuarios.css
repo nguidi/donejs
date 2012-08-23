@@ -38,3 +38,11 @@ div.alta_usuarios {
 .alta_usuarios .form-horizontal .control-label {
     width: 200px;
 }
+
+form#usuarios_tabla_filter {
+    padding-top: 40px;
+}
+
+form#usuarios_tabla_filter .margin-radial{
+    margin: 10px;
+}
