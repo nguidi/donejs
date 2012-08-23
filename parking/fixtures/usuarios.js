@@ -67,14 +67,13 @@ steal('can/util/fixture')
                         [238, 'hdsuper', 'hdsuper', 1, 'super', 7, 'super@gmail.com', 'Mariano', 'Campello']]
         
         var users = new Array()
-        
         for (var i=0; i < users_sql.length; i++) {
             users.push({
                 id : users_sql[i][0],
                 username: users_sql[i][1],
                 password: users_sql[i][2],
                 municipio: municipio[users_sql[i][3]],
-                perfil: $.grep(perfiles,function(item){return item.id == users_sql[i][5]})[0],
+                perfil: users_sql[i][5],
                 recuperacion: users_sql[i][4],
                 email: users_sql[i][6],
                 nombre: users_sql[i][7],
@@ -88,6 +87,7 @@ steal('can/util/fixture')
                 if (params.data) {
                     if(params.data.password != undefined && params.data.username != undefined)
                     {
+                        console.log(params.data)
                         return { items: $.grep(users,function(elem,index) {
                                 for (var attr in params.data) {
                                     if (elem[attr] == params.data[attr])
@@ -101,10 +101,16 @@ steal('can/util/fixture')
                         })}
                     }
                     else{
-                        return {items: users} // sin filtros de usuarios (dame todos los usuarios)
+                        return {items: users}
+                        /*return {items: $.map(users,function(item){
+                                return $.extend(item,{perfil: $.grep(perfiles,function(itema){return itema.id == item.perfil})[0]})
+                            })} // sin filtros de usuarios (dame todos los usuarios)*/
                     }
                 } else 
                     return {items: users}
+                    /*return {items: $.map(users,function(item){
+                                return $.extend(item,{perfil: $.grep(perfiles,function(itema){return itema.id == item.perfil})[0]})
+                            })} // sin filtros de usuarios (dame todos los usuarios)*/
             }
 	);
             
