@@ -24,12 +24,11 @@ steal(
                  var self = this;
                  evento.preventDefault(); // Seteo informacion por defecto
                  this.element.find('[type=submit]').val('Verificando'); //modifica valor del boton submit
-                 var user = User.findAll({username: el.find('input#username').val(), password: el.find('input#password').val()}); // Consulto al modelo, para validar los parametros de usuario
+                 var user = User.autenticar({"username": el.find('input#username').val(), "password": el.find('input#password').val()}); // Consulto al modelo, para validar los parametros de usuario
                  user.then(function(obj)
                  {
-                     if(obj.items.length > 0)
+                     if(obj.length > 0)
                      {
-                         console.log("ok!!!!")
                          /*$(document).sigma_session({
                              inactivity: 400000, //Tiempo de inactividad permitido
                              noconfirm: 10000, // Tiempo de popup abierto en caso de no confirmacion
@@ -37,9 +36,9 @@ steal(
                              user: obj.data, // solo hace falta pasarlo en caso de pooling o de timeout
                              element: "#mainframe"
                          });*/
-                         console.log(obj.items[0])
+                         console.log(obj[0]);
                          self.loginOn();
-                         self.principal_web = new PrincipalWeb("#mainPage",{user: obj.items[0]});
+                         self.principal_web = new PrincipalWeb("#mainPage",{user: obj[0]});
                      }
                      else
                         self.loginError()
