@@ -79,7 +79,7 @@ steal('can/util/fixture','./usuarios.js')
 .then(function(){
      //#############  HABILITAR O DESHABILITAR FIXTURES!  ############
     //
-    //$.fixture.on = false
+    can.fixture.on = false
     //
     //
     //
@@ -632,11 +632,11 @@ steal('can/util/fixture','./usuarios.js')
          {id: 6, evento: 'menu-notificaciones', img: 'notificiones.png', nombre: 'Notificaciones', control: 'parking_web_notificaciones', dropdown: []},
          {id: 7, evento: 'menu-municipios', img: 'municipios.png', nombre: 'Municipios', control: 'parking_web_municipios', dropdown: []},
          {id: 8, evento: 'menu-configuracion', img: 'configuracion.png', nombre: 'Configuracion', control: 'parking_web_configuracion', dropdown: []},
-         {id: 9, evento: 'menu-estacionar', img: 'estacionar.png', nombre: 'Estacionar', control: 'parking_web_ayuda', dropdown: []},
+         {id: 9, evento: 'menu-estacionar', img: 'estacionar.png', nombre: 'Estacionar', control: 'parking_web_estacionar', dropdown: []},
          {id: 10, evento: 'menu-historial', img: 'historial.png', nombre: 'Historial', control: 'parking_web_historial', dropdown: []},
          {id: 11, evento: 'menu-cuenta-corriente', img: 'cuenta-corriente.png', nombre: 'Cuenta corriente', control: 'parking_web_cuenta_corriente', dropdown: []}, 
          {id: 12, evento: 'menu-recargas', img: 'recargas.png', nombre: 'Recarga', control: 'parking_web_recargas', dropdown: []},
-         {id: 13, evento: 'menu-recuperacion-clave', img: 'key.png', nombre: 'Recuperación de clave', control: 'parking_web_ayuda', dropdown: []},
+         {id: 13, evento: 'menu-recuperacion-clave', img: 'key.png', nombre: 'Recuperación de clave', control: 'parking_web_recuperacion_clave', dropdown: []},
          {id: 14, evento: 'menu-recuperacion-credito', img: 'cuenta-corriente.png', nombre: 'Recuperación de crédito', control: 'parking_web_notificaciones', dropdown: []},
          {id: 15, evento: 'menu-carga-estacionamiento', img: 'estacionar.png', nombre: 'Carga estacionamiento', control: 'parking_web_municipios', dropdown: []}, 
          {id: 16, evento: 'menu-consultas', img: 'find.png', nombre: 'Consultas', control: 'parking_web_consultas', dropdown: []}, 

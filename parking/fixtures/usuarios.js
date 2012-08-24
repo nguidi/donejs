@@ -8,6 +8,7 @@ function random(from, to){
 
 steal('can/util/fixture')
 .then(function(){
+    can.fixture.on = false
         var perfiles = [{
                         id: 1,
                         descripcion: 'Administrador'
