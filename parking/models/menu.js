@@ -10,11 +10,6 @@ steal('can/model')
 can.Model('Menu',
 /* @Static */
 {
-	//findAll: "/menus",
-  	findOne : "/menus/{id}",
-  	create : "/menus",
- 	update : "/menus/{id}",
-  	destroy : "/menus/{id}",
         findAll: function (params, success, error) {
             return $.ajax({
                 url: 'http://localhost/slim_php/backend_parking/menu.php/menus',
