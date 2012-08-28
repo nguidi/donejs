@@ -36,7 +36,6 @@ steal(
                              user: obj.data, // solo hace falta pasarlo en caso de pooling o de timeout
                              element: "#mainframe"
                          });*/
-                         console.log(obj[0]);
                          self.loginOn();
                          self.principal_web = new PrincipalWeb("#mainPage",{user: obj[0]});
                      }

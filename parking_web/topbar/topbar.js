@@ -30,16 +30,23 @@ steal(
         
         can.Control("TopBar",{
             defaults: {
-                user: undefined
+                user: undefined,
+                model: undefined
             }
         },{
             'init': function( element , options ) {
                 var self = this
-                $.when(Menu.findAll({perfil: this.options.user.perfil}))
-                .then(function(menu) {
-                    element.html(can.view(url+'topbar/topbar.ejs', {base_url: url+'images/',username: options.user.username,data: menu}));
-                    $('.dropdown-toggle').dropdown();
-                })
+                //if(options.model != undefined){
+                    //$.when(options.model.findAll({perfil: this.options.user.perfil}))
+                    console.log(options.model)
+                    $.when(options.model)
+                    .then(function(menu) {
+                        console.log(menu);
+                        element.html(can.view(url+'topbar/topbar.ejs', {base_url: url+'images/',username: options.user.username,data: menu}));
+                        $('.dropdown-toggle').dropdown();
+                    })
+                //}
+                
             },
             'ul.nav li click': function(element, options){
                 var click = element.find('a').attr('href');

@@ -7,6 +7,7 @@
 steal(
     'can/control/control.js',
     'can/view/ejs',
+    'parking/models/menu.js',
     'parking_web/topbar/topbar.js',
     'parking_web/home/home.js')
 .then(
@@ -21,7 +22,7 @@ steal(
                 if(options.user != undefined)
                 {
                     this.element.html(can.view(url+'principal/main.ejs'))
-                    this.topbar = new TopBar("#header",{user: options.user});
+                    this.topbar = new TopBar("#header",{user: options.user, model: Menu.findByPerfil(options.user.id_perfil)});
                     this.home = new Home("#content",{user: options.user})
                 }
                 else
