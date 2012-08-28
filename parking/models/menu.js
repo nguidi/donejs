@@ -26,6 +26,9 @@ can.Model('Menu',
                 error: error
             });
         },
+        findByPerfil: function (params, success, error) {
+            return $.get('http://localhost/slim_php/backend_parking/menu.php/menus/perfil/'+params);
+        },
         models  : function(data){
             return data.items;
         } 

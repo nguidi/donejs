@@ -8,7 +8,6 @@ steal('can/model')
     
 
     can.Model("User",{
-        /*findAll : 'GET /users',*/
         findOne : 'GET /users/{id}',
         create  : 'POST /users',
         update  : 'PUT /users/{id}',
