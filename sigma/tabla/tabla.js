@@ -60,14 +60,17 @@ steal(  'jquery/jquery.js',
                 
                 fromModel: function(element, options){
                     var index, self = this;
-                    options.model.findAll(
+                    options.model.findAll( //en caso de se haya pasado un modelo, hago un findAll para traer los datos...
                         {
                             limit: options.limit,
                             offset: options.offset,
                             filter: options.filter
                         },
                         function(data){
-                            self.createTable(element,options,data);
+                            if(data!=undefined){
+                               self.createTable(element,options,data); 
+                            }
+                            
                         },
                         function(){
                             console.log('Error en el findAll')
@@ -92,14 +95,14 @@ steal(  'jquery/jquery.js',
                     // compruebo si se suministro un template para el head, sino lo genero
                     if (isUndefined(options.head)) {
                         element.find('thead').html('<tr></tr>')
-                        for (var attr in data.items[0]) 
+                        for (var attr in data[0]) 
                             element.find('thead tr').append('<th>'+attr+'</th>')
                     } else
                         element.find('thead').html(can.view(options.head))
 
                     // compruebo si se suministro un template para los rows, sino los genero
                     this.addRows(data)
-                    options.cached = [options.offset,options.offset+data.items.length-1]
+                    options.cached = [options.offset,options.offset+data.length-1]
 
                     // compruebo si debo agregar un paginador
                     if (!isUndefined(options.paginate))
@@ -131,7 +134,7 @@ steal(  'jquery/jquery.js',
                             self.checkRowsDependencies(object)
                             if (newFilter)
                                 self.options.paginador.rePaginate({count: data.count})
-                            self.options.cached = [self.options.offset,self.options.offset+data.items.length-1]
+                            self.options.cached = [self.options.offset,self.options.offset+data.length-1]
                         },
                         function(){
                             console.log('Error en el findAll con nueva offset')
@@ -187,16 +190,18 @@ steal(  'jquery/jquery.js',
                     var self = this
                     self.element.find('tbody').empty()
                     if (isUndefined(self.options.row)) {
-                        $.each(data.items,function(index,rawData) {
+                        $.each(data,function(index,rawData) {
                             var i = index + self.options.offset
                             self.element.find('tbody').append('<tr index='+i+'></tr>')
+                            self.element.find('tbody tr:last').data(rawData);
                             for (var attr in rawData) 
                                 self.element.find('tbody tr[index="'+i+'"]').append('<td>'+rawData[attr]+'</td>')
                         })
                     } else
-                        $.each(data.items,function(index,element){
+                        $.each(data,function(index,element){
                             var i = index + self.options.offset
                             self.element.find('tbody').append(can.view(self.options.row,element))
+                            self.element.find('tbody tr:last').data(element);
                             self.element.find('tbody tr:last').attr('index',i)
                         })
                 },
