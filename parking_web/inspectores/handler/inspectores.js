@@ -5,7 +5,6 @@ steal(
     'parking/models/inspector.js',
     'parking_web/inspectores/handler/inspectores.css',
     'parking_web/config.js',
-    'bootstrap/js/bootstrap-tab.js',
     'sigma/tabla/tabla.js',
     'parking_web/inspectores/alta/alta.js')
 .then(
@@ -24,7 +23,7 @@ steal(
                     row: url + 'inspectores/tabla/recipe.ejs',
                     tableStyle: 'table inspectores'
                 });
-                this.alta = new AltaInspectores('#alta_inspectores')
+                this.alta = new AltaInspectores('#alta_inspectores', {user: options.user})
                 
             },
             "ul.nav li click": function(el) { //Handler del evento de cambio de tab...
@@ -39,6 +38,17 @@ steal(
                 this.element.find('div.tab-content div.active').removeClass('active');
                 this.element.find('div.tab-content div#'+toUntab).addClass('active');
                 this.element.find('div.tabbable ul.nav li a[href='+toUntab+']').parent('li').addClass('active');
+            },
+            "table.inspectores i.icon-trash click": function(element){
+                Inspector.destroy($(element).parents('tr').attr('class'), function(obj){
+                    console.log(obj);
+                    $(element).parents('tr').remove();
+                });
+            },
+            "{Inspector} created": function(Element, ev, element)
+            {
+                console.log(element);
+                $('table.inspectores').append(can.view(url+'inspectores/tabla/recipe.ejs',element));
             }
         })
     }
