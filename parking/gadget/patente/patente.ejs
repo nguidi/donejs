@@ -1,0 +1,40 @@
+<div id="patentePage" data-role="page">
+    <div data-role="header">
+        <div class="ui-btn-left">
+            <a rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Home">
+                <span class="ui-btn-inner ui-btn-corner-all">
+                    <span class="ui-btn-text">
+                        Home
+                    </span>
+                    <span class="ui-icon ui-icon-home ui-icon-shadow">
+                        &nbsp;
+                    </span>
+                </span>
+            </a>
+        </div>
+
+            <h1>CPI</h1>
+            <div class="ui-btn-right">
+                <a data-icon="gear" id="opciones">
+                    <span class="ui-btn-text">
+                        <%= this.apellido+', '+this.nombre %>
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div id="mainResults" data-role="content">
+
+            <div id="marcasSelect"> </div>   
+
+            <div data-role="controlgroup">      
+                <label for="patente">Patente:</label>
+                <input type="text" name="patente" id="patente"/>
+            </div>
+
+            <a data-role="button" data-inline="true" id="cancelar">Cancelar</a>
+            <a data-role="button" data-inline="true" id="aceptar" data-theme="b">Aceptar</a>
+
+
+        </div><!-- /content -->
+</div><!-- /page -->

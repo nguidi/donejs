@@ -1,0 +1,68 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    	<head> 
+	<title>CPI</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+        </head> 
+        <body> 
+            <div id="usuarioPage" data-role="page">
+                <div data-role="header">
+                    <a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Volver">
+                        <span class="ui-btn-inner ui-btn-corner-all">
+                            <span class="ui-btn-text">
+                                Volver
+                            </span>
+                            <span class="ui-icon ui-icon-back ui-icon-shadow">
+                                &nbsp;
+                            </span>
+                        </span>
+                    </a>
+                    <h1>Cell Parking International</h1>
+                    <div id="userOptionsMenu" class="ui-btn-right"></div>
+                </div><!-- /header -->
+
+                <div id="mainMenu" data-role="content">
+                    
+                </div><!-- /content -->
+
+                <div data-role="footer">
+                    <h4>Ver Version PC</h4>
+                </div>
+        </div><!-- /page -->
+
+        </body>
+</html>
+<script type='text/javascript' src='../../../steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'can/control/control.js',
+        'jquery/jquery.js')
+    .then(
+        'jquery-mobile/jquery.mobile.structure-1.1.1.css',
+        'jquery-mobile/jquery.mobile.theme-1.1.1.css',
+        'jquery-mobile/jquery.mobile-1.1.1.css',
+        'jquery-mobile/jquery.mobile-1.1.1.js')
+    .then('parking/usuario/main/usuario_main.js')
+    .then(
+        function($){ 
+
+            new User_main( 'body' , {
+                user: {
+                    saldo: -208.50,
+                    id :1,
+                    id_usuario:1,
+                    nombre:"German",
+                    apellido:"Cabral",
+                    username:2147483647,
+                    email:"gcabral@gmail.com"
+                },
+                login: true
+            })
+
+        }
+    );
+</script>

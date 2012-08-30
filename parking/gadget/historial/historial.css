@@ -1,0 +1,15 @@
+/* 
+    Document   : historial
+    Created on : 22-ago-2012, 17:34:29
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#histPage h2.center {
+    text-align: center;
+}

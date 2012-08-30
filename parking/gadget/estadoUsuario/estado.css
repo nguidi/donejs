@@ -1,0 +1,42 @@
+/* 
+    Document   : estado
+    Created on : 22-ago-2012, 11:09:50
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#estadoPage h2.center {
+    text-align: center;
+}
+
+#estadoPage a.ok span:first-child{
+    background: #090;
+    color: whiteSmoke;
+}
+
+#estadoPage a.infraccion span:first-child{
+    background: #900;
+    color: whiteSmoke;
+}
+
+#estadoPage dl {
+    margin-bottom:50px;
+}
+ 
+#estadoPage dl dt {
+    float:left; 
+    font-weight:bold; 
+    margin-right:10px; 
+    padding:5px;  
+    width:100px; 
+}
+ 
+#estadoPage dl dd {
+    margin:2px 0; 
+    padding:5px 0;
+}

@@ -1,0 +1,12 @@
+<li data-corners="false" data-shadow="false" data-theme="d" class="ui-btn ui-btn-icon-right ui-li ui-btn-up-d">
+    <div class="text">
+        <p class="hora">Importe: $<strong> <%= this.importe %> </strong></p>
+        <p> <%= this.detalle %> </p>
+        <% if (this.egreso && this.ingreso) { %>
+            <p>
+                Hora Ingreso: <strong> <%= this.ingreso %> </strong></br>
+                Hora Egreso: <strong> <%= this.egreso %> </strong></br>
+            </p>
+        <% } %>
+    </div>
+</li>

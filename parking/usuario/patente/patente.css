@@ -1,0 +1,15 @@
+/* 
+    Document   : patente
+    Created on : 15-ago-2012, 20:18:10
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#loginPatentePage label {
+    text-align: left;
+}

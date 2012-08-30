@@ -1,0 +1,43 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    	<head> 
+	<title>CPI</title> 
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+        </head> 
+        <body>
+        </body>
+</html>
+<script type='text/javascript' src='../../../steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'can/control/control.js',
+        'jquery/jquery.js')
+    .then(
+        'jquery-mobile/jquery.mobile.structure-1.1.1.css',
+        'jquery-mobile/jquery.mobile.theme-1.1.1.css',
+        'jquery-mobile/jquery.mobile-1.1.1.css',
+        'jquery-mobile/jquery.mobile-1.1.1.js')
+    .then(
+        'parking/usuario/recargar')
+    .then(
+        function($){  
+            
+                new User_recargar( 'body', {
+                    user: {
+                        saldo: -208.50,
+                        id :1,
+                        id_usuario:1,
+                        nombre:"German",
+                        apellido:"Cabral",
+                        username:2147483647,
+                        email:"gcabral@gmail.com",
+                        municipio: 1
+                    }
+                } );     
+        }
+    );
+</script>

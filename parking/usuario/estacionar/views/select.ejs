@@ -1,0 +1,7 @@
+<label for="<%= this.name %>" class="select"><%= this.label %>:</label>
+<select name="<%= this.name %>" id="<%= this.name %>" data-native-menu="false">
+    <option value="0"><%= this.title %></option>
+    <% for (var i=0; i < this.options.length; i++) { %>
+        <option value="<%= this.options[i].value %>"><%= this.options[i].text %></option>
+    <% } %>
+</select>

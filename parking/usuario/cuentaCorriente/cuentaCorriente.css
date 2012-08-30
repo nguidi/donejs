@@ -1,0 +1,34 @@
+/* 
+    Document   : cuentaCorriente
+    Created on : 30-jul-2012, 16:55:52
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#userCuentaCorrientePage #mainCuentaCorriente .center {
+    text-align: center;
+}
+
+#userCuentaCorrientePage #cuentaCorrienteList {
+    margin-top: 20px;
+}
+
+
+
+#userCuentaCorrientePage #cuentaCorrienteList ul li p.hora{
+    float: right;
+    margin-top: 0px;
+    margin-right: 1.3%;  
+}
+
+#userCuentaCorrientePage #cuentaCorrienteList ul li div.text {
+    margin-left: 1.3%;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#userCuentaCorrientePage #cuentaCorrienteList ul li div.text h3 {
+    width: 80%;
+    text-justify: auto;
+}

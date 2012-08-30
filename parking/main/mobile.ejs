@@ -1,0 +1,37 @@
+<div id="loginPage" align="center" data-role="page">
+    <div data-role="header">
+        <a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Volver">
+            <span class="ui-btn-inner ui-btn-corner-all">
+                <span class="ui-btn-text">
+                    Volver
+                </span>
+                <span class="ui-icon ui-icon-back ui-icon-shadow">
+                    &nbsp;
+                </span>
+            </span>
+        </a>
+        <h1>CPI</h1>
+    </div><!-- /header -->
+    <div id="loginMain" data-role="content">
+        <form id="loginMobile" method="post">
+            <br>
+            <span class="error_tag"><%=message %></span>
+
+                <label for="username"> Celular: </label>
+                <input name="username" type="text" id="username">
+
+                <label for="password"> Contraseña: </label>
+                <input name="password" type="password" id="password" class="invertedPassword">
+                <input name="password" type="text" id="visiblePassword" class="invertedPassword">
+
+                <div id="muncipioSelect"></div>
+
+                <input type="checkbox" name="checkbox-1" id="seePassword" class="custom" />
+                <label for="seePassword"> Mostrar Contraseña </label>
+
+                <input type='submit' data-icon="check" data-theme="b" value='Acceder'/>
+            <br/>
+                <input type="button" data-inline="true"  data-icon="info" value="¿Olvidaste la contraseña?" />
+        </form>
+    </div>
+</div>

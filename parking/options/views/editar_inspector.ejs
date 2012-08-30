@@ -1,0 +1,53 @@
+<div id="editarFormPage" data-role="page">
+    <div data-role="header">
+        <div class="ui-btn-left">
+            <a href="#usuarioMainPage" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Home">
+                <span class="ui-btn-inner ui-btn-corner-all">
+                    <span class="ui-btn-text">
+                        Home
+                    </span>
+                    <span class="ui-icon ui-icon-home ui-icon-shadow">
+                        &nbsp;
+                    </span>
+                </span>
+            </a>
+        </div>
+        <h1>CPI</h1>
+    </div><!-- /header -->
+
+    <div id="mainForm" data-role="content">
+        <h2 class="center"> Editar Usuario </h2>
+        <form id='register' method='post' accept-charset='UTF-8'>
+            <fieldset >
+
+                <h2 class="subtitle">Datos de Ingreso</h2>
+                <label for='username' >Usuario*:</label>
+                <input type='text' name='username' id='username'value="<%=  this.username %>"/>
+                <label for='password' >Password*:</label>
+                <input type='text' name='password' id='password'/>
+                <label for='password' >Nueva Password*:</label>
+                <input type='password' name='password' id='password'/>
+                <label for='confpassword' >Confirmar Password*:</label>
+                <input type='password' name='confpassword' id='confpassword'/>
+
+                <h2 class="subtitle">Datos Personales</h2>
+                <label for='name' >Nombres: </label>
+                <input type='text' name='name' id='name' value="<%=  this.inspector.nombre %>"/>
+                <label for='lastname' >Apellido:</label>
+                <input type='text' name='name' id='lastname' value="<%=  this.inspector.apellido %>"/>
+
+                <h2 class="subtitle">Datos de Locacion</h2>
+                <dl>			
+                    <dt>Nombre del Municipio: </dt>
+                    <dd><%= this.municipio.ciudad %></dd>
+
+                    <dt>Codigo Postal: </dt>
+                    <dd><%= this.municipio.codigo_postal %></dd>
+                </dl>
+              
+                <a data-role="button" data-inline="true" id="cancelar">Cancelar</a>
+                <a data-role="button" data-inline="true" id="guardar" data-theme="b">Guardar</a>
+            </fieldset>
+        </form>                    
+    </div><!-- /content -->
+</div>

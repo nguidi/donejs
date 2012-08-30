@@ -1,0 +1,45 @@
+/* 
+    Document   : options
+    Created on : 24-jul-2012, 20:37:52
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+div#userOptions ul {
+    margin-top: 25px;
+}
+
+#editarFormPage h2.center {
+    text-align: center;
+}
+
+#optionsMenuDialog {
+    position: absolute;
+    top: 6.5%;
+    right: 1%;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-clip: padding-box;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -webkit-background-clip: padding-box;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+#optionsMenuDialog li {
+    list-style: none;
+    line-height: 18px;
+    display: list-item;
+}
+
+#optionsMenuDialog li a {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #333;
+    white-space: nowrap;
+    margin-left: -30px;
+}

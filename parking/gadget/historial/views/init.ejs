@@ -1,0 +1,57 @@
+<div id="histPage" data-role="page">
+    <div data-role="header">
+        <div class="ui-btn-left">
+            <a rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Home">
+                <span class="ui-btn-inner ui-btn-corner-all">
+                    <span class="ui-btn-text">
+                        Home
+                    </span>
+                    <span class="ui-icon ui-icon-home ui-icon-shadow">
+                        &nbsp;
+                    </span>
+                </span>
+            </a>
+        </div>
+        <h1>CPI</h1>
+        <div class="ui-btn-right">
+            <a data-icon="gear" id="opciones">
+                <span class="ui-btn-text">
+                    <%= this.apellido+', '+this.nombre %>
+                </span>
+            </a>
+        </div>
+    </div><!-- /header -->
+
+    <div id="mainHist" data-role="content">
+
+        <h2 class="center">Consultar</h2>
+
+        <label for="patente">Patente:</label>
+        <input type="text" name="patente" id="patente"/>
+
+        <div data-role="fieldcontain">
+            <fieldset data-role="controlgroup" data-type="horizontal">
+                <legend>Fecha:</legend>
+
+                <label for="select-choice-year">Year</label>
+                <select name="select-choice-year" id="select-choice-year">
+                        <option>Año</option>
+                </select>
+
+                <label for="select-choice-month">Month</label>
+                <select name="select-choice-month" id="select-choice-month">
+                        <option>Mes</option>
+                </select>
+
+                <label for="select-choice-day">Day</label>
+                <select name="select-choice-day" id="select-choice-day">
+                        <option>Dia</option>
+                </select>
+            </fieldset>
+        </div>
+        <a rel="back" data-role="button" data-inline="true">Cancelar</a>
+        <a data-role="button" data-inline="true" id="consultar" data-theme="b">Consultar</a>
+    
+    </div><!-- /content -->
+
+</div><!-- /page -->

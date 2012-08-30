@@ -1,0 +1,55 @@
+<%= console.log(this)%>
+<div id="userControlPage" data-role="page">
+    <div data-role="header">
+        <div class="ui-btn-left" id="home">
+            <a rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Home">
+                <span class="ui-btn-inner ui-btn-corner-all">
+                    <span class="ui-btn-text">
+                        Home
+                    </span>
+                    <span class="ui-icon ui-icon-home ui-icon-shadow">
+                        &nbsp;
+                    </span>
+                </span>
+            </a>
+        </div>
+        <h1>CPI</h1>
+        <div class="ui-btn-right">
+            <a data-icon="gear" id="opciones">
+                <span class="ui-btn-text">
+                    <%= this.username %>
+                </span>
+            </a>
+        </div>
+    </div>
+    <div id="mainControl" data-role="content">
+        <h3 class="center">Tiempo Restante</h3>
+        <img src="images/parquimetro/<%= this.img %>.jpg" alt="Restan <%= this.control.tiempo_restante %> minutos" width="100%"/> 
+        <% if (this.control.tiempo_restante < 0) { %>
+            <p class="tiempoRestante red"> 
+        <% } else { %>
+            <p class="tiempoRestante">
+        <% } %>
+            <% if (this.control.tiempo_restante > 0) { %>
+                Restan <%= this.control.tiempo_restante %> minutos
+            <% } else { %>
+                El tiempo expiro hace <%= Math.abs(this.control.tiempo_restante) %> minutos
+            <% } %>
+        </p>
+        
+        <dl>			
+            <dt>Municipio: </dt>
+            <dd><%= this.control.municipio %></dd>
+
+            <dt>Tarifa: </dt>
+            <dd> $<%= this.control.precio %> - <%= this.control.tiempo %> minutos</dd>
+
+            <dt>Patente: </dt>
+            <dd><%= this.control.patente %></dd>
+        </dl>
+
+        <a data-role="button" data-inline="true" id="extender" data-theme="b" >Extender</a>
+        <a rel="back" data-inline="true" data-role="button" id="menu">Menu</a>
+
+    </div>
+</div>

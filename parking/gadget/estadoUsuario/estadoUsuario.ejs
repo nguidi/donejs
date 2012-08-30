@@ -1,0 +1,54 @@
+<div id="estadoPage" data-role="page">
+      <div data-role="header">
+        <div class="ui-btn-left">
+            <a rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Home">
+                <span class="ui-btn-inner ui-btn-corner-all">
+                    <span class="ui-btn-text">
+                        Home
+                    </span>
+                    <span class="ui-icon ui-icon-home ui-icon-shadow">
+                        &nbsp;
+                    </span>
+                </span>
+            </a>
+        </div>
+        <h1>CPI</h1>
+        <div class="ui-btn-right">
+            <a data-icon="gear" id="opciones">
+                <span class="ui-btn-text">
+                    <%= this.apellido+', '+this.nombre %>
+                </span>
+            </a>
+        </div>
+    </div>
+    <div id="mainEstado" data-role="content">
+
+        <h2 class="center">Estado de la patente</h2>
+
+        <a data-role="button" class="<%= this.buttonClass %>" data-icon="<%= this.icon %>"><%= this.label %></a>
+
+        <dl>
+        <% if (this.estado) { %>
+
+            <dt> Hora Inicio: </dt>
+            <dd><%= this.estado.ingreso %></dd>
+
+            <dt> Hora Fin: </dt>
+            <dd><%= this.estado.egreso %></dd>
+
+            <dt> Tiempo Restante: </dt>
+            <dd><%= this.estado.restante %></dd>
+
+        <% } %>
+            <dt>Marca: </dt>
+            <dd class="marca"> <%= this.marca %></dd>
+
+            <dt>Patente: </dt>
+            <dd><%= this.patente %></dd>
+        </dl>
+
+        <a id="reintentar" data-role="button" data-inline="true" data-icon="refresh">Reintentar</a>
+        <a id="confirmar" data-role="button" data-inline="true" data-icon="forward" data-theme="b">Confirmar</a>
+
+    </div>
+</div>

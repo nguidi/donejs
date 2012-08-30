@@ -1,0 +1,32 @@
+/* 
+    Document   : cuentaCorriente
+    Created on : 30-jul-2012, 16:55:52
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#userHistorialPage h3.center {
+    text-align: center;
+}
+
+#userHistorialPage .estacionamiento {
+    margin-top: 20px;
+}
+
+#userHistorialPage ul li p.hora{
+    float: right;
+    margin-top: 0px;
+    margin-right: 1.3%;  
+}
+
+#userHistorialPage ul li div.text {
+    margin-left: 1.3%;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#userHistorialPage ul li div.text h3 {
+    width: 80%;
+    text-justify: auto;
+}

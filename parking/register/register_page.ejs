@@ -1,0 +1,44 @@
+<div id="registerFormPage" data-role="page">
+    <div data-role="header">
+        <a data-rel="back" data-icon="home" data-iconpos="notext" data-direction="reverse" class="ui-btn-left ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-notext ui-btn-up-f" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="f" title="Volver">
+            <span class="ui-btn-inner ui-btn-corner-all">
+                <span class="ui-btn-text">
+                    Volver
+                </span>
+                <span class="ui-icon ui-icon-back ui-icon-shadow">
+                    &nbsp;
+                </span>
+            </span>
+        </a>
+        <h1>CPI</h1>
+    </div><!-- /header -->
+
+    <div id="mainForm" data-role="content">
+        <h2 style="text-align: center;"> Registrarse </h2>
+        <form id='register' accept-charset='UTF-8'>
+            <fieldset >
+                <h2 class="subtitle">Datos de Ingreso (Obligatorios)</h2>
+                <label for='username' >Celular*:</label>
+                <input type='text' name='username' id='username' class='required'/>
+                <label for='password' >Password*:</label>
+                <input type='password' name='password' id='password' class='required'/>
+                <label for='confpassword' >Confirmar Password*:</label>
+                <input type='password' name='confpassword' id='confpassword' class='required'/>
+                <label for='palabraclave' >Palabra Clave*:</label>
+                <input type='text' name='palabraclave' id='palabraclave' class='required'/>
+                <h2 class="subtitle">Datos Personales (No Obligatorios)</h2>
+                <label for='nombre' >Nombres: </label>
+                <input type='text' name='nombre' id='nombre'/>
+                <label for='apellido' >Apellido:</label>
+                <input type='text' name='apellido' id='apellido'/>
+                <h2 class="subtitle">Datos de Contacto</h2>
+                <label for='email' >E-Mail:</label>
+                <input type='text' name='email' id='email'/>
+
+                <a data-rel="back" data-role="button" data-inline="true" id="volver">Cancelar</a>
+                <a id="guardar" data-role="button" data-inline="true" data-icon="check" data-theme="b">Guardar</a>
+                
+            </fieldset>
+        </form>                    
+    </div><!-- /content -->
+</div>

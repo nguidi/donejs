@@ -1,0 +1,31 @@
+<div id="userControlPage" data-role="page">
+    <div data-role="header">
+        <h1>CPI</h1>
+        <div class="ui-btn-right">
+            <a data-icon="gear" id="opciones">
+                <span class="ui-btn-text">
+                    <%= this.username %>
+                </span>
+            </a>
+        </div>
+    </div>
+    <div id="mainControl" data-role="content">
+
+        <h3 class="center">Tiempo Restante</h3>
+        <div id="countdown"></div>
+        
+        <dl>			
+            <dt>Municipio: </dt>
+            <dd><%= this.municipio %></dd>
+
+            <dt>Tarifa: </dt>
+            <dd><%= this.tarifa %></dd>
+
+            <dt>Patente: </dt>
+            <dd><%= this.patente %></dd>
+        </dl>
+
+        <a data-role="button" id="logout" data-theme="b">Salir</a>
+
+    </div>
+</div>

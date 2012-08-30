@@ -1,0 +1,99 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Cell Parking International</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    </head> 
+    <body> 
+        <div id="userInspectorPage" data-role="page">
+
+        <div data-role="header">
+            <h1>CPI</h1>
+            <div class="ui-btn-right">
+                <a data-icon="gear" id="opciones">
+                    <span class="ui-btn-text">
+                        Monk, Adrian
+                    </span>
+                </a>
+            </div>
+        </div>
+
+        <div id="mainInspector" data-role="content">
+            <h2 style="text-align:center;">Historial</h1>
+            <div>
+                <li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-d">
+                    Viernes, 17 de Junio del 2012
+                </li>
+                <li data-corners="false" data-shadow="false" data-theme="d" class="ui-btn ui-btn-icon-right ui-li ui-btn-up-d">
+                    <div class="text">
+                        <p class="hora">Importe: $<strong> 4 </strong></p>
+                        <p> El Vehiculo con Patente GLX390 estaciono en el Municipio de Avellaneda, Zona 1 </p>
+                        <p>
+                            Hora Ingreso: <strong> 17:49 </strong></br>
+                            Hora Egreso: <strong> 18:49 </strong></br>
+                        </p>
+                    </div>
+                </li>
+                <li data-corners="false" data-shadow="false" data-theme="d" class="ui-btn ui-btn-icon-right ui-li ui-btn-up-d">
+                    <div class="text">
+                        <p class="hora">Importe: $<strong> 4 </strong></p>
+                        <p> El Vehiculo con Patente GLX390 estaciono en el Municipio de Avellaneda, Zona 1 </p>
+                        <p>
+                            Hora Ingreso: <strong> 14:23 </strong></br>
+                            Hora Egreso: <strong> 15:23 </strong></br>
+                        </p>
+                    </div>
+                </li>
+            </div>
+        </div><!-- /content -->
+</div><!-- /page -->
+    </body>
+</html>
+<style type="text/css">
+    dl {
+        margin-bottom:50px;
+    }
+
+    dl dt {
+        float:left; 
+        font-weight:bold; 
+        margin-right:10px; 
+        padding:5px;  
+        width:100px; 
+    }
+
+    dl dd {
+        margin:2px 0; 
+        padding:5px 0;
+    }
+    
+    a#asd span:not(.ui-icon) {
+        border-color: red;
+        background-color: #980000;
+        color: white;
+        text-align: center;
+    }
+    
+</style>
+<script type='text/javascript' src='../../steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'can/control/control.js',
+        'jquery/jquery.js')
+    .then(
+        'jquery-mobile/jquery.mobile.structure-1.1.1.css',
+        'jquery-mobile/jquery.mobile.theme-1.1.1.css',
+        'jquery-mobile/jquery.mobile-1.1.1.css',
+        'jquery-mobile/jquery.mobile-1.1.1.js')
+    .then('parking/options/options.js')
+    .then(
+        function($){ 
+                $('body').find('a#opciones').button();
+        }
+    );
+</script>
