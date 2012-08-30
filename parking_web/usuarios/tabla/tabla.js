@@ -23,11 +23,12 @@ steal(
                     row: url + 'usuarios/tabla/recipe.ejs',
                     tableStyle: 'table usuarios'
                 });
-                /*Perfil.findAll({perfil: this.options.user.perfil}).then(function(obj){
-                    $.each(obj.items,function(i,item){
+                //{perfil: this.options.user.perfil}
+                Perfil.findAll().then(function(obj){
+                    $.each(obj,function(i,item){
                         $("select[name=perfil]").append("<option value="+item.id+">"+item.descripcion+"</option>")
                     });
-                });*/
+                });
                 
             }
         })

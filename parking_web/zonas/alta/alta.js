@@ -3,7 +3,7 @@ steal(
     'can/view/ejs',
     'parking/fixtures/fixtures.js',
     'parking/models/inspector.js',
-    'parking_web/inspectores/handler/inspectores.css',
+    'parking_web/inspectores/handler/zonas.css',
     'parking_web/config.js',
     'jquery/dom/form_params',
     'bootstrap/js/bootstrap-alert.js')
@@ -20,8 +20,10 @@ steal(
             },
             "div.guardar click": function(element){
                 var self = this;
+                //Zona.create($.extend($(element).parents('form').formParams(),{id_municipio: this.options.user.id_municipio}),function(obj){
                 var z = new Zona($.extend($(element).parents('form').formParams(),{id_municipio: this.options.user.id_municipio}));
                 z.save(function(obj){
+                    //can.trigger(element, 'created', obj);
                     self.cartel({ta:'alert-success', msg_p: 'Éxito!', msg_s: 'La zona se dió de alta correctamente.'});
                 },function(obj){
                     self.cartel({ta:'alert-error', msg_p: 'Error!', msg_s: 'No se pudo crear la zona correspondiente: error interno de la aplicación.'});
