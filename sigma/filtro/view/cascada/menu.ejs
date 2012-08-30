@@ -1,0 +1,5 @@
+<% for (var i=0; i < this.filter_options.length; i++) { %>
+    <div class="filterOption cell" filter-field="<%= this.filter_options[i].field %>" filter-type="menu">
+        <%= this.filter_options[i].label %>
+    </div>
+<% } %>

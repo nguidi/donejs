@@ -1,0 +1,164 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Tabs DEMO</h1>
+        <div id="tabs"></div>
+    </body>
+</html>
+<script type='text/ejs' id='tabsTemplate'>
+    <ul>
+        <li tabs="datosPersonales">
+            <a> Datos Personales </a> 
+        </li>
+        <li tabs="datosContacto">
+            <a> Datos de Contacto </a> 
+        </li>
+    </ul>
+</script>
+<script type='text/ejs' id='tableHead'>
+    <tr>
+        <th class="datosPersonales">
+             Nombre 
+        </th>
+        <th class="datosPersonales">
+             Apellido
+        </th>
+        <th class="datosPersonales">
+             DNI
+        </th>
+        <th class="datosPersonales">
+             CUIL
+        </th>
+        <th class="datosContacto">
+             Codigo Postal 
+        </th>
+        <th class="datosContacto">
+             Domicilio
+        </th>
+        <th class="datosContacto">
+             Telefono 
+        </th>
+        <th class="datosContacto">
+             E-Mail
+        </th>
+    </tr>
+</script>
+<script type='text/ejs' id='tableRow'>
+    <tr>
+        <td class="datosPersonales">
+             <%= this.nombre %> 
+        </td>
+        <td class="datosPersonales">
+             <%= this.apellido %>
+        </td>
+        <td class="datosPersonales">
+             <%= this.dni %>
+        </td>
+        <td class="datosPersonales">
+             <%= this.cuil %>
+        </td>
+        <td class="datosContacto">
+             <%= this.codigopostal %>
+        </td>
+        <td class="datosContacto">
+             <%= this.domicilio %>
+        </td>
+        <td class="datosContacto">
+             <%= this.telefono %> 
+        </td>
+        <td class="datosContacto">
+             <%= this.email %>
+        </td>
+    </tr>
+</script>
+<script type='text/javascript' src='../../steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'jquery/jquery.js',
+        'can/control',
+        'can/model',
+        'can/util/fixture',
+        'can/view/ejs')
+    .then( 
+        'sigma/panels.css',
+        'sigma/tabs',
+        'sigma/common.js',
+        function($){
+            can.Model("Persona",{
+                findAll: "GET /personas",
+                findOne : "GET /persona",
+                models: function(raw) {
+                    return  raw
+                },
+                model: function(raw) {
+                    return raw
+                }
+            },{});
+            
+            var personas = new Array()
+            
+            for (var i=0; i < 100; i++) {
+                personas.push({
+                    id: i+1,
+                    nombre: 'Nombre '+i,
+                    apellido: 'Apellido '+i,
+                    dni: 'DNI '+i,
+                    cuil: 'CUIL '+i,
+                    codigopostal: 'Codigo Postal '+i,
+                    domicilio: 'Domicilio '+i,
+                    telefono: 'Telefono '+i,
+                    email: 'E-mail '+i
+                })
+            }
+            
+            can.fixture( "GET /personas", function(params) {
+                var offset = (!isUndefined(params.data.offset)) ? params.data.offset : 0
+                var limit = (!isUndefined(params.data.limit)) ? params.data.limit : personas.length
+                return  {
+                    items: $.grep( personas , function(e,i) {return (i < offset+limit) && (i >= offset)}),
+                    count: personas.length
+                }
+            });
+            // findOne
+            can.fixture( "GET /persona", function(params) {
+                var bool = false
+                return  $.grep( personas , function(i) {
+                    for (var attr in params.data) {
+                        if (i[attr] == params.data[attr])
+                            bool = true
+                        else {
+                            bool = false
+                            break
+                        }
+                    }
+                    return bool
+                })
+            });
+        }
+    ).then(function($){
+    
+        tab = new Tab('div#tabs',{
+            style: 'top',
+            tabs: 'tabsTemplate',
+            table: {
+                model: Persona,
+                tableStyle: 'simple striped bordered',
+                limit: 50,
+                head : 'tableHead',
+                row : 'tableRow',
+                paginate: {
+                    perPage: 10,
+                    maxIndex: 5
+                }
+            }
+        })
+    })   
+</script>

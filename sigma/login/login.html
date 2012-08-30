@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Oficios.Login</title>
+        <style type='text/css'>
+            body {font-family: verdana}
+            .error {border: solid 1px red;}
+            .error_text { color: red; font-size: 10px;}
+            td {padding: 3px;}
+        </style>
+	</head>
+	<body>
+	    <h1>Oficios.Login Demo</h1>
+		<div id='login' align="center" data-role="page"></div>
+        <script type='text/javascript' src='../../steal/steal.js'></script>
+        <script type='text/javascript'>
+            steal(
+                'can/control/control.js',
+                'jquery/jquery.js'
+            ).then(
+                'jquery-mobile/jquery.mobile-1.1.1.js',
+                'jquery-mobile/jquery.mobile-1.1.1.css',
+                'jquery-mobile/jquery.mobile.structure-1.1.1.css',
+                'jquery-mobile/jquery.mobile.theme-1.1.1.css'
+            ).then(
+                'sigma/login',
+                function($){	
+                    new Login('#login',{
+                        mobile: true
+                    })
+            })
+	</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+/* 
+    Document   : mobile_alert
+    Created on : 02-ago-2012, 14:42:42
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.alert_mobile {
+    border: 1px solid;
+    padding: 8px 35px 8px 14px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    width: 100%;
+    margin-bottom: 0px;
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    opacity: 0;
+}
+
+.alert_mobile .close_alert {
+    color: #000000;
+    margin-top: -5px;
+    margin-right: 25px;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 18px;
+    opacity: 0.2;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.alert_mobile button.close_alert {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.alert_mobile.error {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    color: #B94A48;
+}
+
+.alert_mobile.success {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+}
+
+.alert_mobile.info {
+    background-color: #D9EDF7;
+    border-color: #BCE8F1;
+    color: #3A87AD;
+}
+
+.alert_mobile.warning {
+    background-color: #FCF8E3;
+    border: #FBEED5;
+    color: #C09853;
+}

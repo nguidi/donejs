@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Oficios.mobile_alert</title>
+	</head>
+	<body>
+	    <h1>Oficios.Mobile_alert Demo</h1>
+            <button class="error">Error</button>
+            <button class="warning">Warning</button>
+            <button class="info">Info</button>
+            <button class="success">success</button>
+            <div data-role="page"></div>
+            
+        <script type='text/javascript' src='../../steal/steal.js'></script>
+        <script type='text/javascript'>
+            steal(
+                'jquery/jquery.js'
+            ).then(
+                'sigma/mobile_alert',
+                function($){
+                    
+                    ma = new Mobile_alert('body',{})
+                    
+                    $('button.error').bind('click', function() {
+                        can.trigger('body','alert_error',{
+                            mensaje: 'Ocurrio un Error'
+                        })    
+                    })
+                    
+                    $('button.warning').bind('click', function() {
+                        can.trigger('body','alert_warning',{
+                            mensaje: 'Warning: Guarda!'
+                        })    
+                    })
+                    
+                    $('button.info').bind('click', function() {
+                        can.trigger('body','alert_info',{
+                            mensaje: 'Nueva info disponible'
+                        })    
+                    })
+                    
+                    $('button.success').bind('click', function() {
+                        can.trigger('body','alert_success',{
+                            mensaje: 'Cambios Satisfactoriamentes Guardados'
+                        })    
+                    })                    
+            })
+	</script>
+	</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Oficios.Login</title>
+        <style type='text/css'>
+            body {font-family: verdana}
+            .error {border: solid 1px red;}
+            .error_text { color: red; font-size: 10px;}
+            td {padding: 3px;}
+        </style>
+	</head>
+	<body>
+	    <h1>Oficios.Countdown Demo</h1>
+		<div id="countdown"></div>
+        <script type='text/javascript' src='../../steal/steal.js'></script>
+        <script type='text/javascript'>
+            steal(
+                'jquery/jquery.js'
+            ).then(
+                'sigma/countdown',
+                function($){
+                    
+                    var st = new Date()
+                    
+                    var a = st.getFullYear()
+                    var m = st.getMonth();
+                    var d = st.getDate()
+                    var h = st.getHours()
+                    
+                    var et = new Date(a,m,d,h+2)
+
+                    cd = new Countdown('#countdown',{
+                        countFormat: ['Horas','Minutos','Segundos'],
+                        countdown: {
+                            horas: 0,
+                            minutos: 10,
+                            segundos: 5
+                        }
+                    })
+            })
+	</script>
+	</body>
+</html>

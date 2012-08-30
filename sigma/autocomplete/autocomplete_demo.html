@@ -1,0 +1,333 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+	<title>Sigma.AutocompleteDemo</title>
+        <style type='text/css'>
+            /*DL, DT, DD TAGS LIST DATA*/
+                dl {
+                    margin-bottom:5px;
+                }
+
+                dl dt {
+                    background:#5f9be3;
+                    color:#fff;
+                    float:left;
+                    font-weight:bold;
+                    margin-right:10px;
+                    padding:8px;
+                    width:150px;
+                }
+
+                dl dd {
+                    margin:1px 0;
+                    padding:5px 0;
+                }
+                
+                .ui-button { margin-left: -1px; }
+                .ui-button-icon-only .ui-button-text { padding: 0.35em; } 
+                
+                .ui-autocomplete-input {
+                    margin: 0;
+                    padding: 0.3em 0 0.25em 0.45em;
+                }
+                
+                .ui-autocomplete-category{
+                    font-weight: bold;
+                    padding: .2em .4em;
+                    line-height: 1.5;
+                }
+                
+        </style>
+	</head>
+	<body id="demos">
+            <div id="wrapper" class="content">
+                
+                <div id="introduce" class="left-panel panel">   
+                    <div id="dependencies">
+                        <p>Dependencias</p>
+                        <ul>
+                            <li>'jquery/class'</li>
+                            <li>'jquery/model'</li>
+                            <li>'jquery/model/list'</li>
+                            <li>'jquery/dom/fixture'</li>
+                            <li>'jquery/view/ejs'</li>
+                            <li>'jquery/controller'</li>
+                            <li>'jqueryui</li>
+                        </ul>
+                    </div>   
+                <h1>Sigma.AutocompleteDemo Demo</h1>
+                <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="widget-docs">
+                     <ul>
+                        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active">
+                            <a href="#overview">Overview</a>
+                        </li>
+                        <li class="ui-state-default ui-corner-top">
+                            <a href="#options">Options</a>
+                        </li>
+                        <li class="ui-state-default ui-corner-top">
+                            <a href="#events">Events</a>
+                        </li>
+                        <li class="ui-state-default ui-corner-top">
+                            <a href="#methods">Methods</a>
+                        </li>
+                    </ul>
+                    
+                        <div id="overview">
+                            <p>
+                                Se debe de instalar un controller en un 
+                                <a href="http://www.w3.org/wiki/HTML/Elements/input/text" target="_blank">input[type=text]</a> 
+                                en particular, esto es mediante un selector que devuelva un unico elemento JQuery del DOM
+                                especificando el modelo asociado
+                            </p>
+                            <h3 class="example">Ejemplo:</h3>
+                            
+                                <code>
+                                    <span class="jquery">$</span>(<span class="text">'.selector'</span>).sgm_autocomplete({<span class="jquery">model[,opciones]</span>})
+                                </code>
+                            
+                        </div>
+                        <div id="options">
+                            <ul class="option-list">
+                            <li class="option" id="option-combobox">
+                                <div class="option-header">
+                                    <h3 class="option-name">
+                                        <a href="#option-combobox">combobox</a>
+                                    </h3>
+                                    <dl>
+                                        <dt class="option-type-label">Type:</dt>
+                                        <dd class="option-type"><span>Boolean</span></dd>
+                                        <dt class="option-default-label">Default:</dt>
+                                        <dd class="option-default">false</dd>
+                                    </dl>
+                                </div>
+                                <div class="option-descripcion">
+                                    <p>
+                                        Habilita (true) o desabilita (false) el modo combobox, el cual permite desplegar el listado al clickear el icono con la flecha al costado derecho del AC.
+                                    </p>
+                                </div>
+                                <div class="option-examples">
+                                    <h4>Codigos de ejemplo</h4>
+                                    <dl class="option-examples-list">
+                                        <dt>
+                                          Initialize a autocomplete with the <code>combobox</code> option specified.
+                                        </dt>
+                                        <dd>
+                                            <pre><code>$( ".selector" ).sgm_autocomplete({ combobox: true });</code></pre>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                          Get or set the <code>combobox</code> option, after init.
+                                        </dt>
+                                        <dd>
+                                            <pre><code>
+                                            //getter
+                                            var combobox = $( ".selector" ).sgm_autocomplete( "option", "combobox" );
+                                            //setter
+                                            $( ".selector" ).autocomplete( "option", "combobox", true );
+                                            </code></pre>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </li>
+                            <li class="option" id="option-multiple">
+                                <div class="option-header">
+                                    <h3 class="option-name">
+                                        <a href="#option-multilpe">multiple</a>
+                                    </h3>
+                                    <dl>
+                                        <dt class="option-type-label">Type:</dt>
+                                        <dd class="option-type"><span>Boolean</span></dd>
+                                        <dt class="option-default-label">Default:</dt>
+                                        <dd class="option-default">false</dd>
+                                    </dl>
+                                </div>
+                                <div class="option-descripcion">
+                                    <p>
+                                        Disables (true) or enables (false) the autocomplete. Can be set when initialising (first creating) the autocomplete.
+                                    </p>
+                                </div>
+                                <div class="option-examples">
+                                    <h4>Codigos de ejemplo</h4>
+                                    <dl class="option-examples-list">
+                                        <dt>
+                                          Initialize a autocomplete with the <code>multiple</code> option specified.
+                                        </dt>
+                                        <dd>
+                                            <pre><code>$( ".selector" ).sgm_autocomplete({ multilple: true });</code></pre>
+                                        </dd>
+                                        <dt>
+                                          Get or set the <code>multiple</code> option, after init.
+                                        </dt>
+                                        <dd>
+                                            <pre><code>
+                                            //getter
+                                            var multiple = $( ".selector" ).sgm_autocomplete( "option", "multiple" );
+                                            //setter
+                                            $( ".selector" ).autocomplete( "option", "multiple", true );
+                                            </code></pre>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="example" class="right-panel panel">  
+		    <div class="ui-widget">
+                        <h1>Ejemplos de aplicacion</h1>
+                        <dl>
+                                        <dt class="option-type-label">Cosa Simple</dt>
+                                        <dd class="option-type"><input type="text" id="cosa"></dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Cosa Combobox</dt>
+                                        <dd class="option-type"><input type="text" id="cosa-combobox"></dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Cosa Multiple Unique</dt>
+                                        <dd class="option-type"><input type="text" id="cosa-multiple"></dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Paises->Provincias->Ciudades</dt>
+                                        <dd class="option-type">
+                                            <input type="text" id="pais-dependency">
+                                            <span class="option-type-label">Provincia</span>
+                                            <span class="option-type"><input type="text" id="provincia"></span>
+                                            <span class="option-type-label">Ciudad</span>
+                                            <span class="option-type"><input type="text" id="ciudad"></span>
+                                        </dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Paises<->Provincias</dt>
+                                        <dd class="option-type">
+                                            <input type="text" id="pais2">
+                                            <span class="option-type-label">Provincia</span>
+                                            <span class="option-type"><input type="text" id="provincia2"></span>
+                                        </dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Provincia-Zona -> Ciudad</dt>
+                                        <dd class="option-type">
+                                            <input type="text" id="provincia3">
+                                            <span class="option-type-label">Zona</span>
+                                            <span class="option-type"><input type="text" id="zona"></span>
+                                            <span class="option-type-label">Ciudad</span>
+                                            <span class="option-type"><input type="text" id="ciudad2"></span>
+                                        </dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Provincia<->Zona<->Ciudad</dt>
+                                        <dd class="option-type">
+                                            <input type="text" id="provincia4">
+                                            <span class="option-type-label">Zona</span>
+                                            <span class="option-type"><input type="text" id="zona2"></span>
+                                            <span class="option-type-label">Ciudad</span>
+                                            <span class="option-type"><input type="text" id="ciudad3"></span>
+                                        </dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Cosa Callback on Close item</dt>
+                                        <dd class="option-type"><input type="text" id="cosa-callback"></dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Cosa Clean</dt>
+                                        <dd class="option-type"><input type="text" id="cosa-clean"></dd>
+                        </dl>
+                        <dl>
+                                        <dt class="option-type-label">Server->Autocomplete</dt>
+                                        <dd class="option-type"><input type="text" id="usuario"></dd>
+                        </dl>
+                </div>
+            </div>
+       </div>
+            <script type='text/javascript' src='/donejs/steal/steal.js'></script>
+            <script type='text/javascript'>
+                steal(
+                    'jquery/jquery.js',
+                    'can/control',
+                    'can/model',
+                    'can/model/list',
+                    'can/util/fixture',
+                    'can/view/ejs')
+                .then( 
+                    'sigma/panels.css',
+                    'sigma/autocomplete',
+                    'sigma/common.js',
+                    function($){   
+                                                          
+                             can.Model("Cosa",{
+                                findAll: "GET /cosas",
+                                        findOne : "GET /cosa/{name}", 
+                                        model: function(raw) {
+                                            var model = this
+                                            if(raw[0].length){
+                                                return new model({
+                                                    label: raw[0][0].name,
+                                                    value: raw[0][0].id,
+                                                    desc: raw[0][0].desc,
+                                                    id: raw[0][0].id
+                                                })
+                                            }
+                                            else{
+                                                return  raw[0]
+                                            }
+					},
+					models: function(raw) {
+                                            var model = this
+                                            return  $.map( raw[0], function(i) {
+                                                    return  new model({
+                                                        label: i.name,
+                                                        value: i.id,
+                                                        desc: i.desc,
+                                                        id: i.id
+                                                    });
+                                                })
+					}
+                            },{});
+                            
+                            Cosa.List = can.Model.List({
+                                getGroupList: function() {
+                                    return this.grep(function(cosa){return true;});
+                                }
+                            });
+                            
+                            var cosas = [
+                                { id: 1, name: "esto", desc: "Descripcion de esto"},
+                                { id: 2, name: "esta", desc: "Descripcion de esta"}, 
+                                { id: 3, name: "bueno", desc: "Descripcion de bueno"},
+                                { id: 4, name: "estoy", desc: "Descripcion de estoy"}
+                            ]
+                            // findAll
+                            can.fixture( "GET /cosas", function(params) {
+                                return  [ $.grep( cosas , function(i) {
+                                        return (i.name.indexOf(params.data.query.term)) != -1;
+                                    })
+                                ];
+                            });
+                            // findOne
+                            can.fixture( "GET /cosa/{name}", function(params) {
+                                return  [ $.grep( cosas , function(i) {
+                                        return (i.name == params.data.name);
+                                    })
+                                ];
+                            });
+                            
+                            Cosa.findOne({name: 'esto'}).then(function(obj) {console.log(obj)})
+
+                            Cosa.findAll({query: {term: 'e'}}).then(function(obj) {console.log(obj)})
+                            
+                    }).then(
+                    
+                        function($){
+                            
+                        
+                            cosa = new Autocomplete('input#cosa',{
+                                model: Cosa
+                            })
+
+                    })
+            </script>
+    </body>
+</html>

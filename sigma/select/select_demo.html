@@ -1,0 +1,49 @@
+<html>
+    <head> 
+    <title>Formulario.Demo</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    </head> 
+    <body> 
+    </body>
+</html>
+<script type='text/javascript' src='../../steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'jquery/jquery.js',
+        'can/control/control.js',
+        'can/model',
+        'can/model/list',
+        'can/util/fixture')
+    .then(
+        'sigma/select')
+    .then( 
+        function($){
+            
+            url = '/sigma-it/donejs/sigma/'
+            
+            can.Model("Pais_Select",{
+                findAll: "GET /pais"
+            },{});
+            
+            var pais = new Array()
+            
+            for (var i=0; i < 100; i++) {
+                pais.push({
+                    id: i+1,
+                    nombre: 'Un Pais '+i
+                })
+            }
+            
+            can.fixture( "GET /pais", function(params) {
+                return pais
+            });
+            
+            new Select('body', {
+                model: Pais_Select,
+                label: "Seleccione un Pais:",
+                valor: 'id',
+                texto: 'nombre'
+            })
+        }
+    );
+</script>

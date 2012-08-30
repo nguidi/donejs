@@ -1,0 +1,354 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<script type='text/ejs' id='row'>
+    <tr>
+    <% for (var attr in this) { %>
+        <td>
+        <% if (attr == "idioma") { %>
+            <% for (var i=0; i < this.idioma.length; i++) { %>
+                <%= this.idioma[i].descripcion %> </br>
+            <% } %>
+        <% } else { %>
+                <% if (attr == "profesion") { %>
+                        <%= this.profesion.nombre %> </br>
+                <% } else { %>
+                    <%= this[attr] %>
+                <% } %>
+        <% } %>
+        </td>
+    <% } %>
+    </tr>
+</script>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h1>Filtro Demo</h1>
+        <div style="float:left; width: 45%;">
+            <div id="tab">
+                <ul>
+                    <li tab="filtroCascada"> Filtro Cascada </li>
+                    <li tab="filtroInline"> Filtro Inline </li>
+                    <li tab="filtroColumn"> Filtro Column </li>
+                    <li tab="filtroColumnInline"> Filtro Inline Column </li>
+                </ul>
+            </div>
+            <div id="toTab">
+                <div toTab="filtroCascada" class="tab" style="border: 1px solid #ccc; height: 200px;">
+                    <h2>Filtro Cascada</h2>
+                    <div id="filtroCascada"></div>    
+                </div>
+                <div toTab="filtroInline" class="tab" style="border: 1px solid #ccc; height: 150px;">
+                    <h2>Filtro Inline</h2>
+                    <div id="filtroInline"></div>
+                </div>
+                <div toTab="filtroColumn" class="tab" style="border: 1px solid #ccc; height: 320px;">
+                    <h2>Filtro Column</h2>
+                    <div id="filtroColumn"></div>
+                </div>
+                <div toTab="filtroColumnInline" class="tab" style="border: 1px solid #ccc; height: 200px;">
+                    <h2>Filtro Column-Inline</h2>
+                    <div id="filtroColumnInline"></div>
+                </div>    
+            </div>    
+        </div>
+        <div style="float:left; margin-left: 25px;">
+            <div id="tableArea"></div>
+        </div>
+    </body>
+</html>
+<script type='text/javascript' src='/donejs/steal/steal.js'></script>
+<script type='text/javascript'>
+    steal(
+        'jquery/jquery.js',
+        'can/control',
+        'can/model',
+        'can/util/fixture',
+        'can/view/ejs')
+    .then( 
+        'sigma/panels.css',
+        'sigma/tabla',
+        'sigma/common.js',
+        'sigma/filtro/filtro.js')
+    .then(
+        function($){
+            
+            can.Model("Idioma",{
+                findAll: "GET /idiomas",
+                findOne : "GET /idioma",
+                models: function(raw) {
+                    return  raw
+                },
+                model: function(raw) {
+                    return raw
+                }
+            },{});
+            
+            can.Model("Persona",{
+                attributes : { 
+                    idioma : 'Idioma.model'
+                },
+                findAll: "GET /personas",
+                findOne : "GET /persona",
+                models: function(raw) {
+                    return  raw
+                },
+                model: function(raw) {
+                    return raw
+                }
+            },{});
+            
+            var profesion = [
+                {
+                    id: 1,
+                    nombre: 'Ingeniero en Sistema'
+                },{
+                    id: 2,
+                    nombre: 'Ingeniero Quimico'
+                },{
+                    id: 3,
+                    nombre: 'Ingeniero Mecanico'
+                },
+                {
+                    id: 4,
+                    nombre: 'Ingeniero Electrico'
+                }
+            ]
+            
+            
+            var idiomas = [
+                {
+                    id: 1,
+                    descripcion: "Ingles"
+                },
+                {
+                    id: 2,
+                    descripcion: "Frances"
+                },
+                {
+                    id: 3,
+                    descripcion: "Japones"
+                }
+            ]
+            
+            var persona_idiomas = new Array()
+            
+            for (var i=0; i < 115; i++) {
+                if (i >= 100) 
+                    persona_idiomas[random(2,99)].push(idiomas[random(0,2)])
+                else 
+                    persona_idiomas.push([idiomas[random(0,2)]])
+            }
+            
+            
+            var personas = new Array()
+            
+            for (var i=0; i < 100; i++) {
+                personas.push({
+                    id: i+1,
+                    nombre: 'Nombre '+i,
+                    apellido: 'Apellido '+i,
+                    domicilio: 'Domicilio '+i,
+                    telefono: 'Telefono '+i,
+                    email: 'E-mail '+i,
+                    edad: random(20,65),
+                    idioma: persona_idiomas[i], 
+                    profesion: profesion[random(0,3)]
+                })
+            }
+
+            can.fixture("GET /idiomas", function(params){
+                return idiomas
+            })
+            
+            can.fixture("GET /idioma", function(params){
+                var bool = false
+                return  $.grep( idiomas, function(i) {
+                    for (var attr in params.data) {
+                        if (i[attr] == params.data[attr])
+                            bool = true
+                        else {
+                            bool = false
+                            break
+                        }
+                    }
+                    return bool
+                })
+            })
+            
+            can.fixture( "GET /personas", function(params) {
+                console.log(params)
+                var bool
+                var offset = (isUndefined(params.data.offset)) ? 0 : params.data.offset
+                var limit = (isUndefined(params.data.limit)) ? personas.length : params.data.limit
+                var items = 
+                    $.grep( 
+                        personas,
+                        function(e,i) {
+                            bool = new Array()
+                            bool.push((i < offset+limit) && (i >= offset))
+                            if (!isUndefined(params.data.filtro) && bool[0])
+                                $.each(params.data.filtro,function(i,filtro) {
+                                    if (filtro.valor.length == 0)
+                                        bool.push(true)
+                                    else {
+                                        if (filtro.campo == 'idioma') {
+                                            $.each(e.idioma,function(i,idioma) {
+                                                if ( $.isNumeric(filtro.valor))
+                                                    bool.push(idioma.id == filtro.valor)
+                                                else
+                                                    if (!isUndefined(filtro.bool)) {
+                                                        if (filtro.bool)
+                                                            bool.push(filtro.valor == idioma.descripcion)
+                                                        else
+                                                            bool.push(filtro.valor != idioma.descripcion)
+                                                    } else
+                                                        bool.push(isSubstringCaseSensitive(filtro.valor,idioma.descripcion))
+                                                if (bool[bool.length-1] == true)
+                                                    return false
+                                            })
+                                        } else {
+                                            if (isUndefined(filtro.comparar))
+                                                bool.push(isSubstringCaseSensitive(filtro.valor,e[filtro.campo]))
+                                            else 
+                                                if (filtro.comparar == 'igual')
+                                                    bool.push((e[filtro.campo] == filtro.valor))
+                                                else 
+                                                    if (filtro.comparar == 'menor')
+                                                        bool.push((e[filtro.campo] <= filtro.valor))
+                                                    else 
+                                                        bool.push((e[filtro.campo] >= filtro.valor)) 
+                                        }
+                                    }
+                                })
+                            return ($.unique(bool)[0] == true && $.unique(bool).length == 1)
+                        }
+                    )
+                return  {
+                    items: items,
+                    count: (isUndefined(params.data.filtro)) ? personas.length : items.length
+                }
+            });
+            // findOne
+            can.fixture( "GET /persona", function(params) {
+                var bool = false
+                return  $.grep( personas , function(i) {
+                    for (var attr in params.data) {
+                        if (i[attr] == params.data[attr])
+                            bool = true
+                        else {
+                            bool = false
+                            break
+                        }
+                    }
+                    return bool
+                })
+            });
+        }
+    ).then(
+        function($){
+        
+            //TABS
+            
+            $('div#toTab div.tab').hide()
+
+            $('div#tab ul li').bind('click',function(){
+                if ($('div#tab ul li.active').length > 0) {
+                    $('div#toTab div[toTab="'+$('div#tab ul li.active').attr('tab')+'"]').hide()
+                    $('div#tab ul li.active').removeClass('active')
+                }
+                $(this).addClass('active')
+                $('div#toTab div.tab[toTab="'+$(this).attr('tab')+'"]').show()
+            })
+
+            $('div#tab ul li:first').click()
+
+            // FIN TABS
+        
+            filter = new Filtro( 'div#filtroCascada', {
+                    filterType: 'cascada',
+                    filterData: [{title: "Datos Personales"},{title: "Contacto"},{title: "Educacion"}],
+                    filterFunction: function(path) {
+                        can.trigger($('div#tableArea'),'newFilter',{path: path})
+                    }
+                }
+            );
+
+            filter.add({
+                from: "Datos Personales",
+                type: "menu",
+                filterData: [{title: "Nombre", value: "nombre"}, {title: "Apellido", value: "apellido"}, {title: "Edad", value: "edad"}]
+            })
+
+            filter.add({
+                from: "Contacto",
+                type: "menu",
+                filterData: [{title: "Domicilio", value: "domicilio"}, {title: "Codigo Postal", value: "codigopostal"}, {title: "Telefono", value: "telefono"}, {title: "E-mail", value: 'email'}]
+            })
+
+            filter.add({
+                from: "Educacion",
+                type: "menu",
+                filterData: [{title: "Ingles", value: "idioma"}, {title: "Frances", value: "idioma"}]
+            })
+
+
+            filter.add({
+                from: ["Ingles","Frances","E-mail"],
+                type: "bool"
+            })
+
+            filter.add({
+                from: ["Nombre","Apellido","Domicilio","Codigo Postal","Telefono"],
+                type: "input"
+            })
+
+            filter.add({
+                from: ["Edad"],
+                type: "compare"
+            })
+    
+            tabla = new Tabla('div#tableArea',{
+                model: Persona,
+                row: 'row',
+                tableStyle: 'simple striped bordered',
+                limit: 50,
+                paginate: {
+                    perPage: 10,
+                    maxIndex: 5
+                }
+            })
+            
+            filterInline = new Filtro( 'div#filtroInline', {
+                    filterType: 'inline',
+                    filterData: [
+                        {
+                            label: 'Nombre',
+                            value: 'nombre',
+                            type: 'input'
+                        },
+                        {
+                            label: 'Idioma',
+                            value: 'idioma',
+                            type: 'select',
+                            selectOptions: [{value: 1, text: 'Ingles'},{value: 2, text: 'Frances'}]
+                        },
+                        {
+                            label: 'Prefesion',
+                            value: 'profesion',
+                            type: 'autocomplete'
+                        }
+                    ],
+                    filterFunction: function(path) {
+                        console.log(path)
+                        can.trigger($('div#tableArea'),'newFilter',{path: path})
+                    }
+                }
+            );
+    })   
+</script>

@@ -1,0 +1,56 @@
+/* 
+    Document   : filtro
+    Created on : 07-jun-2012, 17:48:18
+    Author     : nguidi
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+input {
+    background: inherit;
+}
+
+.cell {
+    border               : 1px solid #CCC;
+    border-collapse      : collapse;
+    font                 : small/1.5 "Tahoma", "Bitstream Vera Sans", Verdana, Helvetica, sans-serif;
+    padding              : 5px 10px;
+    color                : #666;
+    cursor               : pointer;
+    max-width            : 150px;
+}
+
+div.chosenOne {
+   background-color: #666;
+   color: #fbf9ee;
+}
+
+input.cell [type="text"],input.cell textarea
+{
+    text-align           : center;
+    height               : 21px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+a.noDecoration {
+  text-decoration:none
+}
+
+.filtered {
+    display: none;
+}
+
+div.filterOptions {
+    margin-left: 10px;
+    float: left;
+    display: none;
+    min-width: 100px;
+}
+
+div[filter-level="0"] div.filterOptions {
+    display: block;
+}
