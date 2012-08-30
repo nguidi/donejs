@@ -14,7 +14,7 @@ steal('can/model')
         destroy : 'DELETE /users/{id}',
         findAll: function (params, success, error) {
             return $.ajax({
-                url: 'http://localhost/slim_php/backend_parking/clientes.php/clientes',
+                url: 'http://localhost/slim_php/backend_parking/usuarios.php/usuarios',
                 type: 'get',
                 dataType: 'json',
                 data: JSON.stringify(params),

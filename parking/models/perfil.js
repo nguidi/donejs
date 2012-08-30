@@ -11,7 +11,16 @@ $.Model('Perfil',
 /* @Static */
 {
         
-	findAll: "GET /perfils",
+	findAll: function (params, success, error) {
+            return $.ajax({
+                url: 'http://localhost/slim_php/backend_parking/perfiles.php/perfiles',
+                type: 'get',
+                dataType: 'json',
+                data: JSON.stringify(params),
+                success: success,
+                error: error
+            });
+        },
   	findOne : "GET /perfils/{id}",
   	create : "POST /perfils",
  	update : "PUT /perfils/{id}",
