@@ -6,7 +6,7 @@ steal(
     'parking_web/inspectores/handler/zonas.css',
     'parking_web/config.js',
     'jquery/dom/form_params',
-    'bootstrap/js/bootstrap-alert.js')
+    'sigma/avisos-bootstrap')
 .then(
     function(){
         
@@ -20,13 +20,26 @@ steal(
             },
             "div.guardar click": function(element){
                 var self = this;
-                //Zona.create($.extend($(element).parents('form').formParams(),{id_municipio: this.options.user.id_municipio}),function(obj){
-                var z = new Zona($.extend($(element).parents('form').formParams(),{id_municipio: this.options.user.id_municipio}));
-                z.save(function(obj){
-                    //can.trigger(element, 'created', obj);
-                    self.cartel({ta:'alert-success', msg_p: 'Éxito!', msg_s: 'La zona se dió de alta correctamente.'});
+                // Como el framework hay que actualizarlo, dejo comentado esto... 
+                // tira error con el archivo attributes.js al invocar save()
+                //var z = new Zona($.extend($(element).parents('form').formParams(),{id_municipio: this.options.user.id_municipio}));
+                //z.save(function(obj){
+                this.cartel = new Cartel('#alertas_alta_zonas');
+                Zona.create($.extend($(element).parents('form').formParams(),{id_municipio: this.options.user.id_municipio}),function(obj){
+                    $('table.zonas').append(can.view(url+'zonas/tabla/recipe.ejs',obj));
+                    this.cartel.aviso(
+                        {
+                            tipo_alerta:'exito', 
+                            mensaje_primario: 'Éxito!', 
+                            mensaje_secundario: 'La zona se dió de alta correctamente.'
+                        });
                 },function(obj){
-                    self.cartel({ta:'alert-error', msg_p: 'Error!', msg_s: 'No se pudo crear la zona correspondiente: error interno de la aplicación.'});
+                    self.cartel(
+                    {
+                        tiempo_alerta:'error', 
+                        mensaje_primario: 'Error!', 
+                        mensaje_secundario: 'No se pudo crear la zona correspondiente: error interno de la aplicación.'
+                    });
                 });
             },
             cartel: function(vars){
